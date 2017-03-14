@@ -25,8 +25,8 @@ public class IntelligentBacktracking {
 		final  SolvField oldstate = input.clone();
 		SolvField solution =oldstate;
 		SolvField temp = oldstate;
-		final ArrayList<Byte> rel;
-		if(oldstate.sud[oldstate.x][oldstate.y]!=0){ //wenn bereits beschrieben
+		ArrayList<Byte> rel = new ArrayList<Byte>();
+		/*if(oldstate.sud[oldstate.x][oldstate.y]!=0){ //wenn bereits beschrieben
 			if (oldstate.x<8){//wenn nicht in letzter Spalte: erhöhe Spalte um 1 und fieldsolve
 				temp.x++;
 				return fieldsolver(temp);
@@ -35,22 +35,29 @@ public class IntelligentBacktracking {
 				temp.x=(byte) 0;
 				return fieldsolver(temp);
 			} else { //sudoku ist abgeschlossen
-				temp.f=true;
-				return temp;
+				if (rel.size()!=1){System.out.println("dürfte nie eintreten");return oldstate;}else{
+					temp.f=true;
+					return temp;
+			}*/
+		//} else { // wenn noch leer (0)
+		
+			byte a=oldstate.sud[oldstate.x][oldstate.y];
+			if (a!=0){
+				rel.add(a);
+			}else{
+				rel=findRelevant(oldstate); // finde mögliche lösungen
 			}
-		} else { // wenn noch leer (0)
-			rel=findRelevant(oldstate); // finde mögliche lösungen
 			if (rel.isEmpty()) // wenn keine lösung vorhanden Springe aufwärts /
-				return oldstate;
+				return oldstate.clone();
 			for(int i=0;i<rel.size();i++){System.out.print(rel.get(i)+", ");}System.out.println("gehört zu "+oldstate.x+"|"+oldstate.y);
 			for(byte b=0;b<rel.size();b++){ //prüfe bis unmöglich
-				temp=oldstate;
+				temp=oldstate.clone();
 				temp.sud[temp.x][temp.y]=rel.get(b);
 				if (temp.x==8){
 					if (temp.y==8){
-						if (rel.size()!=1){System.out.println("dürfte nie eintreten");return oldstate;}else{
+						if (rel.size()!=1){System.out.println("dürfte nie eintreten");return oldstate.clone();}else{
 						temp.f=true;
-						return temp;
+						return temp.clone();
 						}
 					} else {
 						temp.y++;
@@ -59,14 +66,23 @@ public class IntelligentBacktracking {
 				}else {
 					temp.x++;
 				}
-				solution=fieldsolver(temp);
+				solution=fieldsolver(temp).clone();
 				if (solution.f){
-					return solution;
+					return solution.clone();
 				}
 			}
-		}
-		System.out.println("Never should end here!");
-		return new SolvField(null,(byte) 0,(byte) 0,false);
+		
+		//System.out.println("Never should end here!");
+		return new SolvField(new byte[][]{
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1}},(byte) 0,(byte) 0,false);
 	}
 	private static ArrayList<Byte> findRelevant(SolvField input){
 		ArrayList<Byte> rel = new ArrayList<Byte>();

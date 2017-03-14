@@ -20,7 +20,7 @@ public class Solvertest {
 			}
 			System.out.println("");
 		}
-		example[8][0]=0;
+		//example[8][0]=0;
 		
 		System.out.println("");
 		System.out.println("");

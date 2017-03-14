@@ -4,9 +4,11 @@ import java.util.*;
 
 
 public class IntelligentBacktracking {
-	int counter=0;
+	static int counter=0;
 	public IntelligentBacktracking(){
-		
+	}
+	public static void count(){
+		counter++;
 	}
 	public byte[][] solver(byte[][] input){
 		SolvField i= new SolvField(input,(byte) 0,(byte) 0,false);
@@ -17,10 +19,10 @@ public class IntelligentBacktracking {
 		
 	}
 
-	private SolvField fieldsolver(SolvField input){
-		counter=counter+1;
+	private static SolvField fieldsolver(SolvField input){
+		count();
 		
-		final SolvField oldstate = input;
+		final  SolvField oldstate = input.clone();
 		SolvField solution =oldstate;
 		SolvField temp = oldstate;
 		final ArrayList<Byte> rel;
@@ -41,14 +43,15 @@ public class IntelligentBacktracking {
 			if (rel.isEmpty()) // wenn keine lösung vorhanden Springe aufwärts /
 				return oldstate;
 			for(int i=0;i<rel.size();i++){System.out.print(rel.get(i)+", ");}System.out.println("gehört zu "+oldstate.x+"|"+oldstate.y);
-			for(byte b=0;b>rel.size();b++){ //prüfe bis unmöglich
+			for(byte b=0;b<rel.size();b++){ //prüfe bis unmöglich
 				temp=oldstate;
 				temp.sud[temp.x][temp.y]=rel.get(b);
 				if (temp.x==8){
 					if (temp.y==8){
-						if (rel.size()!=1){System.out.println("dürfte nie eintreten");}
+						if (rel.size()!=1){System.out.println("dürfte nie eintreten");return oldstate;}else{
 						temp.f=true;
 						return temp;
+						}
 					} else {
 						temp.y++;
 						temp.x=0;
@@ -65,7 +68,7 @@ public class IntelligentBacktracking {
 		System.out.println("Never should end here!");
 		return new SolvField(null,(byte) 0,(byte) 0,false);
 	}
-	private ArrayList<Byte> findRelevant(SolvField input){
+	private static ArrayList<Byte> findRelevant(SolvField input){
 		ArrayList<Byte> rel = new ArrayList<Byte>();
 		for(byte b=1;b<10;b++){ // schreibe alle Zahlen 1-9 in rel (relevante Zahlen)
 			rel.add((Byte) b);	

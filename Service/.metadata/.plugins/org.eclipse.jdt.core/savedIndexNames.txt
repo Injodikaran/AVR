@@ -1,0 +1,3 @@
+INDEX VERSION 1.129+D:\Sudoku\Service\.metadata\.plugins\org.eclipse.jdt.core
+2496166126.index
+1331041930.index

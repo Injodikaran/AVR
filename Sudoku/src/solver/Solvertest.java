@@ -3,9 +3,36 @@ package solver;
 public class Solvertest {
 	public static void main(String[] args){
 		///*
-		long startTime = System.currentTimeMillis();
-		byte[][] TEST=// new byte[9][9];
-		{
+		
+		byte[][] model= new byte[9][9];
+	      model[0][3] = 2 ;
+	      model[0][5] = 1 ;
+
+	      model[2][3] = 9 ;
+	      model[2][4] = 5 ;
+	      model[2][5] = 7 ;
+
+	      model[3][0] = 3 ;
+	      model[3][2] = 9 ;
+	      model[3][3] = 7 ;
+	      model[3][5] = 5 ;
+	      model[3][6] = 1 ;
+	      model[3][8] = 6 ;
+
+	      model[4][2] = 2 ;
+	      model[4][6] = 5 ;
+
+	      model[5][0] = 4 ;
+	      model[5][2] = 5 ;
+	      model[5][3] = 1 ;
+	      model[5][5] = 8 ;
+	      model[5][6] = 3 ;
+	      model[5][8] = 9 ;
+
+	      model[6][3] = 5 ;
+
+		///*
+	      model= new byte[][]{
 			{5,3,0,0,7,0,0,0,0},
 			{6,0,0,1,9,5,0,0,0},
 			{0,9,8,0,0,0,0,6,0},
@@ -15,8 +42,9 @@ public class Solvertest {
 			{0,6,0,0,0,0,2,8,0},
 			{0,0,0,4,1,9,0,0,5},
 			{0,0,0,0,8,0,0,7,9},
-		};
+		};//*/
 		//IntelligentBacktracking a= new IntelligentBacktracking();
+	      byte[][] TEST=model;
 		LogicSolv a=new LogicSolv();
 		byte[][] Test=a.solver(TEST);
 		for(int x=0;x<9;x++){
@@ -25,7 +53,7 @@ public class Solvertest {
 			}
 			System.out.println("");
 		}
-		
+		long startTime = System.currentTimeMillis();
 		for (int i=0;i<1000;i++){
 		System.out.print(a.solver(TEST));
 		}
@@ -59,7 +87,7 @@ public class Solvertest {
 		System.out.println("");
 		System.out.println("");
 		
-		IntelligentBacktracking i=new IntelligentBacktracking();
+		LogicSolv i=new LogicSolv();
 		byte[][] solve=i.solver(example);
 		System.out.println("Solv1:");
 		for(int x=0;x<9;x++){
@@ -103,8 +131,8 @@ public class Solvertest {
 			{4,2,6,8,0,3,7,9,1},
 			{7,1,3,9,2,4,8,5,6},
 			{9,6,1,5,0,7,2,8,5},
-			{2,8,7,4,1,9,6,0,5},
-			{3,4,5,2,8,6,1,7,0},
+			{2,8,7,4,1,9,6,3,5},
+			{3,4,5,2,8,6,1,7,8},
 		};
 		byte[][] solve4=i.solver(example3);
 		System.out.println("Solv4:");

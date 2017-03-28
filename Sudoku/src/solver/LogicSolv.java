@@ -54,7 +54,8 @@ public class LogicSolv {
 		byte kontrolle=mySudokuSolution[8][8];
 		mySudokuSolution[8][8]=0; 
 		findRelevant((byte)8,(byte)8);
-		if (temp.get(0)==kontrolle){
+		if (temp.size()==1 && temp.get(0)==kontrolle){
+			mySudokuSolution[8][8]=kontrolle;
 			//Kontrolle erfolgreich
 		} else {
 			return new byte[][]{

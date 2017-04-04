@@ -4,61 +4,37 @@ import java.util.*;
 
 
 public class IntelligentBacktracking {
-	static int counter=0;
 	public IntelligentBacktracking(){
-	}
-	public static void count(){
-		counter++;
 	}
 	public byte[][] solver(byte[][] input){
 		SolvField i= new SolvField(input,(byte) 0,(byte) 0,false);
 		SolvField s=fieldsolver(i);
-		System.out.println(counter);
-		System.out.println("");
+		if (s.sud[0][0]==-1){
+		}
 		return s.sud;
 		
 	}
 
 	private static SolvField fieldsolver(SolvField input){
-		count();
 		
 		final  SolvField oldstate = input.clone();
 		SolvField solution =oldstate;
 		SolvField temp = oldstate;
 		ArrayList<Byte> rel = new ArrayList<Byte>();
-		/*if(oldstate.sud[oldstate.x][oldstate.y]!=0){ //wenn bereits beschrieben
-			if (oldstate.x<8){//wenn nicht in letzter Spalte: erhöhe Spalte um 1 und fieldsolve
-				temp.x++;
-				return fieldsolver(temp);
-			} else if(oldstate.y<8){//wenn nicht in letzter Zeile erhöhe Zeile um 1 und setze Spalte auf 0 und fieldsolve
-				temp.y++;
-				temp.x=(byte) 0;
-				return fieldsolver(temp);
-			} else { //sudoku ist abgeschlossen
-				if (rel.size()!=1){System.out.println("dürfte nie eintreten");return oldstate;}else{
-					temp.f=true;
-					return temp;
-			}*/
-		//} else { // wenn noch leer (0)
+		
 		
 			byte a=oldstate.sud[oldstate.x][oldstate.y];
 			if (a!=0){
-				rel.add(a);
-			}else{
-				rel=findRelevant(oldstate); // finde mögliche lösungen
-			}
-			if (rel.isEmpty()) // wenn keine lösung vorhanden Springe aufwärts /
-				return oldstate.clone();
-			for(int i=0;i<rel.size();i++){System.out.print(rel.get(i)+", ");}System.out.println("gehört zu "+oldstate.x+"|"+oldstate.y);
-			for(byte b=0;b<rel.size();b++){ //prüfe bis unmöglich
-				temp=oldstate.clone();
-				temp.sud[temp.x][temp.y]=rel.get(b);
+				//rel.add(a);
+				
+				
+				///*
 				if (temp.x==8){
 					if (temp.y==8){
-						if (rel.size()!=1){System.out.println("dürfte nie eintreten");return oldstate.clone();}else{
+						//if (rel.size()!=1){System.out.println("dürfte nie eintreten");return oldstate.clone();}else{
 						temp.f=true;
 						return temp.clone();
-						}
+						//}
 					} else {
 						temp.y++;
 						temp.x=0;
@@ -66,9 +42,46 @@ public class IntelligentBacktracking {
 				}else {
 					temp.x++;
 				}
-				solution=fieldsolver(temp).clone();
+				solution=fieldsolver(temp);
+				if (oldstate.x==0 && oldstate.y==0){
+					return new SolvField(new byte[][]{
+						{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+						{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+						{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+						{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+						{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+						{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+						{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+						{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+						{-1,-1,-1,-1,-1,-1,-1,-1,-1}},(byte) 0,(byte) 0,false);
+				} else {
+					return solution;
+				}
+				//*/
+			}else{
+				rel=findRelevant(oldstate); // finde mögliche lösungen
+			} if (rel.isEmpty()) // wenn keine lösung vorhanden Springe aufwärts /
+				return oldstate.clone();
+			//for(int i=0;i<rel.size();i++){System.out.print(rel.get(i)+", ");}System.out.println("gehört zu "+oldstate.x+"|"+oldstate.y);
+			for(byte b=0;b<rel.size();b++){ //prüfe bis unmöglich
+				temp=oldstate.clone();
+				temp.sud[temp.x][temp.y]=rel.get(b);
+				if (temp.x==8){
+					if (temp.y==8){
+						//if (rel.size()!=1){System.out.println("dürfte nie eintreten");return oldstate.clone();}else{
+						temp.f=true;
+						return temp;
+						//}
+					} else {
+						temp.y++;
+						temp.x=0;
+					} 
+				}else {
+					temp.x++;
+				}
+				solution=fieldsolver(temp);
 				if (solution.f){
-					return solution.clone();
+					return solution;
 				}
 			}
 		

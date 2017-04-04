@@ -1,0 +1,15 @@
+import java.io.FileReader;
+import java.util.Iterator;
+ 
+import json.simple.JSONArray;
+import json.simple.JSONObject;
+import json.simple.parser.JSONParser;
+
+public class TestClass 
+{
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		JSONParser parser = new JSONParser();
+	}
+}

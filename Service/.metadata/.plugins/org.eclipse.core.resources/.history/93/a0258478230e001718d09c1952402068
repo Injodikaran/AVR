@@ -1,0 +1,20 @@
+import java.io.FileReader;
+import java.util.Iterator;
+ 
+import json.JSONArray;
+import json.JSONObject;
+import json.parser.JSONParser;
+
+public class TestClass 
+{
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		JSONParser parser = new JSONParser();
+		try
+		{
+			Object obj = parser.readFile("D:/Sudoku/Service/Sudoku.json");
+			
+		}
+	}
+}

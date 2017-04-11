@@ -1,4 +1,16 @@
 //http://codefordummies.blogspot.ch/2014/01/backtracking-solve-sudoku-in-java.html
+/*According to wikipedia https://de.wikipedia.org/wiki/Backtracking
+ * Funktion FindeLoesung (Stufe, Vektor)
+  1. wiederhole, solange es noch neue Teil-Lösungsschritte gibt:
+     a) wähle einen neuen Teil-Lösungsschritt;
+     b) falls Wahl gültig ist:
+               I) erweitere Vektor um Wahl;
+              II) falls Vektor vollständig ist, return true; // Lösung gefunden!
+                  sonst:
+                       falls (FindeLoesung(Stufe+1, Vektor)) return true; // Lösung!
+                       sonst mache Wahl rückgängig; // Sackgasse (Backtracking)!
+  2. Da es keinen neuen Teil-Lösungsschritt gibt: return false // Keine Lösung!
+ */
 
 package solver;
 
@@ -11,27 +23,26 @@ public class Backtracking {
 	
 	static byte[][] field = new byte[FIELD_DIMENSION][FIELD_DIMENSION];
 	
-	public static byte[][] Backtracking(byte[][] input)
+	public static byte[][] solver(byte[][] input)
 	{
-		// Make a copy of the input array
-		for(int yPos = 0; yPos < FIELD_DIMENSION; yPos++)
+		// Copy input 2d-array
+		for (int yPos = 0; yPos < FIELD_DIMENSION; yPos++)
 		{
-			for(int xPos = 0; xPos < FIELD_DIMENSION; xPos++)
+			for (int xPos = 0; xPos < FIELD_DIMENSION; xPos++)
 			{
 				field[yPos][xPos] = input[yPos][xPos];
-			}
-		}
+			} // for
+		} // for
+		
+
 		if (BacktrackingAlgo(0,0))
 		{
 			return field;
 		}
 		else
 		{
-			System.out.println("No soulution found");
 			return null;
-		}
-		
-		
+		} // if
 	}
 	
 	public static boolean BacktrackingAlgo(int yPos, int xPos)
@@ -40,7 +51,7 @@ public class Backtracking {
 		if(yPos > FIELD_DIMENSION - 1)
 		{
 			return true;
-		}
+		} // if
 		
 		// Check, if field is empty
 		if(field[yPos][xPos] == EMPTY) // Fill in new value and check
@@ -51,22 +62,20 @@ public class Backtracking {
 				{
 					field[yPos][xPos] = value;
 					int[] pos = getNextPosition(yPos,xPos);
-					if(BacktrackingAlgo(pos[1], pos[0]))
+					if(BacktrackingAlgo(pos[1], pos[0])) // Algorithm with new positions
 					{
-						return true;
+						return true; // Value okay
 					}
 					else
 					{
-						field[yPos][xPos] = EMPTY;
-					}
-
+						field[yPos][xPos] = EMPTY; // Delete old position (step back)
+					} // if
 				}
 				else // Solution not valid
 				{
 					// Delete last entry by overwriting with EMPTY
 					field[yPos][xPos] = EMPTY;
 				} // if
-				
 			} // for
 			
 			// No valid value found.
@@ -76,7 +85,6 @@ public class Backtracking {
 		{
 			int[] pos = getNextPosition(yPos,xPos);
 			return BacktrackingAlgo(pos[1], pos[0]);
-			
 		}
 	
 	} // BacktrackingAlgo
@@ -107,7 +115,6 @@ public class Backtracking {
 			} // if
 		} // for
 		
-		
 		// Check subfield
 		int xStart = 3*(xPos / 3); // Beginning of x-field
 		int yStart = 3*(yPos / 3); // Beginning of y-field
@@ -123,11 +130,9 @@ public class Backtracking {
 			} // for
 
 		} // for
-				
 		// No errors
 		return true;
 	}
-	
 	
 	public static int[] getNextPosition(int yPos, int xPos)
 	{
@@ -138,35 +143,7 @@ public class Backtracking {
 			xPos = 0;
 			yPos++;
 		}
-		
-		// Reached end of field
-		/*if(yPos > FIELD_DIMENSION - 1)
-		{
-			return null;
-		}
-		*/
-		
 		int[] pos = {xPos, yPos};
 		return pos;
-		
 	}
-	
-	public static void print(byte[][] input)
-	{
-		System.out.println("---Start---");
-		for(int y = 0; y < 9; y++)
-		{
-			for(int x = 0; x < 9; x++)
-			{
-				System.out.print(input[y][x]);
-				if(x==2 || x== 5) System.out.print(" ");
-			}
-			System.out.println();
-			if(y==2 || y== 5) System.out.println();
-		}
-		System.out.println("---END---");
-	}
-
-	
-	
 }

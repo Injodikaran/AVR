@@ -11,7 +11,7 @@ public class LogicSolv {
 	public byte[][] solver(byte[][] input){
 		mySudokuSolution=input;
 		
-		for (byte b=0;b<81;b++){
+		for (byte b=0;b<40;b++){
 			for (byte x=0;x<9;x++){
 				for(byte y=0;y<9;y++){
 					if (mySudokuSolution[x][y]==0){
@@ -50,7 +50,7 @@ public class LogicSolv {
 
 		mySudokuSolution = alpha.solver(mySudokuSolution);
 		
-		//Kontrolle ob auch letzte Ziffer Gültig!
+		//Gültikeitskontrolle
 		byte kontrolle=mySudokuSolution[8][8];
 		mySudokuSolution[8][8]=0; 
 		findRelevant((byte)8,(byte)8);

@@ -15,7 +15,7 @@ import com.journaldev.model.SudokuGame;
 
 public class SudokuJSONParser {
 
-	public static final String FILE_NAME = "employee.txt";
+	public static final String FILE_NAME = "Sudoku.txt";
 
 	public static void main(String[] args) throws IOException {
 		InputStream fis = new FileInputStream(FILE_NAME);
@@ -58,13 +58,12 @@ public class SudokuJSONParser {
 				// we are not looking for other events
 			}
 		}
-		emp.setAddress(address);
-		long[] nums = new long[phoneNums.size()];
+		int[][] nums = new int[9][9];
 		int index = 0;
-		for(Long l :phoneNums){
+		for(int l :phoneNums){
 			nums[index++] = l;
 		}
-		emp.setPhoneNumbers(nums);
+		emp.setSudoku(nums);
 		
 		System.out.println(emp);
 		

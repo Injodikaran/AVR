@@ -20,8 +20,8 @@ public class MyTimerTask extends Thread {
     	{
     		while(!thread.interrupted())
     		{
-    			sleep(10);
-    			this.time = this.time + 10;
+			sleep(1000);
+    			this.time = this.time + 1000;
     			this.getTime();
     		}
     	}
@@ -37,6 +37,7 @@ public class MyTimerTask extends Thread {
     	min = split[0];
     	sec = split[1];
 
+	System.out.println(String.format("%s:%s", min,sec)); 
     	return String.format("%s:%s", min,sec);
     }
     

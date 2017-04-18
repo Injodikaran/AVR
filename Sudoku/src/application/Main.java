@@ -22,6 +22,12 @@ public class Main extends Application {
 
 		try {
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("GUI_Extended.fxml"));
+			
+			// Timer
+			SudokuTimerTask timerTask = new SudokuTimerTask();
+			timerTask.start();
+			String time = timerTask.getTime();
+			
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);

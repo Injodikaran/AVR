@@ -1,0 +1,60 @@
+package com.journaldev.json;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.json.JsonValue;
+
+import com.journaldev.model.Address;
+import com.journaldev.model.SudokuGame;
+
+public class SudokuJSONReader {
+
+	public static final String JSON_FILE="Sudoku.txt";
+	
+	public static void main(String[] args) throws IOException {
+		InputStream fis = new FileInputStream(JSON_FILE);
+		
+		//create JsonReader object
+		JsonReader jsonReader = Json.createReader(fis);
+		
+		/**
+		 * We can create JsonReader from Factory also
+		JsonReaderFactory factory = Json.createReaderFactory(null);
+		jsonReader = factory.createReader(fis);
+		*/
+		
+		//get JsonObject from JsonReader
+		JsonObject jsonObject = jsonReader.readObject();
+		
+		//we can close IO resource and JsonReader now
+		jsonReader.close();
+		fis.close();
+		
+		//Retrieve data from JsonObject and create Employee bean
+		SudokuGame game = new SudokuGame();
+		
+		//reading arrays from json
+		JsonArray jsonArrayY = jsonObject.getJsonArray("Sudoku");
+		int[][] sudoku = new int[9][9];
+		for(int y= 0; y<jsonArrayY.size();y++)
+		{
+			JsonArray jsonArrayX = jsonArrayY.getJsonArray(y); 
+			for(int x= 0; x<jsonArrayX.size();x++)
+			{
+				sudoku[y][x] = jsonArrayX.getInt(x);
+			}
+		}
+
+		game.setSudoku(sudoku);
+		
+		game.print();
+		
+	}
+
+}

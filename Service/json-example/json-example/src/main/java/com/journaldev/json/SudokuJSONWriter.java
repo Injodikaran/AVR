@@ -15,63 +15,63 @@ import com.journaldev.model.SudokuGame;
 
 public class SudokuJSONWriter {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	
+	public static void main(String[] args) throws FileNotFoundException{
+		write();
+	}
+	
+	public static void write() throws FileNotFoundException
+	{
+		SudokuGame sudokuGame = createSudokuGame();
 
-		SudokuGame emp = createEmployee();
-
-		JsonObjectBuilder empBuilder = Json.createObjectBuilder();
-		JsonObjectBuilder addressBuilder = Json.createObjectBuilder();
-		JsonArrayBuilder phoneNumBuilder = Json.createArrayBuilder();
-
-		for (long phone : emp.getPhoneNumbers()) {
-			phoneNumBuilder.add(phone);
+		JsonObjectBuilder sudokuObjectBuilder = Json.createObjectBuilder();
+		JsonArrayBuilder sudokuBuilderY = Json.createArrayBuilder();
+		JsonArrayBuilder sudokuBuilderX = Json.createArrayBuilder();
+		
+		int[][] test = sudokuGame.getSudoku();
+		for(int y=0; y<9;y++)
+		{
+			for(int x= 0; x<9;x++)
+			{
+				sudokuBuilderX.add(test[y][x]);
+			}
+			sudokuBuilderY.add(sudokuBuilderX);
+			sudokuBuilderX = Json.createArrayBuilder();
 		}
 		
-		addressBuilder.add("street", emp.getAddress().getStreet())
-						.add("city", emp.getAddress().getCity())
-							.add("zipcode", emp.getAddress().getZipcode());
+		sudokuObjectBuilder.add("Sudoku", sudokuBuilderY);
 		
-		empBuilder.add("id", emp.getId())
-					.add("name", emp.getName())
-						.add("permanent", emp.isPermanent())
-							.add("role", emp.getRole());
+		JsonObject SudokuJsonObject = sudokuObjectBuilder.build();
 		
-		empBuilder.add("phoneNumbers", phoneNumBuilder);
-		empBuilder.add("address", addressBuilder);
-		
-		JsonObject empJsonObject = empBuilder.build();
-		
-		System.out.println("Employee JSON String\n"+empJsonObject);
+		System.out.println("Sudokus JSON String\n"+SudokuJsonObject);
 		
 		//write to file
-		OutputStream os = new FileOutputStream("emp.txt");
+		OutputStream os = new FileOutputStream("emp2.txt");
 		JsonWriter jsonWriter = Json.createWriter(os);
 		/**
 		 * We can get JsonWriter from JsonWriterFactory also
 		JsonWriterFactory factory = Json.createWriterFactory(null);
 		jsonWriter = factory.createWriter(os);
 		*/
-		jsonWriter.writeObject(empJsonObject);
+		jsonWriter.writeObject(SudokuJsonObject);
 		jsonWriter.close();
 	}
 	
 
-	public static SudokuGame createEmployee() {
-
-		SudokuGame emp = new SudokuGame();
-		emp.setId(100);
-		emp.setName("David");
-		emp.setPermanent(false);
-		emp.setPhoneNumbers(new long[] { 123456, 987654 });
-		emp.setRole("Manager");
-
-		Address add = new Address();
-		add.setCity("Bangalore");
-		add.setStreet("BTM 1st Stage");
-		add.setZipcode(560100);
-		emp.setAddress(add);
-
-		return emp;
+	public static SudokuGame createSudokuGame() {
+		SudokuGame sudokuGame = new SudokuGame();
+		int game[][] =  new int[][]{
+			{-2,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1},
+			{-1,-1,-1,-1,-1,-1,-1,-1,-1}};
+		sudokuGame.setSudoku(game);
+		return sudokuGame;
 	}
 
 }

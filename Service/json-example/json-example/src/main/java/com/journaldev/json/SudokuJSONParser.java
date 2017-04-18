@@ -29,9 +29,8 @@ public class SudokuJSONParser {
 		 */
 
 		SudokuGame emp = new SudokuGame();
-		Address address = new Address();
 		String keyName = null;
-		List<Long> phoneNums = new ArrayList<Long>();
+		List<Integer> phoneNums = new ArrayList<Integer>();
 		
 		while (jsonParser.hasNext()) {
 			Event event = jsonParser.next();
@@ -39,17 +38,8 @@ public class SudokuJSONParser {
 			case KEY_NAME:
 				keyName = jsonParser.getString();
 				break;
-			case VALUE_STRING:
-				setStringValues(emp, address, keyName, jsonParser.getString());
-				break;
 			case VALUE_NUMBER:
-				setNumberValues(emp, address, keyName, jsonParser.getLong(), phoneNums);
-				break;
-			case VALUE_FALSE:
-				setBooleanValues(emp, address, keyName, false);
-				break;
-			case VALUE_TRUE:
-				setBooleanValues(emp, address, keyName, true);
+				setNumberValues(emp, keyName, jsonParser.getInt(), phoneNums);
 				break;
 			case VALUE_NULL:
 				// don't set anything
@@ -60,9 +50,9 @@ public class SudokuJSONParser {
 		}
 		int[][] nums = new int[9][9];
 		int index = 0;
-		for(int l :phoneNums){
-			nums[index++] = l;
-		}
+//		for(int l :phoneNums){
+//			nums[index++] = l;
+//		}
 		emp.setSudoku(nums);
 		
 		System.out.println(emp);
@@ -72,51 +62,13 @@ public class SudokuJSONParser {
 		jsonParser.close();
 	}
 
-	private static void setNumberValues(SudokuGame emp, Address address,
-			String keyName, long value, List<Long> phoneNums) {
+	private static void setNumberValues(SudokuGame emp, String keyName, int value, List<Integer> sudokus) {
 		switch(keyName){
-		case "zipcode":
-			address.setZipcode((int)value);
-			break;
-		case "id":
-			emp.setId((int) value);
-			break;
-		case "phoneNumbers":
-			phoneNums.add(value);
+		case "Sudoku":
+			sudokus.add(value);
 			break;
 		default:
 			System.out.println("Unknown element with key="+keyName);	
 		}
 	}
-
-	private static void setBooleanValues(SudokuGame emp, Address address,
-			String key, boolean value) {
-		if("permanent".equals(key)){
-			emp.setPermanent(value);
-		}else{
-			System.out.println("Unknown element with key="+key);
-		}
-	}
-
-	private static void setStringValues(SudokuGame emp, Address address,
-			String key, String value) {
-		switch(key){
-		case "name":
-			emp.setName(value);
-			break;
-		case "role":
-			emp.setRole(value);
-			break;
-		case "city":
-			address.setCity(value);
-			break;
-		case "street":
-			address.setStreet(value);
-			break;
-		default:
-			System.out.println("Unkonwn Key="+key);
-				
-		}
-	}
-
 }

@@ -12,36 +12,25 @@ import com.journaldev.model.SudokuGame;
 public class SudokuJSONGenerator {
 
 	public static void main(String[] args) throws IOException {
-		OutputStream fos = new FileOutputStream("emp_stream.txt");
+		OutputStream fos = new FileOutputStream("emp_stream2.txt");
 		JsonGenerator jsonGenerator = Json.createGenerator(fos);
 		/**
-		 * We can get JsonGenerator from Factory class also
-		 * JsonGeneratorFactory factory = Json.createGeneratorFactory(null);
-		 * jsonGenerator = factory.createGenerator(fos);
+		 * We can get JsonGenerator from Factory class also JsonGeneratorFactory
+		 * factory = Json.createGeneratorFactory(null); jsonGenerator =
+		 * factory.createGenerator(fos);
 		 */
-		
-		SudokuGame emp = SudokuJSONWriter.createEmployee();
+		int[][] gameSudoku = new int[][] { };
+
+		SudokuGame emp = SudokuJSONWriter.createSudokuGame();
 		jsonGenerator.writeStartObject(); // {
-		jsonGenerator.write("id", emp.getId()); // "id":123
-		jsonGenerator.write("name", emp.getName());
-		jsonGenerator.write("role", emp.getRole());
-		jsonGenerator.write("permanent", emp.isPermanent());
-		
-		jsonGenerator.writeStartObject("address") //start of address object
-			.write("street", emp.getAddress().getStreet())
-			.write("city",emp.getAddress().getCity())
-			.write("zipcode",emp.getAddress().getZipcode())
-			.writeEnd(); //end of address object
-		
-		jsonGenerator.writeStartArray("phoneNumbers"); //start of phone num array
-		for(long num : emp.getPhoneNumbers()){
-			jsonGenerator.write(num);
-		}
-		jsonGenerator.writeEnd(); // end of phone num array
-		jsonGenerator.writeEnd(); // }
-		
+
+		jsonGenerator.writeStartArray("Sudoku"); // start of phone num array
+		// for(long num : emp.getPhoneNumbers()){
+		// jsonGenerator.write(num);
+		// }
+		jsonGenerator.writeEnd(); 
 		jsonGenerator.close();
-		
+
 	}
 
 }

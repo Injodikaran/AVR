@@ -1,6 +1,7 @@
 package com.journaldev.json;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -15,7 +16,11 @@ import com.journaldev.model.SudokuGame;
 
 public class SudokuJSONReader {
 
-	public static final String JSON_FILE="Sudoku.txt";
+	public static final String JSON_FILE="emp2.txt";
+	
+	public static void main(String[] args) throws IOException{
+		read();
+	}
 	
 	public static void read() throws IOException {
 		InputStream fis = new FileInputStream(JSON_FILE);

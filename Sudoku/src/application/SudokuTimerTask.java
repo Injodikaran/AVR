@@ -1,3 +1,4 @@
+package application;
 
 
 import java.util.Date;
@@ -5,7 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.text.SimpleDateFormat;
 
-public class MyTimerTask extends Thread {
+public class SudokuTimerTask extends Thread {
 	
 	private Thread thread = null;
 	private long time = 0;
@@ -26,8 +27,7 @@ public class MyTimerTask extends Thread {
     		}
     	}
     	catch(Exception ex)
-    	{
-    	}
+    	{}
     }
     
     public String getTime()

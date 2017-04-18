@@ -17,7 +17,7 @@ public class SudokuJSONReader {
 
 	public static final String JSON_FILE="Sudoku.txt";
 	
-	public static void main(String[] args) throws IOException {
+	public static void read() throws IOException {
 		InputStream fis = new FileInputStream(JSON_FILE);
 		
 		//create JsonReader object
@@ -27,8 +27,7 @@ public class SudokuJSONReader {
 		 * We can create JsonReader from Factory also
 		JsonReaderFactory factory = Json.createReaderFactory(null);
 		jsonReader = factory.createReader(fis);
-		*/
-		
+		*/		
 		//get JsonObject from JsonReader
 		JsonObject jsonObject = jsonReader.readObject();
 		

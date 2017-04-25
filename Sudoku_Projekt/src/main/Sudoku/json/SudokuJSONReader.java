@@ -9,6 +9,7 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
+import javax.json.JsonString;
 import javax.json.JsonValue;
 
 import SudokuJSONObject.SudokuGame;
@@ -42,19 +43,34 @@ public class SudokuJSONReader {
 		//Retrieve data from JsonObject and create Employee bean
 		SudokuGame game = new SudokuGame();
 		
-		//reading arrays from json
-		JsonArray jsonArrayY = jsonObject.getJsonArray("Sudoku");
+		//reading Sudoku from json-File
+		JsonArray sudokuArrayY = jsonObject.getJsonArray("Sudoku");
 		int[][] sudoku = new int[9][9];
-		for(int y= 0; y<jsonArrayY.size();y++)
+		for(int y= 0; y<sudokuArrayY.size();y++)
 		{
-			JsonArray jsonArrayX = jsonArrayY.getJsonArray(y); 
-			for(int x= 0; x<jsonArrayX.size();x++)
+			JsonArray sudokuArrayX = sudokuArrayY.getJsonArray(y); 
+			for(int x= 0; x<sudokuArrayX.size();x++)
 			{
-				sudoku[y][x] = jsonArrayX.getInt(x);
+				sudoku[y][x] = sudokuArrayX.getInt(x);
 			}
 		}
+		
+		JsonArray temnplateArrayY = jsonObject.getJsonArray("Sudoku");
+		int[][] template = new int[9][9];
+		for(int y= 0; y<temnplateArrayY.size();y++)
+		{
+			JsonArray temnplateArrayX = temnplateArrayY.getJsonArray(y); 
+			for(int x= 0; x<temnplateArrayX.size();x++)
+			{
+				template[y][x] = temnplateArrayX.getInt(x);
+			}
+		}
+		
+		JsonString time = jsonObject.getJsonString("Time");
 
 		game.setSudoku(sudoku);
+		game.setTemplate(template);
+		game.setTime(time.getString());
 		
 		game.print();
 		

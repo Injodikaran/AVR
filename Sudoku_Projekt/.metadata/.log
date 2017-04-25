@@ -1,0 +1,22 @@
+!SESSION 2017-04-25 13:40:42.369 -----------------------------------------------
+eclipse.buildId=4.6.1.M20160907-1200
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product -data C:\Users\smoos\Documents\GitHub\Sudoku\Sudoku_Projekt -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.net 4 0 2017-04-25 13:40:48.852
+!MESSAGE WinHttp.DetectAutoProxyConfigUrl for wpad failed with error 'Die Proxy-Autokonfigurations-URL wurde nicht gefunden.
+' #12180.
+!SESSION 2017-04-25 13:41:36.558 -----------------------------------------------
+eclipse.buildId=4.6.1.M20160907-1200
+java.version=1.8.0_60
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.net 4 0 2017-04-25 13:41:43.677
+!MESSAGE WinHttp.DetectAutoProxyConfigUrl for wpad failed with error 'Die Proxy-Autokonfigurations-URL wurde nicht gefunden.
+' #12180.

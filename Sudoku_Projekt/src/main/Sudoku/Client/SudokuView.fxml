@@ -588,7 +588,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@restart.png" />
+                        <Image url="@Images/restart.png" />
                      </image>
                   </ImageView>
                </graphic>

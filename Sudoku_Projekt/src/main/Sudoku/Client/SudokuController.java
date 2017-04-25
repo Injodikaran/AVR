@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class SudokuView extends Application {
+public class SudokuController extends Application {
 	private Stage primaryStage;
     private BorderPane rootLayout;
 
@@ -16,15 +16,14 @@ public class SudokuView extends Application {
         this.primaryStage.setTitle("Sudoku");
 
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("GUI_Extended.fxml"));
-			
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("SudokuView.fxml"));
+
 			// Timer
 			SudokuTimerTask timerTask = new SudokuTimerTask();
 			timerTask.start();
 			String time = timerTask.getTime();
-			
+
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

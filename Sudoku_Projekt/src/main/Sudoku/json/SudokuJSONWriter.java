@@ -14,21 +14,21 @@ import SudokuJSONObject.SudokuGame;
 
 public class SudokuJSONWriter {
 
-	
+
 	public static void main(String[] args) throws FileNotFoundException{
-		write();
+		//write();
 	}
-	
-	public static void write() throws FileNotFoundException
+
+	public static void write(byte[][] tempsource, byte[][] tempgame, String time, String fileName) throws FileNotFoundException
 	{
 		SudokuGame sudokuGame = createSudokuGame();
 
 		JsonObjectBuilder sudokuObjectBuilder = Json.createObjectBuilder();
-		
+
 		// Abspeichern Sudoku
 		JsonArrayBuilder sudokuBuilderY = Json.createArrayBuilder();
 		JsonArrayBuilder sudokuBuilderX = Json.createArrayBuilder();
-		
+
 		int[][] sudoku = sudokuGame.getSudoku();
 		for(int y=0; y<9;y++)
 		{
@@ -39,13 +39,13 @@ public class SudokuJSONWriter {
 			sudokuBuilderY.add(sudokuBuilderX);
 			sudokuBuilderX = Json.createArrayBuilder();
 		}
-		
+
 		sudokuObjectBuilder.add("Sudoku", sudokuBuilderY);
-		
+
 		// Abspeichern Vorlage
 		JsonArrayBuilder templateBuilderY = Json.createArrayBuilder();
 		JsonArrayBuilder templateBuilderX = Json.createArrayBuilder();
-		
+
 		int[][] template = sudokuGame.getSudoku();
 		for(int y=0; y<9;y++)
 		{
@@ -56,28 +56,24 @@ public class SudokuJSONWriter {
 			templateBuilderY.add(templateBuilderX);
 			templateBuilderX = Json.createArrayBuilder();
 		}
-		
+
 		sudokuObjectBuilder.add("Template", templateBuilderY);
-		
+
 		// Abspeichern Zeit
 		sudokuObjectBuilder.add("Time", sudokuGame.getTime());
-		
+
 		JsonObject SudokuJsonObject = sudokuObjectBuilder.build();
-		
+
 		System.out.println("Sudokus JSON String\n"+SudokuJsonObject);
-		
+
 		//write to file
 		OutputStream os = new FileOutputStream("emp2.txt");
 		JsonWriter jsonWriter = Json.createWriter(os);
-		/**
-		 * We can get JsonWriter from JsonWriterFactory also
-		JsonWriterFactory factory = Json.createWriterFactory(null);
-		jsonWriter = factory.createWriter(os);
-		*/
+
 		jsonWriter.writeObject(SudokuJsonObject);
 		jsonWriter.close();
 	}
-	
+
 
 	public static SudokuGame createSudokuGame() {
 		SudokuGame sudokuGame = new SudokuGame();

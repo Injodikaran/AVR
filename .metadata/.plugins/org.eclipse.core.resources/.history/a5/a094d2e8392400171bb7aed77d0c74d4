@@ -1,0 +1,36 @@
+package com.journaldev.json;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import javax.json.Json;
+import javax.json.stream.JsonGenerator;
+
+import com.journaldev.model.SudokuGame;
+
+public class SudokuJSONGenerator {
+
+	public static void main(String[] args) throws IOException {
+		OutputStream fos = new FileOutputStream("emp_stream2.txt");
+		JsonGenerator jsonGenerator = Json.createGenerator(fos);
+		/**
+		 * We can get JsonGenerator from Factory class also JsonGeneratorFactory
+		 * factory = Json.createGeneratorFactory(null); jsonGenerator =
+		 * factory.createGenerator(fos);
+		 */
+		int[][] gameSudoku = new int[][] { };
+
+		SudokuGame emp = SudokuJSONWriter.createSudokuGame();
+		jsonGenerator.writeStartObject(); // {
+
+		jsonGenerator.writeStartArray("Sudoku"); // start of phone num array
+		// for(long num : emp.getPhoneNumbers()){
+		// jsonGenerator.write(num);
+		// }
+		jsonGenerator.writeEnd(); 
+		jsonGenerator.close();
+
+	}
+
+}

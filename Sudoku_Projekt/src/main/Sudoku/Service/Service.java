@@ -9,7 +9,7 @@ public class Service{
 	byte[][] tempgame;										//Aktueller Spielstand
 	private byte[][] tempsolution;							//Lösung
 	boolean[][] changeable=new boolean[9][9];				//Feld Attribut: änderbar
-	boolean[][] trueth=new boolean[9][9];					//Feld Attribut: Richtig (wird nur Angezeigt wenn erwünscht)
+	boolean[][] truth=new boolean[9][9];					//Feld Attribut: Richtig (wird nur Angezeigt wenn erwünscht)
 	private Deque<Byte> undos = new ArrayDeque<Byte>();		//undo Stack
 	private Deque<Byte> redos = new ArrayDeque<Byte>();		//redo Stack
 	private Solver sudokusolver=new Solver();				//SolverKlasse
@@ -67,9 +67,9 @@ public class Service{
 		for(byte b1=0;b1<9;b1++){
 			for(byte b2=0;b2<9;b2++){
 				if (tempgame[b1][b2]!=0 && tempgame[b1][b2]!=tempsolution[b1][b2]){
-					trueth[b1][b2]=false;
+					truth[b1][b2]=false;
 				}else{
-					trueth[b1][b2]=true;
+					truth[b1][b2]=true;
 				}
 			}
 		}
@@ -80,7 +80,7 @@ public class Service{
 	 * legt das Spiel ab
 	 * 
 	 */
-	public void saveGame(String fileName){
+	public void saveGame(String fileName, String Timer){
 		//speicher code (lege tempgame und tempsource ab)
 	}
 	
@@ -89,7 +89,7 @@ public class Service{
 	 * ladet ein altes Spiel anhand Filenamen
 	 * 
 	 */
-	public  void loadGame(String fileName){
+	public  String loadGame(String fileName){
 		//lade temsource als neues spiel, und tempgame als aktuellen spielstand
 		//get object[] file
 		//tempsource=file[1];
@@ -104,6 +104,7 @@ public class Service{
 				}
 			}
 		}
+		return "String Timmerwert";
 	}
 	
 	/** Ändere Number
@@ -116,7 +117,7 @@ public class Service{
 		undos.add(tempgame[x][y]);
 		redos.clear();
 		tempgame[x][y] = (byte) number;
-		trueth[x][y] = true;
+		truth[x][y] = true;
 		
 	}
 	

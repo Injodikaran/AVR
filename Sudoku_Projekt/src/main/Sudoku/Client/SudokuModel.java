@@ -1,14 +1,14 @@
-package client;
+package Client;
 
-import service.*;
+import sudokuService.*;
 
 
 public class SudokuModel {
-	private Service service;
+	private SudokuService service;
 
 
 	public SudokuModel(){
-		service = new Service();
+		service = new SudokuService();
 	}
 
 	public void createNewGame(){
@@ -28,7 +28,7 @@ public class SudokuModel {
     }
 
     public void saveGame(){
-    	service.saveGame("");
+    	//service.saveGame("");
     }
 
     public  void loadGame(){

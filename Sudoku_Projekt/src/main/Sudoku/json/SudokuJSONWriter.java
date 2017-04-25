@@ -16,10 +16,10 @@ public class SudokuJSONWriter {
 
 	
 	public static void main(String[] args) throws FileNotFoundException{
-		write();
+		//write();
 	}
 	
-	public static void write() throws FileNotFoundException
+	public static void write(byte[][] tempsource, byte[][] tempgame, String time, String fileName) throws FileNotFoundException
 	{
 		SudokuGame sudokuGame = createSudokuGame();
 

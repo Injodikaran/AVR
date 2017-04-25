@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -16,14 +17,14 @@ import SudokuJSONObject.SudokuGame;
 
 public class SudokuJSONReader {
 
-	public static final String JSON_FILE="emp2.txt";
+	//public static final String JSON_FILE="emp2.txt";
 	
 	public static void main(String[] args) throws IOException{
-		read();
+		read("asdf");
 	}
 	
-	public static void read() throws IOException {
-		InputStream fis = new FileInputStream(JSON_FILE);
+	public static SudokuGame read(String Filename) throws IOException { //Sudokugame
+		InputStream fis = new FileInputStream(Filename);
 		
 		//create JsonReader object
 		JsonReader jsonReader = Json.createReader(fis);
@@ -67,12 +68,12 @@ public class SudokuJSONReader {
 		}
 		
 		JsonString time = jsonObject.getJsonString("Time");
-
 		game.setSudoku(sudoku);
 		game.setTemplate(template);
 		game.setTime(time.getString());
 		
-		game.print();
+		//game.print();
+		return game;
 		
 	}
 

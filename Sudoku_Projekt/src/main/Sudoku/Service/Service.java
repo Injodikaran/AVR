@@ -1,8 +1,11 @@
 package Service;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayDeque;
 //import java.util.ArrayList;
 import java.util.Deque;
+
+import json.SudokuJSONWriter;
 
 public class Service{
 	private byte[][] tempsource;							//Sudoku in Ursprünglicher Form
@@ -29,7 +32,7 @@ public class Service{
 		tempsolution=sudokusolver.solver(tempsource);
 		for(byte b1=0;b1<9;b1++){
 			for(byte b2=0;b2<9;b2++){
-				if (tempgame[b1][b2]!=0){
+				if (tempsource[b1][b2]!=0){
 					changeable[b1][b2]=false;
 				}else{
 					changeable[b1][b2]=true;
@@ -78,9 +81,20 @@ public class Service{
 	
 	/** Spiel Speichern
 	 * legt das Spiel ab
+	 * @throws FileNotFoundException 
 	 * 
 	 */
+<<<<<<< HEAD
 	public void saveGame(String fileName, String Timer){
+=======
+	public void saveGame(String time, String fileName) {
+		try {
+			SudokuJSONWriter.write(tempsource, tempgame, time, fileName);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+>>>>>>> refs/remotes/origin/master
 		//speicher code (lege tempgame und tempsource ab)
 	}
 	
@@ -104,7 +118,11 @@ public class Service{
 				}
 			}
 		}
+<<<<<<< HEAD
 		return "String Timmerwert";
+=======
+		return "TimerString";
+>>>>>>> refs/remotes/origin/master
 	}
 	
 	/** Ändere Number

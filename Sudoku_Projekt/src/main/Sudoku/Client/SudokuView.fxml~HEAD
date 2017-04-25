@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.SudokuViewModel">
    <center>
       <GridPane gridLinesVisible="true" style="-fx-border-style: solid" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -575,7 +575,7 @@
    <right>
       <VBox prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#newGame" prefHeight="50.0" prefWidth="150.0" text="Neues Spiel" textAlignment="RIGHT">
+            <Button mnemonicParsing="false" onAction="#createNewGame" prefHeight="50.0" prefWidth="150.0" text="Neues Spiel" textAlignment="RIGHT">
                <tooltip>
                   <Tooltip text="Starte ein neues Spiel..." />
                </tooltip>
@@ -588,12 +588,12 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@restart.png" />
+                        <Image url="@images/restart.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Neu Starten" textAlignment="RIGHT">
+            <Button mnemonicParsing="false" onAction="#reloadGame" prefHeight="50.0" prefWidth="150.0" text="Neu Starten" textAlignment="RIGHT">
                <tooltip>
                   <Tooltip text="Starte dein Spiel von vorne..." />
                </tooltip>
@@ -606,12 +606,12 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@restart.png" />
+                        <Image url="@images/restart.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Spiel speichern" textAlignment="RIGHT">
+            <Button mnemonicParsing="false" onAction="#saveGame" prefHeight="50.0" prefWidth="150.0" text="Spiel speichern" textAlignment="RIGHT">
                <tooltip>
                   <Tooltip text="Speichere dein aktuelles Spiel..." />
                </tooltip>
@@ -624,7 +624,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@save.png" />
+                        <Image url="@images/save.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -647,34 +647,34 @@
                   <Insets bottom="100.0" />
                </VBox.margin>
             </RadioButton>
-            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Anzeigen" textAlignment="RIGHT">
+            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#solveGame" prefHeight="50.0" prefWidth="150.0" text="Anzeigen" textAlignment="RIGHT">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                   	<image>
-          				<Image url="@solution.png" />
+          				<Image url="@images/solution.png" />
         			</image>
       			  </ImageView>
                </graphic>
             </Button>
-            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Rückgängig" textAlignment="RIGHT">
+            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#undoGame" prefHeight="50.0" prefWidth="150.0" text="Rückgängig" textAlignment="RIGHT">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" style="-fx-translate-x: 0;">
                      <image>
-                        <Image url="@undo.png" />
+                        <Image url="@images/undo.png" />
                      </image></ImageView>
                </graphic>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Check" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
+            <Button graphicTextGap="10.0" mnemonicParsing="false" onAction="#checkGame" prefHeight="50.0" prefWidth="150.0" text="Check" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@check.png" />
+                        <Image url="@images/check.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -682,7 +682,7 @@
                   <Insets bottom="80.0" />
                </VBox.margin>
             </Button>
-            <Label text="00:00:00">
+            <Label fx:id="timerLabel" prefHeight="36.0" prefWidth="174.0" text="00:00:00">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

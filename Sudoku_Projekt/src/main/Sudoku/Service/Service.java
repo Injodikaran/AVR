@@ -97,7 +97,7 @@ public class Service{
 		tempsolution=sudokusolver.solver(tempsource);
 		for(byte b1=0;b1<9;b1++){
 			for(byte b2=0;b2<9;b2++){
-				if (tempgame[b1][b2]!=0){
+				if (tempsource[b1][b2]!=0){
 					changeable[b1][b2]=false;
 				}else{
 					changeable[b1][b2]=true;

@@ -24,21 +24,43 @@ public class SudokuJSONWriter {
 		SudokuGame sudokuGame = createSudokuGame();
 
 		JsonObjectBuilder sudokuObjectBuilder = Json.createObjectBuilder();
+		
+		// Abspeichern Sudoku
 		JsonArrayBuilder sudokuBuilderY = Json.createArrayBuilder();
 		JsonArrayBuilder sudokuBuilderX = Json.createArrayBuilder();
 		
-		int[][] test = sudokuGame.getSudoku();
+		int[][] sudoku = sudokuGame.getSudoku();
 		for(int y=0; y<9;y++)
 		{
 			for(int x= 0; x<9;x++)
 			{
-				sudokuBuilderX.add(test[y][x]);
+				sudokuBuilderX.add(sudoku[y][x]);
 			}
 			sudokuBuilderY.add(sudokuBuilderX);
 			sudokuBuilderX = Json.createArrayBuilder();
 		}
 		
 		sudokuObjectBuilder.add("Sudoku", sudokuBuilderY);
+		
+		// Abspeichern Vorlage
+		JsonArrayBuilder templateBuilderY = Json.createArrayBuilder();
+		JsonArrayBuilder templateBuilderX = Json.createArrayBuilder();
+		
+		int[][] template = sudokuGame.getSudoku();
+		for(int y=0; y<9;y++)
+		{
+			for(int x= 0; x<9;x++)
+			{
+				templateBuilderX.add(template[y][x]);
+			}
+			templateBuilderY.add(templateBuilderX);
+			templateBuilderX = Json.createArrayBuilder();
+		}
+		
+		sudokuObjectBuilder.add("Template", templateBuilderY);
+		
+		// Abspeichern Zeit
+		sudokuObjectBuilder.add("Time", sudokuGame.getTime());
 		
 		JsonObject SudokuJsonObject = sudokuObjectBuilder.build();
 		

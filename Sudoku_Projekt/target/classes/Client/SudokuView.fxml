@@ -1079,6 +1079,7 @@
 					</children>
 					<fx:define>
 						<ArrayList fx:id="textFieldList">
+							<fx:reference source="textField81" />
 							<fx:reference source="textField1" />
 							<fx:reference source="textField2" />
 							<fx:reference source="textField3" />
@@ -1159,7 +1160,6 @@
 							<fx:reference source="textField78" />
 							<fx:reference source="textField79" />
 							<fx:reference source="textField80" />
-							<fx:reference source="textField81" />
 						</ArrayList>
 					</fx:define>
 				</GridPane>

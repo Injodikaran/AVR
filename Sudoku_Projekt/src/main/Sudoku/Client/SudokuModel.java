@@ -39,4 +39,8 @@ public class SudokuModel {
     	service.undo();
     }
 
+    public void enterNumber(int x, int y, int number){
+    	service.enterNumber(x, y, number);
+    }
+
 }

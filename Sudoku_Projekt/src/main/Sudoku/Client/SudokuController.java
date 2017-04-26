@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 public class SudokuController extends Application {
 	private Stage primaryStage;
+	SudokuModel sm = new SudokuModel();
 
 	@FXML
 	private List<TextField> textFieldList;
@@ -41,17 +42,32 @@ public class SudokuController extends Application {
 	public void initialize() {
 
 		for (int i = 0; i < 81; i++) {
-			
+
+			final int j = i;
+			final int x = j / 9;
+			final int y = j % 9;
+
 	        textFieldList.get(i).textProperty().addListener(new ChangeListener<String>(){
 
 	        	@Override
 				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-	        		if (newValue.matches("[0-9]")) {
-	        			textFieldList.get(i).setText(newValue);        			
-	        	      }
+	        		if (newValue.matches("[1-9]")) {
+	        			textFieldList.get(j).setText(newValue);
+	        			//sm.enterNumber(x, y, Integer.parseInt(newValue));
+
+	        			//Test ob richtige Zeile und Spalte übergeben wird
+	        			System.out.println("******************************");
+	        			System.out.println("Textfeld = " + j);
+	        			System.out.println("Zeile = " + x);
+	        			System.out.println("Spalte = " + y);
+	        			System.out.println("Neuer Wert = " + newValue);
+	        			System.out.println("******************************");
+	        	    }
 	        	    else {
-	        	    	textFieldList.get(i).setText(newValue);
-	        	      }
+	        	    	textFieldList.get(j).setText(oldValue);
+	        	    }
+
+
 				}
 	        });
 	    }

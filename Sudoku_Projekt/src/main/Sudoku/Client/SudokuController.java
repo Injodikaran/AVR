@@ -1,8 +1,6 @@
 package Client;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -41,28 +39,21 @@ public class SudokuController extends Application {
 
 	@FXML
 	public void initialize() {
-		/*textField12.textProperty().addListener(new ChangeListener<String>(){
 
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
-				System.out.println(newValue);
-
-			}textFieldContainer.get(t).textProperty()
-
-		});*/
-
-		for (int i = 0; i < 3; i++) {
-
+		for (int i = 0; i < 81; i++) {
+			
 	        textFieldList.get(i).textProperty().addListener(new ChangeListener<String>(){
 
 	        	@Override
 				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
-					System.out.println(newValue);
+	        		if (newValue.matches("[0-9]")) {
+	        			textFieldList.get(i).setText(newValue);        			
+	        	      }
+	        	    else {
+	        	    	textFieldList.get(i).setText(newValue);
+	        	      }
 				}
 	        });
-	        i++;
 	    }
 	}
 }

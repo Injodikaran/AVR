@@ -52,3 +52,4 @@ Sudoku_Projekt/test3.txt
 Sudoku_Projekt/test2.txt
 Sudoku_Projekt/test.txt
 *.class
+Sudoku_Projekt/target/classes/META-INF/maven/com.journaldev/json-example/pom.properties

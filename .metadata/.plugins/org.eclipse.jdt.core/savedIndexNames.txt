@@ -20,4 +20,3 @@ INDEX VERSION 1.129+D:\Sudoku\.metadata\.plugins\org.eclipse.jdt.core
 1644702904.index
 2809250744.index
 1075794691.index
-2476249805.index

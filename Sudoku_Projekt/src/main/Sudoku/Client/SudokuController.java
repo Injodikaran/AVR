@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 public class SudokuController extends Application{
 	private Stage primaryStage;
+    SudokuTimerTask timer = new SudokuTimerTask(this);
 
 	@FXML
 	private List<TextField> textFieldList;
@@ -64,9 +65,7 @@ public class SudokuController extends Application{
 	        	    	textFieldList.get(i).setText(newValue);
 	        	      }
 				}
-	        });
-	        SudokuTimerTask timer = new SudokuTimerTask(this);
-	        timer.start();
+	        });      
 	       
 	    }
 	}
@@ -74,5 +73,19 @@ public class SudokuController extends Application{
 	public void setTime(String time)
 	{
 		this.timerLabel.setText(time);
+	}
+	
+	@FXML
+	public void mousePressed()
+	{
+		timer.start();
+	}
+	@FXML
+	public void stopEvent()
+	{
+		
+    	System.out.print("Stop");
+		// timer.stopTimer();
+    	timer.interrupt();
 	}
 }

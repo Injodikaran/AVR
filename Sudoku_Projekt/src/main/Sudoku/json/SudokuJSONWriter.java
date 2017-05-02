@@ -42,7 +42,7 @@ public class SudokuJSONWriter {
 	public static void main(String[] args) throws FileNotFoundException{
 		for (int i = 1; i < 5; i++)
 		{
-			String fileName = "test"+i+".txt";
+			String fileName = "test"+i;
 			String date 	= i+".00 s";
 			write(example, example2, date,fileName);
 		}
@@ -100,7 +100,7 @@ public class SudokuJSONWriter {
 		System.out.println("Sudokus JSON String\n"+SudokuJsonObject);
 		
 		//write to file
-		OutputStream os = new FileOutputStream(fileName);
+		OutputStream os = new FileOutputStream(fileName+".txt");
 		JsonWriter jsonWriter = Json.createWriter(os);
 		/**
 		 * We can get JsonWriter from JsonWriterFactory also

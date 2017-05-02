@@ -52,11 +52,19 @@ public class SudokuController extends Application{
 	public void initialize() {
 
 		for (int i = 0; i < 81; i++) {
+<<<<<<< HEAD
 
 			final int j = i;
 			final int x = j / 9;
 			final int y = j % 9;
 
+=======
+
+			final int j = i;
+			final int x = j / 9;
+			final int y = j % 9;
+
+>>>>>>> refs/remotes/origin/master
 	        textFieldList.get(j).textProperty().addListener(new ChangeListener<String>(){
 	        	@Override
 				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -99,6 +107,19 @@ public class SudokuController extends Application{
 				textFieldList.get(nrTextFeld).setText("" + j);
 			}
 		}
+<<<<<<< HEAD
+=======
+	}
+
+	public byte[][] getTempGame(){
+		//return sm.getTempGame();
+		return null;
+	}
+
+	public void setTime(String time)
+	{
+		this.timerLabel.setText(time);
+>>>>>>> refs/remotes/origin/master
 	}
 
 	public byte[][] getTempGame(){

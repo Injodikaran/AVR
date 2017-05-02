@@ -45,4 +45,12 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log
+.metadata/
+Sudoku_Projekt/test
+Sudoku_Projekt/test1.txt
+Sudoku_Projekt/test3.txt
+Sudoku_Projekt/test2.txt
+Sudoku_Projekt/test.txt
+*.class
+Sudoku_Projekt/target/classes/META-INF/maven/com.journaldev/json-example/pom.properties
+Sudoku_Projekt/target/classes/Client/SudokuModel.class

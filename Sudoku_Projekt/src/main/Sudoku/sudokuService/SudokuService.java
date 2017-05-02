@@ -12,7 +12,7 @@ import SudokuJSONObject.SudokuGame;
 
 public class SudokuService{
 	private byte[][] tempsource=new byte[9][9];							//Sudoku in Ursprünglicher Form
-	byte[][] tempgame=new byte[9][9];										//Aktueller Spielstand
+	public byte[][] tempgame=new byte[9][9];										//Aktueller Spielstand
 	private byte[][] tempsolution=new byte[9][9];							//Lösung
 	boolean[][] changeable=new boolean[9][9];				//Feld Attribut: änderbar
 	boolean[][] truth=new boolean[9][9];					//Feld Attribut: Richtig (wird nur Angezeigt wenn erwünscht)

@@ -42,5 +42,9 @@ public class SudokuModel {
     public void enterNumber(int x, int y, int number){
     	service.enterNumber(x, y, number);
     }
+    
+    public byte[][] getTempGame(){
+    	return service.getTempGame();
+    }
 
 }

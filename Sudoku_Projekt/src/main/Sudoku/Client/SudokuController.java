@@ -47,7 +47,7 @@ public class SudokuController extends Application {
 			final int x = j / 9;
 			final int y = j % 9;
 
-	        textFieldList.get(i).textProperty().addListener(new ChangeListener<String>(){
+	        textFieldList.get(j).textProperty().addListener(new ChangeListener<String>(){
 
 	        	@Override
 				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -62,6 +62,7 @@ public class SudokuController extends Application {
 	        			System.out.println("Spalte = " + y);
 	        			System.out.println("Neuer Wert = " + newValue);
 	        			System.out.println("******************************");
+	        			showTempGameInGUI();
 	        	    }
 	        	    else {
 	        	    	textFieldList.get(j).setText(oldValue);
@@ -71,5 +72,24 @@ public class SudokuController extends Application {
 				}
 	        });
 	    }
+	}
+	
+	public void showTempGameInGUI(){
+		
+		byte tempGame[][] = this.getTempGame();
+		int nrTextFeld = 0;
+		int j = 0;
+		
+		for (int i = 0; i < 9; i++) {
+			for (int k = 0; k < 9; k++){
+				j = tempGame[i][k];
+				nrTextFeld = i * 9 + k;
+				textFieldList.get(nrTextFeld).setText("" + j);
+			}
+		}	
+	}
+	
+	public byte[][] getTempGame(){
+		return sm.getTempGame();
 	}
 }

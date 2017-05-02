@@ -736,7 +736,7 @@
 	<right>
 		<VBox prefHeight="200.0" prefWidth="200.0">
 			<children>
-				<Button mnemonicParsing="false" onMousePressed="#stopEvent" prefHeight="50.0" prefWidth="150.0" text="Neues Spiel" textAlignment="RIGHT">
+				<Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Neues Spiel" textAlignment="RIGHT">
 					<tooltip>
 						<Tooltip text="Starte ein neues Spiel..." />
 					</tooltip>

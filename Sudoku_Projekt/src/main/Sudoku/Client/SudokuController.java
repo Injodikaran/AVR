@@ -1,9 +1,12 @@
 package Client;
 
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.TimerTask;
+
+import javax.swing.*;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -16,6 +19,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class SudokuController extends Application{
@@ -28,6 +33,8 @@ public class SudokuController extends Application{
 	@FXML
 	private Label timerLabel;
 
+	SudokuModel sm;
+	
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -86,14 +93,14 @@ public class SudokuController extends Application{
 	@FXML
 	public void stopEvent()
 	{
-		
     	System.out.print("Stop");
-	// timer.stopTimer();
+    	// timer.stopTimer();
     	timer.interrupt();
+
 	}
 	
  	@FXML		  	
- 	public void loadGame(
+ 	public void loadGame()
  	{		  	
  		FileChooser fileChooser = new FileChooser();
  		fileChooser.setTitle("Open Sudoku Game");		
@@ -105,11 +112,12 @@ public class SudokuController extends Application{
  			String filename = file.getName();		
  			sm.loadGame(filename);		
  		}		
- 	}		  	}
+ 	}		  	
  			
  	@FXML		  	
  	public void saveGame()
- 	{		  	
+ 	{		
+ 		this.stopEvent();
  		String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
 		"Spiel speichern",
         	JOptionPane.PLAIN_MESSAGE);

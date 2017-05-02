@@ -67,15 +67,19 @@ public class SudokuTimerTask extends Thread {
 
     public void startTimer()
     {
+    	if(thread == null){
     	thread = new Thread(this);
-    	thread.start();
+    	 thread.start();
+    	}
     }
 
     public void stopTimer()
     {
     	if(thread != null)
     	{
+    		
     		thread.interrupt();
+    	
     	}
     }
 }

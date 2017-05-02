@@ -18,1038 +18,716 @@
 <?import javafx.scene.text.Font?>
 <?import java.util.ArrayList?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
-	prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="Client.SudokuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.SudokuController">
 	<center>
-		<GridPane gridLinesVisible="true" style="-fx-border-style: solid"
-			BorderPane.alignment="CENTER">
+		<GridPane gridLinesVisible="true" style="-fx-border-style: solid" BorderPane.alignment="CENTER">
 			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-					prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-					prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-					prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints minHeight="10.0" prefHeight="30.0"
-					vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0"
-					vgrow="SOMETIMES" />
-				<RowConstraints minHeight="10.0" prefHeight="30.0"
-					vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<GridPane gridLinesVisible="true"
-					style="-fx-border-color: #81bdf4; -fx-border-width: 5; -fx-border-style: solid;">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5; -fx-border-style: solid;">
 					<columnConstraints>
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 					</columnConstraints>
 					<rowConstraints>
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField fx:id="textField1" alignment="CENTER"
-							maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+						<TextField fx:id="textField1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" layoutX="10.0" layoutY="10.0"
-							maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField10" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" layoutX="10.0" layoutY="95.0"
-							maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField19" alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="textField2" alignment="CENTER"
-							layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+						<TextField fx:id="textField2" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" layoutX="10.0" layoutY="95.0"
-							maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-							GridPane.columnIndex="1" GridPane.rowIndex="2">
+						<TextField fx:id="textField20" alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="textField3" alignment="CENTER"
-							layoutX="52.0" layoutY="10.0" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
+						<TextField fx:id="textField3" alignment="CENTER" layoutX="52.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField12" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" layoutX="94.0" layoutY="53.0"
-							maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-							GridPane.columnIndex="2" GridPane.rowIndex="2">
+						<TextField fx:id="textField21" alignment="CENTER" layoutX="94.0" layoutY="53.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField opacity="0.5"
-							style="-fx-border-color: transparent; -fx-background-color: transparent;"
-							GridPane.valignment="TOP" />
-						<TextField accessibleText="cvxvc" opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
-						<fx:define>
-							<ArrayList fx:id="textFieldList">
-								<fx:reference source="textField1" />
-								<fx:reference source="textField2" />
-								<fx:reference source="textField3" />
-							</ArrayList>
-						</fx:define>
+						<TextField opacity="0.5" style="-fx-border-color: transparent; -fx-background-color: transparent;" GridPane.valignment="TOP" />
+						<TextField accessibleText="cvxvc" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true"
-					style="-fx-border-color: #81bdf4; -fx-border-width: 5;"
-					GridPane.columnIndex="1">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="1">
 					<columnConstraints>
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 					</columnConstraints>
 					<rowConstraints>
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308">
+						<TextField fx:id="textField4" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+						<TextField fx:id="textField13" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
+						<TextField fx:id="textField22" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+						<TextField fx:id="textField5" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField14" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField23" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
+						<TextField fx:id="textField6" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField15" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField24" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true"
-					style="-fx-border-color: #81bdf4; -fx-border-width: 5;"
-					GridPane.columnIndex="2">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="2">
 					<columnConstraints>
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 					</columnConstraints>
 					<rowConstraints>
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308">
+						<TextField fx:id="textField7" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+						<TextField fx:id="textField16" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
+						<TextField fx:id="textField25" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+						<TextField fx:id="textField8" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField17" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField26" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
+						<TextField fx:id="textField9" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField18" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField27" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true"
-					style="-fx-border-color: #81bdf4; -fx-border-width: 5;"
-					GridPane.rowIndex="1">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.rowIndex="1">
 					<columnConstraints>
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 					</columnConstraints>
 					<rowConstraints>
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField48" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField47" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
+						<TextField fx:id="textField46" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField39" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField38" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+						<TextField fx:id="textField37" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
+						<TextField fx:id="textField30" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+						<TextField fx:id="textField29" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308">
+						<TextField fx:id="textField28" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true"
-					style="-fx-border-color: #81bdf4; -fx-border-width: 5;"
-					GridPane.columnIndex="1" GridPane.rowIndex="1">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
 					<columnConstraints>
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 					</columnConstraints>
 					<rowConstraints>
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308">
+						<TextField fx:id="textField31" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField51" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField50" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
+						<TextField fx:id="textField49" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField42" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
+						<TextField fx:id="textField33" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField41" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+						<TextField fx:id="textField40" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+						<TextField fx:id="textField32" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true"
-					style="-fx-border-color: #81bdf4; -fx-border-width: 5;"
-					GridPane.columnIndex="2" GridPane.rowIndex="1">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="2" GridPane.rowIndex="1">
 					<columnConstraints>
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 					</columnConstraints>
 					<rowConstraints>
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308">
+						<TextField fx:id="textField34" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField54" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField53" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
+						<TextField fx:id="textField52" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField45" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField44" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+						<TextField fx:id="textField43" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
+						<TextField fx:id="textField36" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+						<TextField fx:id="textField35" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true"
-					style="-fx-border-color: #81bdf4; -fx-border-width: 5;"
-					GridPane.rowIndex="2">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.rowIndex="2">
 					<columnConstraints>
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 					</columnConstraints>
 					<rowConstraints>
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308">
+						<TextField fx:id="textField55" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField75" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField74" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
+						<TextField fx:id="textField73" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField66" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField65" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+						<TextField fx:id="textField64" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
+						<TextField fx:id="textField57" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+						<TextField fx:id="textField56" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true"
-					style="-fx-border-color: #81bdf4; -fx-border-width: 5;"
-					GridPane.columnIndex="1" GridPane.rowIndex="2">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2">
 					<columnConstraints>
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 					</columnConstraints>
 					<rowConstraints>
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308">
+						<TextField fx:id="textField58" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField78" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField77" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
+						<TextField fx:id="textField76" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField69" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField68" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+						<TextField fx:id="textField67" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
+						<TextField fx:id="textField60" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+						<TextField fx:id="textField59" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true"
-					style="-fx-border-color: #81bdf4; -fx-border-width: 5;"
-					GridPane.columnIndex="2" GridPane.rowIndex="2">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="2" GridPane.rowIndex="2">
 					<columnConstraints>
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
-						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-							prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 					</columnConstraints>
 					<rowConstraints>
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
-						<RowConstraints minHeight="10.0" prefHeight="30.0"
-							vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308">
+						<TextField fx:id="textField61" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField81" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="2">
+						<TextField fx:id="textField80" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
+						<TextField fx:id="textField79" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField72" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1"
-							GridPane.rowIndex="1">
+						<TextField fx:id="textField71" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
+						<TextField fx:id="textField70" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
+						<TextField fx:id="textField63" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField alignment="CENTER" maxHeight="1.7976931348623157E308"
-							maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
+						<TextField fx:id="textField62" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="1"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.rowIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="1" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
-						<TextField opacity="0.5"
-							style="-fx-background-color: transparent; -fx-border-color: transparent;"
-							GridPane.columnIndex="2" GridPane.rowIndex="2"
-							GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
+					<fx:define>
+						<ArrayList fx:id="textFieldList">
+							<fx:reference source="textField1" />
+							<fx:reference source="textField2" />
+							<fx:reference source="textField3" />
+							<fx:reference source="textField4" />
+							<fx:reference source="textField5" />
+							<fx:reference source="textField6" />
+							<fx:reference source="textField7" />
+							<fx:reference source="textField8" />
+							<fx:reference source="textField9" />
+							<fx:reference source="textField10" />
+							<fx:reference source="textField11" />
+							<fx:reference source="textField12" />
+							<fx:reference source="textField13" />
+							<fx:reference source="textField14" />
+							<fx:reference source="textField15" />
+							<fx:reference source="textField16" />
+							<fx:reference source="textField17" />
+							<fx:reference source="textField18" />
+							<fx:reference source="textField19" />
+							<fx:reference source="textField20" />
+							<fx:reference source="textField21" />
+							<fx:reference source="textField22" />
+							<fx:reference source="textField23" />
+							<fx:reference source="textField24" />
+							<fx:reference source="textField25" />
+							<fx:reference source="textField26" />
+							<fx:reference source="textField27" />
+							<fx:reference source="textField28" />
+							<fx:reference source="textField29" />
+							<fx:reference source="textField30" />
+							<fx:reference source="textField31" />
+							<fx:reference source="textField32" />
+							<fx:reference source="textField33" />
+							<fx:reference source="textField34" />
+							<fx:reference source="textField35" />
+							<fx:reference source="textField36" />
+							<fx:reference source="textField37" />
+							<fx:reference source="textField38" />
+							<fx:reference source="textField39" />
+							<fx:reference source="textField40" />
+							<fx:reference source="textField41" />
+							<fx:reference source="textField42" />
+							<fx:reference source="textField43" />
+							<fx:reference source="textField44" />
+							<fx:reference source="textField45" />
+							<fx:reference source="textField46" />
+							<fx:reference source="textField47" />
+							<fx:reference source="textField48" />
+							<fx:reference source="textField49" />
+							<fx:reference source="textField50" />
+							<fx:reference source="textField51" />
+							<fx:reference source="textField52" />
+							<fx:reference source="textField53" />
+							<fx:reference source="textField54" />
+							<fx:reference source="textField55" />
+							<fx:reference source="textField56" />
+							<fx:reference source="textField57" />
+							<fx:reference source="textField58" />
+							<fx:reference source="textField59" />
+							<fx:reference source="textField60" />
+							<fx:reference source="textField61" />
+							<fx:reference source="textField62" />
+							<fx:reference source="textField63" />
+							<fx:reference source="textField64" />
+							<fx:reference source="textField65" />
+							<fx:reference source="textField66" />
+							<fx:reference source="textField67" />
+							<fx:reference source="textField68" />
+							<fx:reference source="textField69" />
+							<fx:reference source="textField70" />
+							<fx:reference source="textField71" />
+							<fx:reference source="textField72" />
+							<fx:reference source="textField73" />
+							<fx:reference source="textField74" />
+							<fx:reference source="textField75" />
+							<fx:reference source="textField76" />
+							<fx:reference source="textField77" />
+							<fx:reference source="textField78" />
+							<fx:reference source="textField79" />
+							<fx:reference source="textField80" />
+							<fx:reference source="textField81" />
+						</ArrayList>
+					</fx:define>
 				</GridPane>
 			</children>
 			<BorderPane.margin>
@@ -1060,8 +738,7 @@
 	<right>
 		<VBox prefHeight="200.0" prefWidth="200.0">
 			<children>
-				<Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0"
-					text="Neues Spiel" textAlignment="RIGHT">
+				<Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Neues Spiel" textAlignment="RIGHT">
 					<tooltip>
 						<Tooltip text="Starte ein neues Spiel..." />
 					</tooltip>
@@ -1072,16 +749,14 @@
 						<Insets bottom="10.0" />
 					</VBox.margin>
 					<graphic>
-						<ImageView fitHeight="40.0" fitWidth="40.0"
-							pickOnBounds="true" preserveRatio="true">
+						<ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@restart.png" />
+								<Image url="@images/restart.png" />
 							</image>
 						</ImageView>
 					</graphic>
 				</Button>
-				<Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0"
-					text="Neu Starten" textAlignment="RIGHT">
+				<Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Neu Starten" textAlignment="RIGHT">
 					<tooltip>
 						<Tooltip text="Starte dein Spiel von vorne..." />
 					</tooltip>
@@ -1092,16 +767,14 @@
 						<Insets bottom="10.0" />
 					</VBox.margin>
 					<graphic>
-						<ImageView fitHeight="40.0" fitWidth="40.0"
-							pickOnBounds="true" preserveRatio="true">
+						<ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@restart.png" />
+								<Image url="@images/restart.png" />
 							</image>
 						</ImageView>
 					</graphic>
 				</Button>
-				<Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0"
-					text="Spiel speichern" textAlignment="RIGHT">
+				<Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Spiel speichern" textAlignment="RIGHT">
 					<tooltip>
 						<Tooltip text="Speichere dein aktuelles Spiel..." />
 					</tooltip>
@@ -1112,16 +785,14 @@
 						<Insets bottom="100.0" />
 					</VBox.margin>
 					<graphic>
-						<ImageView fitHeight="40.0" fitWidth="40.0"
-							pickOnBounds="true" preserveRatio="true">
+						<ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@save.png" />
+								<Image url="@images/save.png" />
 							</image>
 						</ImageView>
 					</graphic>
 				</Button>
-				<RadioButton mnemonicParsing="false" prefHeight="21.0"
-					prefWidth="124.0" text="Einfach">
+				<RadioButton mnemonicParsing="false" prefHeight="21.0" prefWidth="124.0" text="Einfach">
 					<VBox.margin>
 						<Insets bottom="10.0" />
 					</VBox.margin>
@@ -1129,40 +800,33 @@
 						<ToggleGroup fx:id="schwierigkeit" />
 					</toggleGroup>
 				</RadioButton>
-				<RadioButton mnemonicParsing="false" prefHeight="21.0"
-					prefWidth="103.0" text="Normal" toggleGroup="$schwierigkeit">
+				<RadioButton mnemonicParsing="false" prefHeight="21.0" prefWidth="103.0" text="Normal" toggleGroup="$schwierigkeit">
 					<VBox.margin>
 						<Insets bottom="10.0" />
 					</VBox.margin>
 				</RadioButton>
-				<RadioButton mnemonicParsing="false" prefHeight="21.0"
-					prefWidth="104.0" text="Schwer" toggleGroup="$schwierigkeit">
+				<RadioButton mnemonicParsing="false" prefHeight="21.0" prefWidth="104.0" text="Schwer" toggleGroup="$schwierigkeit">
 					<VBox.margin>
 						<Insets bottom="100.0" />
 					</VBox.margin>
 				</RadioButton>
-				<Button graphicTextGap="10.0" mnemonicParsing="false"
-					prefHeight="50.0" prefWidth="150.0" text="Anzeigen" textAlignment="RIGHT">
+				<Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Anzeigen" textAlignment="RIGHT">
 					<VBox.margin>
 						<Insets bottom="10.0" />
 					</VBox.margin>
 					<graphic>
-						<ImageView fitHeight="40.0" fitWidth="40.0"
-							pickOnBounds="true" preserveRatio="true">
+						<ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@solution.png" />
+								<Image url="@images/solution.png" />
 							</image>
 						</ImageView>
 					</graphic>
 				</Button>
-				<Button graphicTextGap="10.0" mnemonicParsing="false"
-					prefHeight="50.0" prefWidth="150.0" text="Rückgängig"
-					textAlignment="RIGHT">
+				<Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Rückgängig" textAlignment="RIGHT">
 					<graphic>
-						<ImageView fitHeight="40.0" fitWidth="40.0"
-							pickOnBounds="true" preserveRatio="true" style="-fx-translate-x: 0;">
+						<ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" style="-fx-translate-x: 0;">
 							<image>
-								<Image url="@undo.png" />
+								<Image url="@images/undo.png" />
 							</image>
 						</ImageView>
 					</graphic>
@@ -1170,14 +834,11 @@
 						<Insets bottom="10.0" />
 					</VBox.margin>
 				</Button>
-				<Button graphicTextGap="10.0" mnemonicParsing="false"
-					prefHeight="50.0" prefWidth="150.0" text="Check" textAlignment="RIGHT"
-					textOverrun="CENTER_ELLIPSIS">
+				<Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Check" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
 					<graphic>
-						<ImageView fitHeight="40.0" fitWidth="40.0"
-							pickOnBounds="true" preserveRatio="true">
+						<ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
 							<image>
-								<Image url="@check.png" />
+								<Image url="@images/check.png" />
 							</image>
 						</ImageView>
 					</graphic>
@@ -1185,10 +846,7 @@
 						<Insets bottom="80.0" />
 					</VBox.margin>
 				</Button>
-				<Label text="00:00:00">
-					<VBox.margin>
-						<Insets />
-					</VBox.margin>
+				<Label fx:id="timerLabel" text="00:00:00">
 					<font>
 						<Font size="25.0" />
 					</font>

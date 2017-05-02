@@ -65,7 +65,10 @@ public class SudokuController extends Application{
 	        	    	textFieldList.get(i).setText(newValue);
 	        	      }
 				}
-	        });      
+	        });     
+	        //SudokuTimerTask timer = new SudokuTimerTask(this);		
+ 	        //timer.start();		
+		sm = new SudokuModel();
 	       
 	    }
 	}

@@ -1,5 +1,7 @@
 package Client;
 
+import java.beans.Visibility;
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,6 +19,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import sudokuService.SudokuService;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class SudokuController extends Application{
 	private Stage primaryStage;
@@ -27,6 +33,7 @@ public class SudokuController extends Application{
 	@FXML
 	private Label timerLabel;
 
+	private SudokuModel sm;
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -65,8 +72,9 @@ public class SudokuController extends Application{
 	        	      }
 				}
 	        });
-	        SudokuTimerTask timer = new SudokuTimerTask(this);
-	        timer.start();
+	        //SudokuTimerTask timer = new SudokuTimerTask(this);
+	        //timer.start();
+			sm = new SudokuModel();
 	       
 	    }
 	}
@@ -74,5 +82,20 @@ public class SudokuController extends Application{
 	public void setTime(String time)
 	{
 		this.timerLabel.setText(time);
+	}
+	
+	@FXML
+	public void loadGame()
+	{
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Sudoku Game");
+		fileChooser.setInitialDirectory(new File("./"));
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("txt Files", "*.txt"));
+		File file = fileChooser.showOpenDialog(primaryStage);
+		if(file != null)
+		{
+			String filename = file.getName();
+			sm.loadGame(filename);
+		}
 	}
 }

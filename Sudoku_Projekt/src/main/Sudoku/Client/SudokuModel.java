@@ -31,8 +31,10 @@ public class SudokuModel {
     	//service.saveGame("");
     }
 
-    public  void loadGame(){
-    	service.loadGame("");
+    public  void loadGame(String filename){
+    	System.out.println(filename);
+    	service.loadGame(filename);
+    	System.out.println(service.tempgame[0][0]);
     }
 
     public void undoGame(){

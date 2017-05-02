@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -27,9 +28,11 @@ public class SudokuTimerTask extends Thread {
         this.timer.set(firstName);
     }
 
-    public SudokuTimerTask()
+    SudokuController ui;
+    public SudokuTimerTask(SudokuController controller)
     {
     	this.timer = new SimpleStringProperty();
+    	ui = controller;
     }
     @Override
     public void run()
@@ -48,14 +51,18 @@ public class SudokuTimerTask extends Thread {
     }
 
 
-    public String getTime()
+    public void getTime()
     {
     	split = sdf.format(new Date(time)).split(":");
     	min = split[0];
     	sec = split[1];
 
+    	 Platform.runLater(new Runnable(){
+             @Override public void run() {
+        		 ui.setTime(String.format("%s:%s", min,sec));
+             }
+         });
 	System.out.println(String.format("%s:%s", min,sec));
-    	return String.format("%s:%s", min,sec);
     }
 
     public void startTimer()

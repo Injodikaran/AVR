@@ -57,22 +57,36 @@ public class SudokuController extends Application{
         launch(args);
     }
 
-    int i;
 	@FXML
 	public void initialize() {
 
-		for (i = 0; i < 81; i++) {
-			
-	        textFieldList.get(i).textProperty().addListener(new ChangeListener<String>(){
+		for (int i = 0; i < 81; i++) {
 
+			final int j = i;
+			final int x = j / 9;
+			final int y = j % 9;
+
+	        textFieldList.get(j).textProperty().addListener(new ChangeListener<String>(){
 	        	@Override
 				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-	        		if (newValue.matches("[0-9]")) {
-	        			textFieldList.get(i).setText(newValue);        			
-	        	      }
+	        		if (newValue.matches("[1-9]")) {
+	        			textFieldList.get(j).setText(newValue);
+	        			//sm.enterNumber(x, y, Integer.parseInt(newValue));
+
+	        			//Test ob richtige Zeile und Spalte übergeben wird
+	        			System.out.println("******************************");
+	        			System.out.println("Textfeld = " + j);
+	        			System.out.println("Zeile = " + x);
+	        			System.out.println("Spalte = " + y);
+	        			System.out.println("Neuer Wert = " + newValue);
+	        			System.out.println("******************************");
+	        			showTempGameInGUI();
+	        	    }
 	        	    else {
-	        	    	textFieldList.get(i).setText(newValue);
-	        	      }
+	        	    	textFieldList.get(j).setText(oldValue);
+	        	    }
+
+
 				}
 	        });     
 	        //SudokuTimerTask timer = new SudokuTimerTask(this);		
@@ -81,7 +95,27 @@ public class SudokuController extends Application{
 	       
 	    }
 	}
-	
+
+	public void showTempGameInGUI(){
+
+		byte tempGame[][] = this.getTempGame();
+		int nrTextFeld = 0;
+		int j = 0;
+
+		for (int i = 0; i < 9; i++) {
+			for (int k = 0; k < 9; k++){
+				j = tempGame[i][k];
+				nrTextFeld = i * 9 + k;
+				textFieldList.get(nrTextFeld).setText("" + j);
+			}
+		}
+	}
+
+	public byte[][] getTempGame(){
+		//return sm.getTempGame();
+		return null;
+	}
+
 	public void setTime(String time)
 	{
 		this.timerLabel.setText(time);

@@ -1,13 +1,9 @@
 package Client;
 
-import java.beans.Visibility;
-import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.TimerTask;
-
-import javax.swing.JOptionPane;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -21,13 +17,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import sudokuService.SudokuService;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 
 public class SudokuController extends Application{
 	private Stage primaryStage;
+    SudokuTimerTask timer = new SudokuTimerTask(this);
 
 	@FXML
 	private List<TextField> textFieldList;
@@ -35,7 +28,6 @@ public class SudokuController extends Application{
 	@FXML
 	private Label timerLabel;
 
-	private SudokuModel sm;
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -73,10 +65,10 @@ public class SudokuController extends Application{
 	        	    	textFieldList.get(i).setText(newValue);
 	        	      }
 				}
-	        });
-	        //SudokuTimerTask timer = new SudokuTimerTask(this);
-	        //timer.start();
-			sm = new SudokuModel();
+	        });     
+	        //SudokuTimerTask timer = new SudokuTimerTask(this);		
+ 	        //timer.start();		
+		sm = new SudokuModel();
 	       
 	    }
 	}
@@ -87,31 +79,44 @@ public class SudokuController extends Application{
 	}
 	
 	@FXML
-	public void loadGame()
+	public void mousePressed()
 	{
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Open Sudoku Game");
-		fileChooser.setInitialDirectory(new File("./"));
-		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("txt Files", "*.txt"));
-		File file = fileChooser.showOpenDialog(primaryStage);
-		if(file != null)
-		{
-			String filename = file.getName();
-			sm.loadGame(filename);
-		}
+		timer.start();
+	}
+	@FXML
+	public void stopEvent()
+	{
+		
+    	System.out.print("Stop");
+	// timer.stopTimer();
+    	timer.interrupt();
 	}
 	
-	@FXML
-	public void saveGame()
-	{
-		String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
-                "Spiel speichern",
-                JOptionPane.PLAIN_MESSAGE);
-
-		if(filename != null && !filename.isEmpty())
-		{
-			sm.saveGame(timerLabel.getText(), filename);
-			JOptionPane.showMessageDialog(null, "Ihr Spiel wurde erfolgreich gespeichert");
-		}
-	}
+ 	@FXML		  	
+ 	public void loadGame(
+ 	{		  	
+ 		FileChooser fileChooser = new FileChooser();
+ 		fileChooser.setTitle("Open Sudoku Game");		
+ 		fileChooser.setInitialDirectory(new File("./"));		
+ 		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("txt Files", "*.txt"));		
+ 		File file = fileChooser.showOpenDialog(primaryStage);		
+ 		if(file != null)		
+ 		{		
+ 			String filename = file.getName();		
+ 			sm.loadGame(filename);		
+ 		}		
+ 	}		  	}
+ 			
+ 	@FXML		  	
+ 	public void saveGame()
+ 	{		  	
+ 		String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
+		"Spiel speichern",
+        	JOptionPane.PLAIN_MESSAGE);
+ 		if(filename != null && !filename.isEmpty())		
+ 		{		
+ 			sm.saveGame(timerLabel.getText(), filename);		
+ 			JOptionPane.showMessageDialog(null, "Ihr Spiel wurde erfolgreich gespeichert");		
+ 		}		
+ 	}
 }

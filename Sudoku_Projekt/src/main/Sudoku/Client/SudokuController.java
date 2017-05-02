@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -40,6 +41,7 @@ public class SudokuController extends Application{
 
 		this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Sudoku");
+        this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("images/icon.png")));
 
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("SudokuView.fxml"));

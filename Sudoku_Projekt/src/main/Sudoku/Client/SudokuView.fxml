@@ -772,7 +772,7 @@
 						</ImageView>
 					</graphic>
 				</Button>
-				<Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Spiel speichern" textAlignment="RIGHT">
+				<Button fx:id="saveGame" mnemonicParsing="false" onAction="#saveGame" prefHeight="50.0" prefWidth="150.0" text="Spiel speichern" textAlignment="RIGHT">
 					<tooltip>
 						<Tooltip text="Speichere dein aktuelles Spiel..." />
 					</tooltip>

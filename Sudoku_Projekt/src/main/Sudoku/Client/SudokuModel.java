@@ -27,8 +27,8 @@ public class SudokuModel {
     	service.checkGame();
     }
 
-    public void saveGame(){
-    	//service.saveGame("");
+    public void saveGame(String time, String filename){
+    	service.saveGame(time, filename);
     }
 
     public  void loadGame(String filename){

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.TimerTask;
 
+import javax.swing.JOptionPane;
+
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -96,6 +98,20 @@ public class SudokuController extends Application{
 		{
 			String filename = file.getName();
 			sm.loadGame(filename);
+		}
+	}
+	
+	@FXML
+	public void saveGame()
+	{
+		String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
+                "Spiel speichern",
+                JOptionPane.PLAIN_MESSAGE);
+
+		if(filename != null && !filename.isEmpty())
+		{
+			sm.saveGame(timerLabel.getText(), filename);
+			JOptionPane.showMessageDialog(null, "Ihr Spiel wurde erfolgreich gespeichert");
 		}
 	}
 }

@@ -125,6 +125,10 @@ public class SudokuController extends Application{
  		{		
  			sm.saveGame(timerLabel.getText(), filename);		
  			JOptionPane.showMessageDialog(null, "Ihr Spiel wurde erfolgreich gespeichert");		
- 		}		
+ 		}
+ 		else
+ 		{
+ 			JOptionPane.showMessageDialog(null, "Spielstand wurde nicht gespeichert");
+ 		}
  	}
 }

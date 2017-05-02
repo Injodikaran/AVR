@@ -198,6 +198,10 @@ public class SudokuService{
 				tempgame[x][y] = number;
 			}
 	}
+		
+	public byte[][] getTempGame(){
+		return tempgame;
+	}
 	
 	
 }

@@ -88,7 +88,35 @@ public class SudokuController extends Application{
 	{
 		
     	System.out.print("Stop");
-		// timer.stopTimer();
+	// timer.stopTimer();
     	timer.interrupt();
 	}
+	
+ 	@FXML		  	
+ 	public void loadGame(
+ 	{		  	
+ 		FileChooser fileChooser = new FileChooser();
+ 		fileChooser.setTitle("Open Sudoku Game");		
+ 		fileChooser.setInitialDirectory(new File("./"));		
+ 		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("txt Files", "*.txt"));		
+ 		File file = fileChooser.showOpenDialog(primaryStage);		
+ 		if(file != null)		
+ 		{		
+ 			String filename = file.getName();		
+ 			sm.loadGame(filename);		
+ 		}		
+ 	}		  	}
+ 			
+ 	@FXML		  	
+ 	public void saveGame()
+ 	{		  	
+ 		String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
+		"Spiel speichern",
+        	JOptionPane.PLAIN_MESSAGE);
+ 		if(filename != null && !filename.isEmpty())		
+ 		{		
+ 			sm.saveGame(timerLabel.getText(), filename);		
+ 			JOptionPane.showMessageDialog(null, "Ihr Spiel wurde erfolgreich gespeichert");		
+ 		}		
+ 	}
 }

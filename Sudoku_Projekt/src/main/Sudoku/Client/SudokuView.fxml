@@ -736,7 +736,7 @@
 	<right>
 		<VBox prefHeight="200.0" prefWidth="200.0">
 			<children>
-				<Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Neues Spiel" textAlignment="RIGHT">
+				<Button fx:id="createNewGame" mnemonicParsing="false" onAction="#createNewGame" prefHeight="50.0" prefWidth="150.0" text="Neues Spiel" textAlignment="RIGHT">
 					<tooltip>
 						<Tooltip text="Starte ein neues Spiel..." />
 					</tooltip>
@@ -754,7 +754,7 @@
 						</ImageView>
 					</graphic>
 				</Button>
-				<Button mnemonicParsing="false" onMousePressed="#stopEvent" prefHeight="50.0" prefWidth="150.0" text="Neu Starten" textAlignment="RIGHT">
+				<Button fx:id="restartGame" mnemonicParsing="false" onAction="#restartGame" onMousePressed="#stopEvent" prefHeight="50.0" prefWidth="150.0" text="Neu Starten" textAlignment="RIGHT">
 					<tooltip>
 						<Tooltip text="Starte dein Spiel von vorne..." />
 					</tooltip>
@@ -801,7 +801,7 @@
                   <Insets bottom="250.0" />
                </VBox.margin>
             </Button>
-				<Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Anzeigen" textAlignment="RIGHT">
+				<Button fx:id="solveGame" graphicTextGap="10.0" mnemonicParsing="false" onAction="#solveGame" prefHeight="50.0" prefWidth="150.0" text="Anzeigen" textAlignment="RIGHT">
 					<VBox.margin>
 						<Insets bottom="10.0" />
 					</VBox.margin>
@@ -813,7 +813,7 @@
 						</ImageView>
 					</graphic>
 				</Button>
-				<Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Rückgängig" textAlignment="RIGHT">
+				<Button fx:id="undoGame" graphicTextGap="10.0" mnemonicParsing="false" onAction="#undoGame" prefHeight="50.0" prefWidth="150.0" text="Rückgängig" textAlignment="RIGHT">
 					<graphic>
 						<ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" style="-fx-translate-x: 0;">
 							<image>
@@ -825,7 +825,7 @@
 						<Insets bottom="10.0" />
 					</VBox.margin>
 				</Button>
-				<Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Check" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
+				<Button fx:id="checkGame" graphicTextGap="10.0" mnemonicParsing="false" onAction="#checkGame" prefHeight="50.0" prefWidth="150.0" text="Check" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
 					<graphic>
 						<ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
 							<image>

@@ -11,28 +11,29 @@ import java.util.Deque;
 import SudokuJSONObject.SudokuGame;
 
 public class SudokuService{
-	private byte[][] tempsource=new byte[9][9];							//Sudoku in Ursprünglicher Form
-	public byte[][] tempgame=new byte[9][9];										//Aktueller Spielstand
-	private byte[][] tempsolution=new byte[9][9];							//Lösung
+	private byte[][] tempsource=new byte[9][9];				//Sudoku in Ursprünglicher Form
+	public byte[][] tempgame=new byte[9][9];				//Aktueller Spielstand
+	private byte[][] tempsolution=new byte[9][9];			//Lösung
 	boolean[][] changeable=new boolean[9][9];				//Feld Attribut: änderbar
 	boolean[][] truth=new boolean[9][9];					//Feld Attribut: Richtig (wird nur Angezeigt wenn erwünscht)
 	private Deque<Byte> undos = new ArrayDeque<Byte>();		//undo Stack
 	private Deque<Byte> redos = new ArrayDeque<Byte>();		//redo Stack
 	private Solver sudokusolver=new Solver();				//SolverKlasse
-	
-	
+
+
 	//public Service(){}
 	//Timer?
-	
+
 	/** Neues Spiel
 	 * Öffnet aus der Sudokuquelle ein neues Spiel
-	 * 
+	 *
 	 * @return
 	 * Spiel
 	 */
-	public void createNewGame(String fileName){
+	public void createNewGame(){
 		SudokuGame imp;
 		int[][] temp;
+		String fileName = "emp2.txt"; // Random Laden muss noch erzeugt werden
 		try {
 			imp = SudokuJSONReader.read(fileName);
 			temp = imp.getTemplate();
@@ -45,7 +46,7 @@ public class SudokuService{
 			tempsolution=sudokusolver.solver(tempsource);
 			for(byte b1=0;b1<9;b1++){
 				for(byte b2=0;b2<9;b2++){
-					if (tempsource[b1][b2]!=0){
+					if (tempsource[b1][b2]>0){
 						changeable[b1][b2]=false;
 					}else{
 						changeable[b1][b2]=true;
@@ -57,7 +58,7 @@ public class SudokuService{
 			e.printStackTrace();
 		}
 	}
-	
+
 	/** Neu Starten
 	 * giebt das Sudoku aus dem zwischenspeicher neu aus, und setzt den Timer zurück
 	 * @return
@@ -66,8 +67,8 @@ public class SudokuService{
 	public void relodeGame(){
 		tempgame = tempsource;
 	}
-	
-	
+
+
 	/** Anzeigen
 	 * zeigt die Lösung an
 	 * @return
@@ -76,8 +77,8 @@ public class SudokuService{
 	public void solveGame(){
 		tempgame = tempsolution;
 	}
-	
-	
+
+
 	/** Check
 	 * vergleicht aktuelles Sudoku mit der Lösung
 	 * @return
@@ -86,7 +87,7 @@ public class SudokuService{
 	public void checkGame(){
 		for(byte b1=0;b1<9;b1++){
 			for(byte b2=0;b2<9;b2++){
-				if (tempgame[b1][b2]!=0 && tempgame[b1][b2]!=tempsolution[b1][b2]){
+				if (tempgame[b1][b2]>0 && tempgame[b1][b2]!=tempsolution[b1][b2]){
 					truth[b1][b2]=false;
 				}else{
 					truth[b1][b2]=true;
@@ -94,12 +95,12 @@ public class SudokuService{
 			}
 		}
 	}
-	
-	
+
+
 	/** Spiel Speichern
 	 * legt das Spiel ab
-	 * @throws FileNotFoundException 
-	 * 
+	 * @throws FileNotFoundException
+	 *
 	 */
 	public void saveGame(String time, String fileName) {
 		try {
@@ -110,11 +111,11 @@ public class SudokuService{
 		}
 		//speicher code (lege tempgame und tempsource ab)
 	}
-	
-	
+
+
 	/** Spiel Laden
 	 * ladet ein altes Spiel anhand Filenamen
-	 * 
+	 *
 	 */
 	public  String loadGame(String fileName){
 		SudokuGame imp;
@@ -149,13 +150,13 @@ public class SudokuService{
 			e.printStackTrace();
 		}
 		return null;
-		
+
 
 	}
-	
+
 	/** Ändere Number
 	 * ändere eine Zahl/gebe eine ein
-	 * 
+	 *
 	 */
 	public void enterNumber(int x,int y, int number){
 		undos.add((byte) x);
@@ -164,9 +165,9 @@ public class SudokuService{
 		redos.clear();
 		tempgame[x][y] = (byte) number;
 		truth[x][y] = true;
-		
+
 	}
-	
+
 	/** Mache Änderung rückgängig
 	 */
 	public void undo(){
@@ -182,7 +183,7 @@ public class SudokuService{
 			tempgame[x][y] = number;
 		}
 	}
-		
+
 		/** Mache Änderung wieder
 		 */
 		public void redo(){
@@ -198,7 +199,23 @@ public class SudokuService{
 				tempgame[x][y] = number;
 			}
 	}
-	
-	
+
+		public byte[][] getTempGame(){
+			return tempgame;
+		}
+
+		public boolean[][] getChangeable(){
+			return changeable;
+		}
+
+		public boolean[][] getTruth(){
+			return truth;
+		}
+
+		public byte[][] getSolution(){
+			return tempsolution;
+		}
+
+
 }
 

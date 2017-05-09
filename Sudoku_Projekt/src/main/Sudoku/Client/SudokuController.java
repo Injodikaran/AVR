@@ -156,7 +156,7 @@ public class SudokuController extends Application{
 				j = truth[i][k];
 				nrTextFeld = i * 9 + k;
 				if (j && textFieldList.get(nrTextFeld).getText().matches("[1-9]")){
-					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: #99ffcc;");	//grün
+					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: #99ffcc;");	//grÃ¼n
 				} else if (!textFieldList.get(nrTextFeld).getText().matches("[1-9]")) {
 					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: white;");		//weiss
 				} else {
@@ -230,6 +230,7 @@ public class SudokuController extends Application{
 		sm.reloadGame();
 		showTempGameInGUI();
 		disablePresetFields();
+		sm.resetstacks();
 	}
 
  	@FXML

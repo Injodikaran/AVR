@@ -16,9 +16,10 @@ public class SudokuService{
 	private byte[][] tempsolution=new byte[9][9];			//Lösung
 	boolean[][] changeable=new boolean[9][9];				//Feld Attribut: änderbar
 	boolean[][] truth=new boolean[9][9];					//Feld Attribut: Richtig (wird nur Angezeigt wenn erwünscht)
-	private Deque<Byte> undos = new ArrayDeque<Byte>();		//undo Stack
-	private Deque<Byte> redos = new ArrayDeque<Byte>();		//redo Stack
+	private Deque<doFile> undos = new ArrayDeque<doFile>();	//undo Stack
+	private Deque<doFile> redos = new ArrayDeque<doFile>();	//redo Stack
 	private Solver sudokusolver=new Solver();				//SolverKlasse
+	private doFile u;
 
 
 	//public Service(){}
@@ -42,7 +43,12 @@ public class SudokuService{
 					tempsource[b1][b2]=(byte)temp[b1][b2];
 				}
 			}
-			tempgame=tempsource;
+			tempgame=new byte[9][9];
+			for (byte x=0;x<9;x++){
+				for(byte y=0;y<9;y++){
+					tempgame[x][y]=tempsource[x][y];
+				}
+			}
 			tempsolution=sudokusolver.solver(tempsource);
 			for(byte b1=0;b1<9;b1++){
 				for(byte b2=0;b2<9;b2++){
@@ -53,6 +59,8 @@ public class SudokuService{
 					}
 				}
 			}
+			redos.clear();
+			undos.clear();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,7 +73,25 @@ public class SudokuService{
 	 * Spiel
 	 */
 	public void relodeGame(){
-		tempgame = tempsource;
+		tempgame=new byte[9][9];
+		for (byte x=0;x<9;x++){
+			for(byte y=0;y<9;y++){
+				tempgame[x][y]=tempsource[x][y];
+			}
+		}
+		tempsolution=sudokusolver.solver(tempsource);
+		for(byte b1=0;b1<9;b1++){
+			for(byte b2=0;b2<9;b2++){
+				if (tempsource[b1][b2]>0){
+					changeable[b1][b2]=false;
+				}else{
+					changeable[b1][b2]=true;
+				}
+			}
+		}
+		truth=new boolean[9][9];
+		redos.clear();
+		undos.clear();
 	}
 
 
@@ -75,7 +101,12 @@ public class SudokuService{
 	 * lösung
 	 */
 	public void solveGame(){
-		tempgame = tempsolution;
+		tempgame=new byte[9][9];
+		for (byte x=0;x<9;x++){
+			for(byte y=0;y<9;y++){
+				tempgame[x][y]=tempsolution[x][y];
+			}
+		}
 	}
 
 
@@ -144,6 +175,8 @@ public class SudokuService{
 					}
 				}
 			}
+			redos.clear();
+			undos.clear();
 			return imp.getTime();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -159,10 +192,12 @@ public class SudokuService{
 	 *
 	 */
 	public void enterNumber(int x,int y, int number){
-		undos.add((byte) x);
-		undos.add((byte) y);
-		undos.add(tempgame[x][y]);
-		redos.clear();
+		u = new doFile();
+		u.x=(byte) x;
+		u.y=(byte) y;
+		u.number=(byte) number;
+		undos.push(u);
+		//redos.clear();
 		tempgame[x][y] = (byte) number;
 		truth[x][y] = true;
 
@@ -174,19 +209,20 @@ public class SudokuService{
 		if (undos.isEmpty()){
 			//do nothing
 		} else {
-			byte number = undos.pop();
-			byte y = undos.pop();
-			byte x = undos.pop();
-			redos.add((byte) x);
-			redos.add((byte) y);
-			redos.add(tempgame[x][y]);
-			tempgame[x][y] = number;
+			u = undos.pop();
+			byte x=u.x;
+			byte y=u.y;
+			byte n=u.number;
+			//redos.add((byte) x);
+			//redos.add((byte) y);
+			//redos.add(tempgame[x][y]);
+			tempgame[x][y] = n;
 		}
 	}
 
 		/** Mache Änderung wieder
 		 */
-		public void redo(){
+		/*public void redo(){
 			if (redos.isEmpty()){
 				//do nothing
 			} else {
@@ -198,7 +234,7 @@ public class SudokuService{
 				undos.add(tempgame[x][y]);
 				tempgame[x][y] = number;
 			}
-	}
+	}*/
 
 		public byte[][] getTempGame(){
 			return tempgame;
@@ -216,6 +252,9 @@ public class SudokuService{
 			return tempsolution;
 		}
 
-
+		public void resetstacks(){
+			//redos.clear();
+			undos.clear();
+		}
 }
 

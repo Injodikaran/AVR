@@ -10,8 +10,10 @@ import java.util.TimerTask;
 import javax.swing.*;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +26,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class SudokuController extends Application{
 	private Stage primaryStage;
@@ -45,6 +48,15 @@ public class SudokuController extends Application{
 		this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Sudoku");
         this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("images/icon.png")));
+
+        // Threads beenden
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
 
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("SudokuView.fxml"));
@@ -80,6 +92,8 @@ public class SudokuController extends Application{
 	        			showTempGameInGUI();
 	        	    }
 	        		else if (newValue.matches("")) {
+	        			sm.enterNumber(x, y, 0);
+	        			showTempGameInGUI();
 	        			textFieldList.get(j).setText("");
 	        		}
 	        	    else {
@@ -203,7 +217,7 @@ public class SudokuController extends Application{
 			timer.start();
 		}else{timer.resumeThread();}
 	}
-	
+
 	public void resetEvent()
 	{
 		if(timer.isAlive())

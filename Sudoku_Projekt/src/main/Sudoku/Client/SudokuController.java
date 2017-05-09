@@ -49,7 +49,9 @@ public class SudokuController extends Application{
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("SudokuView.fxml"));
 			Scene scene = new Scene(root);
+			scene.getStylesheets().add("stylesheet.css");
 			primaryStage.setScene(scene);
+
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -196,13 +198,13 @@ public class SudokuController extends Application{
 	@FXML
 	public void mousePressed()
 	{
-		//timer.start();
+		timer.start();
 	}
 	@FXML
 	public void stopEvent()
 	{
     	System.out.print("Stop");
-    	// timer.stopTimer();
+    	timer.stopTimer();
     	timer.interrupt();
 
 	}

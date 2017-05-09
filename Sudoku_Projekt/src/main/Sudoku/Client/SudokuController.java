@@ -201,6 +201,14 @@ public class SudokuController extends Application{
 		if(!timer.isAlive())
 		{
 			timer.start();
+		}else{timer.resumeThread();}
+	}
+	
+	public void resetEvent()
+	{
+		if(timer.isAlive())
+		{
+			timer.resetThread();
 		}
 	}
 
@@ -212,6 +220,7 @@ public class SudokuController extends Application{
 		int action = JOptionPane.showOptionDialog(null,"Wollen Sie ein neues Spiel starten?", "Neues Spiel", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[1]);
 		if(action == 0)
 		{
+			this.resetEvent();
 			cleanSudokuField();
 			sm.createNewGame();
 			showTempGameInGUI();
@@ -231,6 +240,7 @@ public class SudokuController extends Application{
 		showTempGameInGUI();
 		disablePresetFields();
 		sm.resetstacks();
+		this.resetEvent();
 	}
 
  	@FXML
@@ -246,6 +256,7 @@ public class SudokuController extends Application{
  			String filename = file.getName();
  			sm.loadGame(filename);
  		}
+ 		this.resetEvent();
  	}
 
  	@FXML

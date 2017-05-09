@@ -62,6 +62,13 @@ public class SudokuTimerTask extends Thread {
     {
         running = true;
     }
+    // Timer Reseten
+    public void resetThread()
+    {
+        time = 0;
+        min = "00";
+        sec = "00";
+    }
 
     // Anzeige Zeit
     public void getTime()

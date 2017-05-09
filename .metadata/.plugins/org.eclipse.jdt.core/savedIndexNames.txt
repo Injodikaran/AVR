@@ -15,6 +15,5 @@ INDEX VERSION 1.129+C:\Users\sc\Documents\GitHub\Sudoku\.metadata\.plugins\org.e
 648612256.index
 848469205.index
 3620471903.index
-2734194202.index
 922380862.index
 2272273464.index

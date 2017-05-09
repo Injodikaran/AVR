@@ -26,7 +26,11 @@ public class SudokuModel {
     public void checkGame(){
     	service.checkGame();
     }
-
+    
+    public void resetstacks(){
+    	service.resetstacks();
+    }
+    
     public void saveGame(String time, String filename){
     	service.saveGame(time, filename);
     }

@@ -13,13 +13,21 @@ import java.text.SimpleDateFormat;
 
 public class SudokuTimerTask extends Thread {
 
-	private Thread thread = null;
+	private volatile boolean running = true;
 	private long time = 0;
+    private SudokuController ui;
 	private SimpleDateFormat sdf = new SimpleDateFormat("mm:ss:S");
 	private String[] split;
 	private String min, sec;
-
 	private final StringProperty timer;
+	
+	// Konstruktor
+    public SudokuTimerTask(SudokuController controller)
+    {
+    	this.timer = new SimpleStringProperty();
+    	ui = controller;
+    }
+    
     public String getFirstName() {
         return timer.get();
     }
@@ -28,29 +36,34 @@ public class SudokuTimerTask extends Thread {
         this.timer.set(firstName);
     }
 
-    SudokuController ui;
-    public SudokuTimerTask(SudokuController controller)
+	@Override
+	public void run() {
+		try {
+			while (true) {
+				if(running)
+				{
+					sleep(1000);
+					this.time = this.time + 1000;
+					this.getTime();
+				}
+			}
+		} catch (Exception ex) {
+		}
+	}
+
+	// Timer pausieren
+    public void pauseThread() throws InterruptedException
     {
-    	this.timer = new SimpleStringProperty();
-    	ui = controller;
-    }
-    @Override
-    public void run()
-    {
-    	try
-    	{
-    		while(!thread.interrupted())
-    		{
-			sleep(1000);
-    			this.time = this.time + 1000;
-    			this.getTime();
-    		}
-    	}
-    	catch(Exception ex)
-    	{}
+        running = false;
     }
 
+    // Timer reaktivieren
+    public void resumeThread()
+    {
+        running = true;
+    }
 
+    // Anzeige Zeit
     public void getTime()
     {
     	split = sdf.format(new Date(time)).split(":");
@@ -63,23 +76,5 @@ public class SudokuTimerTask extends Thread {
              }
          });
 	System.out.println(String.format("%s:%s", min,sec));
-    }
-
-    public void startTimer()
-    {
-    	if(thread == null){
-    	thread = new Thread(this);
-    	 thread.start();
-    	}
-    }
-
-    public void stopTimer()
-    {
-    	if(thread != null)
-    	{
-    		
-    		thread.interrupt();
-    	
-    	}
     }
 }

@@ -203,7 +203,7 @@ public class SudokuController extends Application{
 			timer.start();
 		}else{timer.resumeThread();}
 	}
-	
+
 	public void resetEvent()
 	{
 		if(timer.isAlive())

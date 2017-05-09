@@ -28,7 +28,7 @@
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5; -fx-border-style: solid;">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #5C8D9B; -fx-border-width: 5; -fx-border-style: solid;">
 					<columnConstraints>
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -96,7 +96,7 @@
 						<TextField onMouseClicked="#mousePressed" onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="1">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #5C8D9B; -fx-border-width: 5;" GridPane.columnIndex="1">
 					<columnConstraints>
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -164,7 +164,7 @@
 						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="2">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #5C8D9B; -fx-border-width: 5;" GridPane.columnIndex="2">
 					<columnConstraints>
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -232,7 +232,7 @@
 						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.rowIndex="1">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #5C8D9B; -fx-border-width: 5;" GridPane.rowIndex="1">
 					<columnConstraints>
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -300,7 +300,7 @@
 						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #5C8D9B; -fx-border-width: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
 					<columnConstraints>
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -368,7 +368,7 @@
 						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #5C8D9B; -fx-border-width: 5;" GridPane.columnIndex="2" GridPane.rowIndex="1">
 					<columnConstraints>
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -436,7 +436,7 @@
 						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.rowIndex="2">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #5C8D9B; -fx-border-width: 5;" GridPane.rowIndex="2">
 					<columnConstraints>
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -504,7 +504,7 @@
 						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #5C8D9B; -fx-border-width: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2">
 					<columnConstraints>
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -572,7 +572,7 @@
 						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
-				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+				<GridPane gridLinesVisible="true" style="-fx-border-color: #5C8D9B; -fx-border-width: 5;" GridPane.columnIndex="2" GridPane.rowIndex="2">
 					<columnConstraints>
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 						<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -793,10 +793,16 @@
 						<Insets bottom="80.0" />
 					</VBox.margin>
 				</Button>
-				<Label fx:id="timerLabel" text="00:00">
+				<Label fx:id="timerLabel" contentDisplay="CENTER" prefHeight="36.0" prefWidth="97.0" text="00:00">
 					<font>
 						<Font size="25.0" />
 					</font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="45.0" />
+               </VBox.margin>
 				</Label>
 			</children>
 			<BorderPane.margin>

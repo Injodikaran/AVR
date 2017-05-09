@@ -7,7 +7,15 @@ public class Solver {
 	private byte[][] mySudokuSolution;
 	
 	public byte[][] solver(byte[][] input){
-		mySudokuSolution=input;
+		//*
+		mySudokuSolution=new byte[9][9];
+		for (byte x=0;x<9;x++){
+			for(byte y=0;y<9;y++){
+				mySudokuSolution[x][y]=input[x][y];
+			}
+		}//*/
+		//mySudokuSolution=input;
+		
 		
 		for (byte b=0;b<40;b++){
 			for (byte x=0;x<9;x++){

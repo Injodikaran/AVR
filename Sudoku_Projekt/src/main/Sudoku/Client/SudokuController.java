@@ -216,6 +216,7 @@ public class SudokuController extends Application{
 		sm.createNewGame();
 		showTempGameInGUI();
 		disablePresetFields();
+		sm.resetstacks();
 	}
 
 	@FXML
@@ -225,6 +226,7 @@ public class SudokuController extends Application{
 		sm.reloadGame();
 		showTempGameInGUI();
 		disablePresetFields();
+		sm.resetstacks();
 	}
 
  	@FXML

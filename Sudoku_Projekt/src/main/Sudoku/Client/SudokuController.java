@@ -43,7 +43,6 @@ public class SudokuController extends Application{
 	private Stage primaryStage;
 	SudokuTimerTask timer = new SudokuTimerTask(this);
 	private MainApp mainapp = MainApp.getInstance();
-	private TextField test;
 
 	@FXML
 	private Button number1;

@@ -12,7 +12,7 @@ public class SudokuModel {
 	}
 
 	public void createNewGame(){
-		service.createNewGame("");
+		service.createNewGame();
     }
 
     public void reloadGame(){
@@ -40,5 +40,25 @@ public class SudokuModel {
     public void undoGame(){
     	service.undo();
     }
+
+    public byte[][] getTempGame(){
+		return service.getTempGame();
+	}
+
+    public boolean[][] getChangeable(){
+    	return service.getChangeable();
+    }
+
+    public boolean[][] getTruth(){
+		return service.getTruth();
+	}
+
+    public byte[][] getSolution(){
+		return service.getSolution();
+	}
+
+    public void enterNumber(int x, int y, int newValue){
+    	service.enterNumber(x, y, newValue);
+    };
 
 }

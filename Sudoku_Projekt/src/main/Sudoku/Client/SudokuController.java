@@ -1,19 +1,30 @@
 package Client;
 
+import java.awt.MouseInfo;
+import java.io.IOException;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.TimerTask;
-
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.application.*;
 import javax.swing.*;
 
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,10 +42,35 @@ import javafx.stage.WindowEvent;
 public class SudokuController extends Application{
 	private Stage primaryStage;
     SudokuTimerTask timer = new SudokuTimerTask(this);
+	private MainApp mainapp = MainApp.getInstance();
+	private TextField test;
 
 	@FXML
+	private Button number1;
+	@FXML
+	private Button number2;
+	@FXML
+	private Button number3;
+	@FXML
+	private Button number4;
+	@FXML
+	private Button number5;
+	@FXML
+	private Button number6;
+	@FXML
+	private Button number7;
+	@FXML
+	private Button number8;
+	@FXML
+	private Button number9;
+	@FXML
+	private Button delete;
+	@FXML
 	private List<TextField> textFieldList;
-
+	@FXML
+	URL location;
+	@FXML
+	private Pane numberSelectionBasicPane;
 	@FXML
 	private Label timerLabel;
 
@@ -70,14 +106,65 @@ public class SudokuController extends Application{
 		}
 	}
 
+	public void showNumbersChooser(MouseEvent mouse) throws IOException{
+		try {
+			mainapp.setSelectedTextField((TextField) mouse.getSource());
+			primaryStage = new Stage();
+			Parent root = (BorderPane)FXMLLoader.load(getClass().getResource("Eingabeziffern.fxml"));
+			primaryStage.setScene(new Scene(root));
+			primaryStage.setTitle("Number Selection");
+			primaryStage.initModality(Modality.APPLICATION_MODAL);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
+			primaryStage.setX(MouseInfo.getPointerInfo().getLocation().x);
+			primaryStage.setY(MouseInfo.getPointerInfo().getLocation().y);
+			primaryStage.show();
+			mainapp.setStage(primaryStage);
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void numberSelection(ActionEvent action) throws IOException{
+		try {
+			primaryStage = mainapp.getStage();
+			if(action.getSource() == number1){
+				mainapp.getSelectedTextField().setText("1");
+			}else if(action.getSource() == number2){
+				mainapp.getSelectedTextField().setText("2");
+			}else if(action.getSource() == number3){
+				mainapp.getSelectedTextField().setText("3");
+			}else if(action.getSource() == number4){
+				mainapp.getSelectedTextField().setText("4");
+			}else if(action.getSource() == number5){
+				mainapp.getSelectedTextField().setText("5");
+			}else if(action.getSource() == number6){
+				mainapp.getSelectedTextField().setText("6");
+			}else if(action.getSource() == number7){
+				mainapp.getSelectedTextField().setText("7");
+			}else if(action.getSource() == number8){
+				mainapp.getSelectedTextField().setText("8");
+			}else if(action.getSource() == number9){
+				mainapp.getSelectedTextField().setText("9");
+			}else if(action.getSource() == delete){
+				mainapp.getSelectedTextField().clear();
+			}
+			primaryStage.close();
+
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
     public static void main(String[] args) {
         launch(args);
     }
 
 	@FXML
 	public void initialize() {
-
-		for (int i = 0; i < 81; i++) {
+		if(location.getPath().endsWith("SudokuView.fxml")){
+			for (int i = 0; i < 81; i++) {
 
 			final int j = i;
 			final int x = j / 9;
@@ -101,8 +188,23 @@ public class SudokuController extends Application{
 	        	    }
 				}
 	        });
-		sm = new SudokuModel();
+			}
 	    }
+		else
+		{
+			fadeTransition(numberSelectionBasicPane);
+		}
+
+		sm = new SudokuModel();
+	}
+
+		private void fadeTransition(Node e){
+		FadeTransition x= new FadeTransition(new javafx.util.Duration(1000),e);
+		x.setFromValue(0);
+		x.setToValue(100);
+		x.setCycleCount(1);
+		x.setInterpolator(Interpolator.LINEAR);
+		x.play();
 	}
 
 	@FXML

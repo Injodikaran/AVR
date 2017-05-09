@@ -41,7 +41,7 @@ import javafx.stage.WindowEvent;
 
 public class SudokuController extends Application{
 	private Stage primaryStage;
-    SudokuTimerTask timer = new SudokuTimerTask(this);
+	SudokuTimerTask timer = new SudokuTimerTask(this);
 	private MainApp mainapp = MainApp.getInstance();
 	private TextField test;
 
@@ -82,17 +82,17 @@ public class SudokuController extends Application{
 	public void start(Stage primaryStage) {
 
 		this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Sudoku");
-        this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("images/icon.png")));
+		this.primaryStage.setTitle("Sudoku");
+		this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("images/icon.png")));
 
-        // Threads beenden
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent t) {
-                Platform.exit();
-                System.exit(0);
-            }
-        });
+		// Threads beenden
+		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent t) {
+				Platform.exit();
+				System.exit(0);
+			}
+		});
 
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("SudokuView.fxml"));
@@ -109,16 +109,19 @@ public class SudokuController extends Application{
 	public void showNumbersChooser(MouseEvent mouse) throws IOException{
 		try {
 			mainapp.setSelectedTextField((TextField) mouse.getSource());
-			primaryStage = new Stage();
-			Parent root = (BorderPane)FXMLLoader.load(getClass().getResource("Eingabeziffern.fxml"));
-			primaryStage.setScene(new Scene(root));
-			primaryStage.setTitle("Number Selection");
-			primaryStage.initModality(Modality.APPLICATION_MODAL);
-			primaryStage.initStyle(StageStyle.UNDECORATED);
-			primaryStage.setX(MouseInfo.getPointerInfo().getLocation().x);
-			primaryStage.setY(MouseInfo.getPointerInfo().getLocation().y);
-			primaryStage.show();
-			mainapp.setStage(primaryStage);
+			if(mainapp.getSelectedTextField().isEditable()==true){
+				primaryStage = new Stage();
+				Parent root = (BorderPane)FXMLLoader.load(getClass().getResource("Eingabeziffern.fxml"));
+				primaryStage.setScene(new Scene(root));
+				primaryStage.setTitle("Number Selection");
+				primaryStage.initModality(Modality.APPLICATION_MODAL);
+				primaryStage.initStyle(StageStyle.UNDECORATED);
+				primaryStage.setX(MouseInfo.getPointerInfo().getLocation().x);
+				primaryStage.setY(MouseInfo.getPointerInfo().getLocation().y);
+				primaryStage.show();
+				mainapp.setStage(primaryStage);
+
+			}
 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -157,39 +160,39 @@ public class SudokuController extends Application{
 			e.printStackTrace();
 		}
 	}
-    public static void main(String[] args) {
-        launch(args);
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 
 	@FXML
 	public void initialize() {
 		if(location.getPath().endsWith("SudokuView.fxml")){
 			for (int i = 0; i < 81; i++) {
 
-			final int j = i;
-			final int x = j / 9;
-			final int y = j % 9;
+				final int j = i;
+				final int x = j / 9;
+				final int y = j % 9;
 
-	        textFieldList.get(j).textProperty().addListener(new ChangeListener<String>(){
-	        	@Override
-				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-	        		if (newValue.matches("[1-9]")) {
-	        			textFieldList.get(j).setText(newValue);
-	        			sm.enterNumber(x, y, Integer.parseInt(newValue));
-	        			showTempGameInGUI();
-	        	    }
-	        		else if (newValue.matches("")) {
-	        			sm.enterNumber(x, y, 0);
-	        			showTempGameInGUI();
-	        			textFieldList.get(j).setText("");
-	        		}
-	        	    else {
-	        	    	textFieldList.get(j).setText(oldValue);
-	        	    }
-				}
-	        });
+				textFieldList.get(j).textProperty().addListener(new ChangeListener<String>(){
+					@Override
+					public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+						if (newValue.matches("[1-9]")) {
+							textFieldList.get(j).setText(newValue);
+							sm.enterNumber(x, y, Integer.parseInt(newValue));
+							showTempGameInGUI();
+						}
+						else if (newValue.matches("")) {
+							sm.enterNumber(x, y, 0);
+							showTempGameInGUI();
+							textFieldList.get(j).setText("");
+						}
+						else {
+							textFieldList.get(j).setText(oldValue);
+						}
+					}
+				});
 			}
-	    }
+		}
 		else
 		{
 			fadeTransition(numberSelectionBasicPane);
@@ -198,7 +201,7 @@ public class SudokuController extends Application{
 		sm = new SudokuModel();
 	}
 
-		private void fadeTransition(Node e){
+	private void fadeTransition(Node e){
 		FadeTransition x= new FadeTransition(new javafx.util.Duration(1000),e);
 		x.setFromValue(0);
 		x.setToValue(100);
@@ -359,56 +362,56 @@ public class SudokuController extends Application{
 		this.resetEvent();
 	}
 
- 	@FXML
- 	public void loadGame()
- 	{
- 		FileChooser fileChooser = new FileChooser();
- 		fileChooser.setTitle("Open Sudoku Game");
- 		fileChooser.setInitialDirectory(new File("./"));
- 		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("txt Files", "*.txt"));
- 		File file = fileChooser.showOpenDialog(primaryStage);
- 		if(file != null)
- 		{
- 			String filename = file.getName();
- 			sm.loadGame(filename);
- 		}
- 		this.resetEvent();
- 	}
+	@FXML
+	public void loadGame()
+	{
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Sudoku Game");
+		fileChooser.setInitialDirectory(new File("./"));
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("txt Files", "*.txt"));
+		File file = fileChooser.showOpenDialog(primaryStage);
+		if(file != null)
+		{
+			String filename = file.getName();
+			sm.loadGame(filename);
+		}
+		this.resetEvent();
+	}
 
- 	@FXML
- 	public void saveGame() throws InterruptedException
- 	{
- 		timer.pauseThread();
- 		String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
-		"Spiel speichern",
-        	JOptionPane.PLAIN_MESSAGE);
- 		if(filename != null && !filename.isEmpty())
- 		{
- 			sm.saveGame(timerLabel.getText(), filename);
- 			JOptionPane.showMessageDialog(null, "Ihr Spiel wurde erfolgreich gespeichert");
- 		}
- 		else
- 		{
- 			JOptionPane.showMessageDialog(null, "Spielstand wurde nicht gespeichert");
- 			timer.resumeThread();;
- 		}
- 	}
+	@FXML
+	public void saveGame() throws InterruptedException
+	{
+		timer.pauseThread();
+		String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
+				"Spiel speichern",
+				JOptionPane.PLAIN_MESSAGE);
+		if(filename != null && !filename.isEmpty())
+		{
+			sm.saveGame(timerLabel.getText(), filename);
+			JOptionPane.showMessageDialog(null, "Ihr Spiel wurde erfolgreich gespeichert");
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(null, "Spielstand wurde nicht gespeichert");
+			timer.resumeThread();;
+		}
+	}
 
- 	@FXML
+	@FXML
 	public void solveGame()
 	{
 		sm.solveGame();
 		showTempGameInGUI();
 	}
 
- 	@FXML
+	@FXML
 	public void undoGame()
 	{
 		sm.undoGame();
 		showTempGameInGUI();
 	}
 
- 	@FXML
+	@FXML
 	public void checkGame()
 	{
 		sm.checkGame();

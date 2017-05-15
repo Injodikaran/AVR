@@ -1,17 +1,30 @@
 package Client;
 
+import java.awt.MouseInfo;
+import java.io.IOException;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.TimerTask;
-
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.application.*;
 import javax.swing.*;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,14 +37,40 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class SudokuController extends Application{
 	private Stage primaryStage;
     SudokuTimerTask timer = new SudokuTimerTask(this);
+	private MainApp mainapp = MainApp.getInstance();
+	private TextField test;
 
 	@FXML
+	private Button number1;
+	@FXML
+	private Button number2;
+	@FXML
+	private Button number3;
+	@FXML
+	private Button number4;
+	@FXML
+	private Button number5;
+	@FXML
+	private Button number6;
+	@FXML
+	private Button number7;
+	@FXML
+	private Button number8;
+	@FXML
+	private Button number9;
+	@FXML
+	private Button delete;
+	@FXML
 	private List<TextField> textFieldList;
-
+	@FXML
+	URL location;
+	@FXML
+	private Pane numberSelectionBasicPane;
 	@FXML
 	private Label timerLabel;
 
@@ -46,24 +85,86 @@ public class SudokuController extends Application{
         this.primaryStage.setTitle("Sudoku");
         this.primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("images/icon.png")));
 
+        // Threads beenden
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("SudokuView.fxml"));
 			Scene scene = new Scene(root);
+			scene.getStylesheets().add("stylesheet.css");
 			primaryStage.setScene(scene);
+
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	public void showNumbersChooser(MouseEvent mouse) throws IOException{
+		try {
+			mainapp.setSelectedTextField((TextField) mouse.getSource());
+			primaryStage = new Stage();
+			Parent root = (BorderPane)FXMLLoader.load(getClass().getResource("Eingabeziffern.fxml"));
+			primaryStage.setScene(new Scene(root));
+			primaryStage.setTitle("Number Selection");
+			primaryStage.initModality(Modality.APPLICATION_MODAL);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
+			primaryStage.setX(MouseInfo.getPointerInfo().getLocation().x);
+			primaryStage.setY(MouseInfo.getPointerInfo().getLocation().y);
+			primaryStage.show();
+			mainapp.setStage(primaryStage);
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void numberSelection(ActionEvent action) throws IOException{
+		try {
+			primaryStage = mainapp.getStage();
+			if(action.getSource() == number1){
+				mainapp.getSelectedTextField().setText("1");
+			}else if(action.getSource() == number2){
+				mainapp.getSelectedTextField().setText("2");
+			}else if(action.getSource() == number3){
+				mainapp.getSelectedTextField().setText("3");
+			}else if(action.getSource() == number4){
+				mainapp.getSelectedTextField().setText("4");
+			}else if(action.getSource() == number5){
+				mainapp.getSelectedTextField().setText("5");
+			}else if(action.getSource() == number6){
+				mainapp.getSelectedTextField().setText("6");
+			}else if(action.getSource() == number7){
+				mainapp.getSelectedTextField().setText("7");
+			}else if(action.getSource() == number8){
+				mainapp.getSelectedTextField().setText("8");
+			}else if(action.getSource() == number9){
+				mainapp.getSelectedTextField().setText("9");
+			}else if(action.getSource() == delete){
+				mainapp.getSelectedTextField().clear();
+			}
+			primaryStage.close();
+
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
     public static void main(String[] args) {
         launch(args);
     }
 
 	@FXML
 	public void initialize() {
-
-		for (int i = 0; i < 81; i++) {
+		if(location.getPath().endsWith("SudokuView.fxml")){
+			for (int i = 0; i < 81; i++) {
 
 			final int j = i;
 			final int x = j / 9;
@@ -78,6 +179,8 @@ public class SudokuController extends Application{
 	        			showTempGameInGUI();
 	        	    }
 	        		else if (newValue.matches("")) {
+	        			sm.enterNumber(x, y, 0);
+	        			showTempGameInGUI();
 	        			textFieldList.get(j).setText("");
 	        		}
 	        	    else {
@@ -85,8 +188,23 @@ public class SudokuController extends Application{
 	        	    }
 				}
 	        });
-		sm = new SudokuModel();
+			}
 	    }
+		else
+		{
+			fadeTransition(numberSelectionBasicPane);
+		}
+
+		sm = new SudokuModel();
+	}
+
+		private void fadeTransition(Node e){
+		FadeTransition x= new FadeTransition(new javafx.util.Duration(1000),e);
+		x.setFromValue(0);
+		x.setToValue(100);
+		x.setCycleCount(1);
+		x.setInterpolator(Interpolator.LINEAR);
+		x.play();
 	}
 
 	@FXML
@@ -154,7 +272,7 @@ public class SudokuController extends Application{
 				j = truth[i][k];
 				nrTextFeld = i * 9 + k;
 				if (j && textFieldList.get(nrTextFeld).getText().matches("[1-9]")){
-					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: #99ffcc;");	//grün
+					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: #99ffcc;");	//grÃ¼n
 				} else if (!textFieldList.get(nrTextFeld).getText().matches("[1-9]")) {
 					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: white;");		//weiss
 				} else {
@@ -196,24 +314,38 @@ public class SudokuController extends Application{
 	@FXML
 	public void mousePressed()
 	{
-		//timer.start();
-	}
-	@FXML
-	public void stopEvent()
-	{
-    	System.out.print("Stop");
-    	// timer.stopTimer();
-    	timer.interrupt();
-
+		if(!timer.isAlive())
+		{
+			timer.start();
+		}else{timer.resumeThread();}
 	}
 
-	@FXML
-	public void createNewGame()
+	public void resetEvent()
 	{
-		cleanSudokuField();
-		sm.createNewGame();
-		showTempGameInGUI();
-		disablePresetFields();
+		if(timer.isAlive())
+		{
+			timer.resetThread();
+		}
+	}
+
+	@FXML
+	public void createNewGame() throws InterruptedException
+	{
+		timer.pauseThread();
+		Object[] op = {"Ja", "Nein"};
+		int action = JOptionPane.showOptionDialog(null,"Wollen Sie ein neues Spiel starten?", "Neues Spiel", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[1]);
+		if(action == 0)
+		{
+			this.resetEvent();
+			cleanSudokuField();
+			sm.createNewGame();
+			showTempGameInGUI();
+			disablePresetFields();
+		}
+		else
+		{
+			timer.resumeThread();
+		}
 	}
 
 	@FXML
@@ -223,6 +355,8 @@ public class SudokuController extends Application{
 		sm.reloadGame();
 		showTempGameInGUI();
 		disablePresetFields();
+		sm.resetstacks();
+		this.resetEvent();
 	}
 
  	@FXML
@@ -238,12 +372,13 @@ public class SudokuController extends Application{
  			String filename = file.getName();
  			sm.loadGame(filename);
  		}
+ 		this.resetEvent();
  	}
 
  	@FXML
- 	public void saveGame()
+ 	public void saveGame() throws InterruptedException
  	{
- 		this.stopEvent();
+ 		timer.pauseThread();
  		String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
 		"Spiel speichern",
         	JOptionPane.PLAIN_MESSAGE);
@@ -255,6 +390,7 @@ public class SudokuController extends Application{
  		else
  		{
  			JOptionPane.showMessageDialog(null, "Spielstand wurde nicht gespeichert");
+ 			timer.resumeThread();;
  		}
  	}
 
@@ -262,16 +398,13 @@ public class SudokuController extends Application{
 	public void solveGame()
 	{
 		sm.solveGame();
-		//cleanSudokuField();
 		showTempGameInGUI();
-		//showSolutionInGUI();
 	}
 
  	@FXML
 	public void undoGame()
 	{
 		sm.undoGame();
-		//cleanSudokuField();
 		showTempGameInGUI();
 	}
 

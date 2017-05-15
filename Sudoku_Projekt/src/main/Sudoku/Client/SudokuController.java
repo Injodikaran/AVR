@@ -6,6 +6,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.TimerTask;
 import javafx.animation.FadeTransition;
@@ -19,7 +20,15 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Dialogs;
+import javafx.scene.control.Dialogs.DialogOptions;
+import javafx.scene.control.Dialogs.DialogResponse;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
@@ -32,6 +41,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -75,8 +85,6 @@ public class SudokuController extends Application{
 	private Label timerLabel;
 
 	SudokuModel sm;
-
-	private ArrayList<String> temp = new ArrayList<String>();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -129,26 +137,28 @@ public class SudokuController extends Application{
 	public void numberSelection(ActionEvent action) throws IOException{
 		try {
 			primaryStage = mainapp.getStage();
-			if(action.getSource() == number1){
-				mainapp.getSelectedTextField().setText("1");
-			}else if(action.getSource() == number2){
-				mainapp.getSelectedTextField().setText("2");
-			}else if(action.getSource() == number3){
-				mainapp.getSelectedTextField().setText("3");
-			}else if(action.getSource() == number4){
-				mainapp.getSelectedTextField().setText("4");
-			}else if(action.getSource() == number5){
-				mainapp.getSelectedTextField().setText("5");
-			}else if(action.getSource() == number6){
-				mainapp.getSelectedTextField().setText("6");
-			}else if(action.getSource() == number7){
-				mainapp.getSelectedTextField().setText("7");
-			}else if(action.getSource() == number8){
-				mainapp.getSelectedTextField().setText("8");
-			}else if(action.getSource() == number9){
-				mainapp.getSelectedTextField().setText("9");
-			}else if(action.getSource() == delete){
-				mainapp.getSelectedTextField().clear();
+			if (mainapp.getSelectedTextField().isEditable()){
+				if(action.getSource() == number1){
+					mainapp.getSelectedTextField().setText("1");
+				}else if(action.getSource() == number2){
+					mainapp.getSelectedTextField().setText("2");
+				}else if(action.getSource() == number3){
+					mainapp.getSelectedTextField().setText("3");
+				}else if(action.getSource() == number4){
+					mainapp.getSelectedTextField().setText("4");
+				}else if(action.getSource() == number5){
+					mainapp.getSelectedTextField().setText("5");
+				}else if(action.getSource() == number6){
+					mainapp.getSelectedTextField().setText("6");
+				}else if(action.getSource() == number7){
+					mainapp.getSelectedTextField().setText("7");
+				}else if(action.getSource() == number8){
+					mainapp.getSelectedTextField().setText("8");
+				}else if(action.getSource() == number9){
+					mainapp.getSelectedTextField().setText("9");
+				}else if(action.getSource() == delete){
+					mainapp.getSelectedTextField().clear();
+				}
 			}
 			primaryStage.close();
 
@@ -327,12 +337,39 @@ public class SudokuController extends Application{
 			timer.resetThread();
 		}
 	}
-
+	
+	
+	
 	@FXML
 	public void createNewGame() throws InterruptedException
 	{
 		timer.pauseThread();
-		Object[] op = {"Ja", "Nein"};
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Neues Spiel");
+		alert.setHeaderText("Wollen Sie ein neues Spiel starten?");
+		
+		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("images/icon.png").toString()));
+
+		ButtonType buttonTypeYes = new ButtonType("Ja");
+		ButtonType buttonTypeNo = new ButtonType("Nein");
+		ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+		alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo, buttonTypeCancel);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeYes){
+			this.resetEvent();
+			cleanSudokuField();
+			sm.createNewGame();
+			showTempGameInGUI();
+			disablePresetFields();
+		} else if (result.get() == buttonTypeNo) {
+			timer.resumeThread();
+		} else {
+			timer.resumeThread();
+		}
+		/*Object[] op = {"Ja", "Nein"};
 		int action = JOptionPane.showOptionDialog(null,"Wollen Sie ein neues Spiel starten?", "Neues Spiel", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[1]);
 		if(action == 0)
 		{
@@ -345,7 +382,7 @@ public class SudokuController extends Application{
 		else
 		{
 			timer.resumeThread();
-		}
+		}*/
 	}
 
 	@FXML
@@ -373,13 +410,37 @@ public class SudokuController extends Application{
  			sm.loadGame(filename);
  		}
  		this.resetEvent();
+ 		cleanSudokuField();
+ 		showTempGameInGUI();
+		disablePresetFields();
  	}
 
  	@FXML
  	public void saveGame() throws InterruptedException
  	{
  		timer.pauseThread();
- 		String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
+ 		TextInputDialog dialog = new TextInputDialog();
+ 		dialog.setTitle("Spiel speichern");
+ 		dialog.setHeaderText("Unter welchen Namen wollen Sie das Spiel speichern?");
+
+ 		Optional<String> result = dialog.showAndWait();
+ 		if (result.isPresent() && result.get()!=null && !result.get().isEmpty() && !result.get().startsWith(" ")){
+ 			sm.saveGame(timerLabel.getText(), result.get());
+ 			Alert alert = new Alert(AlertType.INFORMATION);
+ 			alert.setTitle("Information");
+ 			alert.setHeaderText(null);
+ 			alert.setContentText("Ihr Spiel \"" + result.get() + "\" wurde erfolgreich gespeichert");
+ 			alert.showAndWait();
+ 		} else {
+ 			Alert alert = new Alert(AlertType.INFORMATION);
+ 			alert.setTitle("Information");
+ 			alert.setHeaderText(null);
+ 			alert.setContentText("Spielstand wurde nicht gespeichert");
+ 			alert.showAndWait();
+ 			timer.resumeThread();
+ 		}
+
+ 		/*String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
 		"Spiel speichern",
         	JOptionPane.PLAIN_MESSAGE);
  		if(filename != null && !filename.isEmpty())
@@ -391,7 +452,7 @@ public class SudokuController extends Application{
  		{
  			JOptionPane.showMessageDialog(null, "Spielstand wurde nicht gespeichert");
  			timer.resumeThread();;
- 		}
+ 		}*/
  	}
 
  	@FXML

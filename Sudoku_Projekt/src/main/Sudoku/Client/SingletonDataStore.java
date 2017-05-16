@@ -7,12 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class MainApp{
+public class SingletonDataStore{
 	private Stage primaryStage;
 	private String selectedNumber;
 	private TextField selectedTextField;
 	private String test;
-	private static MainApp mainapp = null;
+	private static SingletonDataStore mainapp = null;
 	@FXML
 	private Button numberOne;
 	@FXML
@@ -22,11 +22,11 @@ public class MainApp{
 	@FXML
 	private List<Button> numbers;
 
-	private MainApp(){}
+	private SingletonDataStore(){}
 
-	public static MainApp getInstance(){
+	public static SingletonDataStore getInstance(){
 		if(mainapp == null) {
-	         mainapp = new MainApp();
+	         mainapp = new SingletonDataStore();
 	      }
 	      return mainapp;
 	}

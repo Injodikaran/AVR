@@ -4,20 +4,10 @@ import java.awt.MouseInfo;
 import java.io.IOException;
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.TimerTask;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
-import javafx.animation.ParallelTransition;
-import javafx.animation.RotateTransition;
-import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
-import javafx.application.*;
 import javax.swing.*;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -28,13 +18,10 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -45,13 +32,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javafx.util.Duration;
 
 public class SudokuController extends Application{
 	private Stage primaryStage;
 	SudokuTimerTask timer = new SudokuTimerTask(this);
-	private SingletonDataStore mainapp = SingletonDataStore.getInstance();
-	private TextField test;
+
+	private SingletonDataStore datastore = SingletonDataStore.getInstance();
 
 	@FXML
 	private Button number1;
@@ -84,8 +70,6 @@ public class SudokuController extends Application{
 
 	SudokuModel sm;
 
-	private ArrayList<String> temp = new ArrayList<String>();
-
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -116,8 +100,8 @@ public class SudokuController extends Application{
 
 	public void showNumbersChooser(MouseEvent mouse) throws IOException{
 		try {
-			mainapp.setSelectedTextField((TextField) mouse.getSource());
-			if(mainapp.getSelectedTextField().isEditable()==true){
+			datastore.setSelectedTextField((TextField) mouse.getSource());
+			if(datastore.getSelectedTextField().isEditable()==true){
 				primaryStage = new Stage();
 				Parent root = (BorderPane)FXMLLoader.load(getClass().getResource("Eingabeziffern.fxml"));
 				primaryStage.setScene(new Scene(root));
@@ -127,7 +111,7 @@ public class SudokuController extends Application{
 				primaryStage.setX(MouseInfo.getPointerInfo().getLocation().x);
 				primaryStage.setY(MouseInfo.getPointerInfo().getLocation().y);
 				primaryStage.show();
-				mainapp.setStage(primaryStage);
+				datastore.setStage(primaryStage);
 
 			}
 
@@ -139,27 +123,27 @@ public class SudokuController extends Application{
 	@FXML
 	public void numberSelection(ActionEvent action) throws IOException{
 		try {
-			primaryStage = mainapp.getStage();
+			primaryStage = datastore.getStage();
 			if(action.getSource() == number1){
-				mainapp.getSelectedTextField().setText("1");
+				datastore.getSelectedTextField().setText("1");
 			}else if(action.getSource() == number2){
-				mainapp.getSelectedTextField().setText("2");
+				datastore.getSelectedTextField().setText("2");
 			}else if(action.getSource() == number3){
-				mainapp.getSelectedTextField().setText("3");
+				datastore.getSelectedTextField().setText("3");
 			}else if(action.getSource() == number4){
-				mainapp.getSelectedTextField().setText("4");
+				datastore.getSelectedTextField().setText("4");
 			}else if(action.getSource() == number5){
-				mainapp.getSelectedTextField().setText("5");
+				datastore.getSelectedTextField().setText("5");
 			}else if(action.getSource() == number6){
-				mainapp.getSelectedTextField().setText("6");
+				datastore.getSelectedTextField().setText("6");
 			}else if(action.getSource() == number7){
-				mainapp.getSelectedTextField().setText("7");
+				datastore.getSelectedTextField().setText("7");
 			}else if(action.getSource() == number8){
-				mainapp.getSelectedTextField().setText("8");
+				datastore.getSelectedTextField().setText("8");
 			}else if(action.getSource() == number9){
-				mainapp.getSelectedTextField().setText("9");
+				datastore.getSelectedTextField().setText("9");
 			}else if(action.getSource() == delete){
-				mainapp.getSelectedTextField().clear();
+				datastore.getSelectedTextField().clear();
 			}
 			primaryStage.close();
 

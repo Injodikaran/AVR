@@ -40,60 +40,60 @@
 						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField fx:id="textField0" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#mousePressed">
+						<TextField fx:id="textField0" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mousePressed">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="textField9" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#mousePressed" GridPane.rowIndex="1">
+						<TextField fx:id="textField9" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mousePressed" onMousePressed="#mousePressed" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="textField18" alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#mousePressed" GridPane.rowIndex="2">
+						<TextField fx:id="textField18" alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mousePressed" onMousePressed="#mousePressed" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="textField1" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#mousePressed" GridPane.columnIndex="1">
+						<TextField fx:id="textField1" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mousePressed" onMousePressed="#mousePressed" GridPane.columnIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="textField10" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#mousePressed" GridPane.columnIndex="1" GridPane.rowIndex="1">
+						<TextField fx:id="textField10" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mousePressed" onMousePressed="#mousePressed" GridPane.columnIndex="1" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="textField19" alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#mousePressed" GridPane.columnIndex="1" GridPane.rowIndex="2">
+						<TextField fx:id="textField19" alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mousePressed" onMousePressed="#mousePressed" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="textField2" alignment="CENTER" layoutX="52.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#mousePressed" GridPane.columnIndex="2">
+						<TextField fx:id="textField2" alignment="CENTER" layoutX="52.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mousePressed" onMousePressed="#mousePressed" GridPane.columnIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="textField11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#mousePressed" GridPane.columnIndex="2" GridPane.rowIndex="1">
+						<TextField fx:id="textField11" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mousePressed" onMousePressed="#mousePressed" GridPane.columnIndex="2" GridPane.rowIndex="1">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField fx:id="textField20" alignment="CENTER" layoutX="94.0" layoutY="53.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#mousePressed" GridPane.columnIndex="2" GridPane.rowIndex="2">
+						<TextField fx:id="textField20" alignment="CENTER" layoutX="94.0" layoutY="53.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#mousePressed" onMousePressed="#mousePressed" GridPane.columnIndex="2" GridPane.rowIndex="2">
 							<font>
 								<Font size="40.0" />
 							</font>
 						</TextField>
-						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-border-color: transparent; -fx-background-color: transparent;" GridPane.valignment="TOP" />
-						<TextField accessibleText="cvxvc" onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.valignment="TOP" />
-						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.valignment="TOP" />
-						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-						<TextField opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-						<TextField onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField onMouseClicked="#mousePressed" onMousePressed="#mousePressed" opacity="0.5" style="-fx-border-color: transparent; -fx-background-color: transparent;" GridPane.valignment="TOP" />
+						<TextField accessibleText="cvxvc" onMouseClicked="#mousePressed" onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.valignment="TOP" />
+						<TextField onMouseClicked="#mousePressed" onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.valignment="TOP" />
+						<TextField onMouseClicked="#mousePressed" onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField onMouseClicked="#mousePressed" onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField onMouseClicked="#mousePressed" onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+						<TextField onMouseClicked="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField onMouseClicked="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+						<TextField onMouseClicked="#mousePressed" onMousePressed="#mousePressed" opacity="0.5" style="-fx-background-color: transparent; -fx-border-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
 					</children>
 				</GridPane>
 				<GridPane gridLinesVisible="true" style="-fx-border-color: #81bdf4; -fx-border-width: 5;" GridPane.columnIndex="1">
@@ -108,7 +108,7 @@
 						<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
-						<TextField fx:id="textField3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMousePressed="#mousePressed">
+						<TextField fx:id="textField3" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
 							<font>
 								<Font size="40.0" />
 							</font>
@@ -745,7 +745,7 @@
 						<Insets bottom="10.0" />
 					</VBox.margin>
 				</Button>
-				<Button fx:id="restartGame" mnemonicParsing="false" onAction="#restartGame" onMousePressed="#stopEvent" prefHeight="50.0" prefWidth="150.0" text="Neu Starten" textAlignment="RIGHT">
+				<Button fx:id="restartGame" mnemonicParsing="false" onAction="#restartGame" prefHeight="50.0" prefWidth="150.0" text="Neu Starten" textAlignment="RIGHT">
 					<tooltip>
 						<Tooltip text="Starte dein Spiel von vorne..." />
 					</tooltip>
@@ -793,7 +793,7 @@
 						<Insets bottom="80.0" />
 					</VBox.margin>
 				</Button>
-				<Label fx:id="timerLabel" text="00:00:00">
+				<Label fx:id="timerLabel" text="00:00">
 					<font>
 						<Font size="25.0" />
 					</font>

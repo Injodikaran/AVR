@@ -14,7 +14,7 @@ import SudokuJSONObject.SudokuGame;
 
 public class SudokuJSONWriter {
 	
-    static byte[][] example= new byte[][]{ // Just for debugging
+    static byte[][] actualGame= new byte[][]{ // Just for debugging
 			{5,3,4,6,7,8,9,1,2},
 			{6,7,0,0,0,0,0,0,8},
 			{1,0,0,0,0,0,0,0,7},
@@ -26,7 +26,7 @@ public class SudokuJSONWriter {
 			{3,4,5,2,8,6,1,7,9},
 		};
 		
-	static	byte[][] example2= new byte[][]{ // Just for debugging
+	static	byte[][] template= new byte[][]{ // Just for debugging
 			{5,3,0,0,7,0,0,0,0},
 			{6,0,0,1,9,5,0,0,0},
 			{0,9,8,0,0,0,0,6,0},
@@ -44,7 +44,7 @@ public class SudokuJSONWriter {
 		{
 			String fileName = "test"+i;
 			String date 	= i+".00 s";
-			write(example, example2, date,fileName);
+			write(template, actualGame, date,fileName);
 		}
 		
 	}

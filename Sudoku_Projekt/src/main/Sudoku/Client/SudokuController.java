@@ -156,7 +156,7 @@ public class SudokuController extends Application{
 				j = truth[i][k];
 				nrTextFeld = i * 9 + k;
 				if (j && textFieldList.get(nrTextFeld).getText().matches("[1-9]")){
-					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: #99ffcc;");	//grün
+					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: #99ffcc;");	//grÃ¼n
 				} else if (!textFieldList.get(nrTextFeld).getText().matches("[1-9]")) {
 					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: white;");		//weiss
 				} else {
@@ -198,24 +198,38 @@ public class SudokuController extends Application{
 	@FXML
 	public void mousePressed()
 	{
-		timer.start();
+		if(!timer.isAlive())
+		{
+			timer.start();
+		}else{timer.resumeThread();}
 	}
-	@FXML
-	public void stopEvent()
+	
+	public void resetEvent()
 	{
-    	System.out.print("Stop");
-    	timer.stopTimer();
-    	timer.interrupt();
-
+		if(timer.isAlive())
+		{
+			timer.resetThread();
+		}
 	}
 
 	@FXML
-	public void createNewGame()
+	public void createNewGame() throws InterruptedException
 	{
-		cleanSudokuField();
-		sm.createNewGame();
-		showTempGameInGUI();
-		disablePresetFields();
+		timer.pauseThread();
+		Object[] op = {"Ja", "Nein"};
+		int action = JOptionPane.showOptionDialog(null,"Wollen Sie ein neues Spiel starten?", "Neues Spiel", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[1]);
+		if(action == 0)
+		{
+			this.resetEvent();
+			cleanSudokuField();
+			sm.createNewGame();
+			showTempGameInGUI();
+			disablePresetFields();
+		}
+		else
+		{
+			timer.resumeThread();
+		}
 	}
 
 	@FXML
@@ -225,6 +239,8 @@ public class SudokuController extends Application{
 		sm.reloadGame();
 		showTempGameInGUI();
 		disablePresetFields();
+		sm.resetstacks();
+		this.resetEvent();
 	}
 
  	@FXML
@@ -240,12 +256,13 @@ public class SudokuController extends Application{
  			String filename = file.getName();
  			sm.loadGame(filename);
  		}
+ 		this.resetEvent();
  	}
 
  	@FXML
- 	public void saveGame()
+ 	public void saveGame() throws InterruptedException
  	{
- 		this.stopEvent();
+ 		timer.pauseThread();
  		String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
 		"Spiel speichern",
         	JOptionPane.PLAIN_MESSAGE);
@@ -257,6 +274,7 @@ public class SudokuController extends Application{
  		else
  		{
  			JOptionPane.showMessageDialog(null, "Spielstand wurde nicht gespeichert");
+ 			timer.resumeThread();;
  		}
  	}
 
@@ -264,16 +282,13 @@ public class SudokuController extends Application{
 	public void solveGame()
 	{
 		sm.solveGame();
-		//cleanSudokuField();
 		showTempGameInGUI();
-		//showSolutionInGUI();
 	}
 
  	@FXML
 	public void undoGame()
 	{
 		sm.undoGame();
-		//cleanSudokuField();
 		showTempGameInGUI();
 	}
 

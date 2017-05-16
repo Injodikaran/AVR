@@ -121,7 +121,9 @@ public class SudokuViewModel extends Application{
 			if(datastore.getSelectedTextField().isEditable()==true){
 				primaryStage = new Stage();
 				Parent root = (BorderPane)FXMLLoader.load(getClass().getResource("Eingabeziffern.fxml"));
-				primaryStage.setScene(new Scene(root));
+				Scene numbers = new Scene(root);
+				numbers.getStylesheets().add("stylesheet.css");
+				primaryStage.setScene(numbers);
 				primaryStage.setTitle("Number Selection");
 				primaryStage.initModality(Modality.APPLICATION_MODAL);
 				primaryStage.initStyle(StageStyle.UNDECORATED);

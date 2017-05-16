@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javafx.animation.TranslateTransition"/>
+<fullyQualifiedTypeName name="javafx.util.Duration"/>
+<fullyQualifiedTypeName name="javafx.animation.ScaleTransition"/>
+<fullyQualifiedTypeName name="javafx.animation.RotateTransition"/>
+<fullyQualifiedTypeName name="javafx.animation.ParallelTransition"/>
+<fullyQualifiedTypeName name="javafx.animation.Timeline"/>
+<fullyQualifiedTypeName name="javafx.scene.paint.Color"/>
+<fullyQualifiedTypeName name="javafx.scene.shape.Rectangle"/>
+</qualifiedTypeNameHistroy>

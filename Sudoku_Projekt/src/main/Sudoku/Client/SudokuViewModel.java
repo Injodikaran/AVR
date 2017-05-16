@@ -44,8 +44,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import sudokuService.SudokuModel;
 
-public class SudokuController extends Application{
+public class SudokuViewModel extends Application{
 	private Stage primaryStage;
 	SudokuTimerTask timer = new SudokuTimerTask(this);
 
@@ -80,7 +81,7 @@ public class SudokuController extends Application{
 	@FXML
 	private Label timerLabel;
 
-	SudokuModel sm;
+	SudokuModel service;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -186,11 +187,11 @@ public class SudokuController extends Application{
 					public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 						if (newValue.matches("[1-9]")) {
 							textFieldList.get(j).setText(newValue);
-							sm.enterNumber(x, y, Integer.parseInt(newValue));
+							service.enterNumber(x, y, Integer.parseInt(newValue));
 							showTempGameInGUI();
 						}
 						else if (newValue.matches("")) {
-							sm.enterNumber(x, y, 0);
+							service.enterNumber(x, y, 0);
 							showTempGameInGUI();
 							textFieldList.get(j).setText("");
 						}
@@ -206,7 +207,7 @@ public class SudokuController extends Application{
 			fadeTransition(numberSelectionBasicPane);
 		}
 
-		sm = new SudokuModel();
+		service = new SudokuModel();
 	}
 
 	private void fadeTransition(Node e){
@@ -239,7 +240,7 @@ public class SudokuController extends Application{
 	}
 
 	public byte[][] getTempGame(){
-		return sm.getTempGame();
+		return service.getTempGame();
 	}
 
 	@FXML
@@ -259,7 +260,7 @@ public class SudokuController extends Application{
 	}
 
 	public boolean[][] getChangeable(){
-		return sm.getChangeable();
+		return service.getChangeable();
 	}
 
 	@FXML
@@ -294,7 +295,7 @@ public class SudokuController extends Application{
 	}
 
 	public boolean[][] getTruth(){
-		return sm.getTruth();
+		return service.getTruth();
 	}
 
 	@FXML
@@ -314,7 +315,7 @@ public class SudokuController extends Application{
 	}
 
 	public byte[][] getSolution(){
-		return sm.getSolution();
+		return service.getSolution();
 	}
 
 	public void setTime(String time)
@@ -362,7 +363,7 @@ public class SudokuController extends Application{
 		if (result.get() == buttonTypeYes){
 			this.resetEvent();
 			cleanSudokuField();
-			sm.createNewGame();
+			service.createNewGame();
 			showTempGameInGUI();
 			disablePresetFields();
 		} else if (result.get() == buttonTypeNo) {
@@ -370,30 +371,16 @@ public class SudokuController extends Application{
 		} else {
 			timer.resumeThread();
 		}
-		/*Object[] op = {"Ja", "Nein"};
-		int action = JOptionPane.showOptionDialog(null,"Wollen Sie ein neues Spiel starten?", "Neues Spiel", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[1]);
-		if(action == 0)
-		{
-			this.resetEvent();
-			cleanSudokuField();
-			sm.createNewGame();
-			showTempGameInGUI();
-			disablePresetFields();
-		}
-		else
-		{
-			timer.resumeThread();
-		}*/
 	}
 
 	@FXML
 	public void restartGame()
 	{
 		cleanSudokuField();
-		sm.reloadGame();
+		service.reloadGame();
 		showTempGameInGUI();
 		disablePresetFields();
-		sm.resetstacks();
+		service.resetstacks();
 		this.resetEvent();
 	}
 
@@ -409,12 +396,11 @@ public class SudokuController extends Application{
  		{
  			String filename = file.getName();
  	 		cleanSudokuField();
- 			sm.loadGame(filename);
+ 			service.loadGame(filename);
  	 		this.resetEvent();
  	 		showTempGameInGUI();
  			disablePresetFields();
  		}
-
  	}
 
  	@FXML
@@ -424,57 +410,49 @@ public class SudokuController extends Application{
  		TextInputDialog dialog = new TextInputDialog();
  		dialog.setTitle("Spiel speichern");
  		dialog.setHeaderText("Unter welchen Namen wollen Sie das Spiel speichern?");
+ 		Stage stage1 = (Stage) dialog.getDialogPane().getScene().getWindow();
+        stage1.getIcons().add(new Image(this.getClass().getResource("images/icon.png").toString()));
 
  		Optional<String> result = dialog.showAndWait();
  		if (result.isPresent() && result.get()!=null && !result.get().isEmpty() && !result.get().startsWith(" ")){
- 			sm.saveGame(timerLabel.getText(), result.get());
+ 			service.saveGame(timerLabel.getText(), result.get());
  			Alert alert = new Alert(AlertType.INFORMATION);
+ 			Stage stage2 = (Stage) alert.getDialogPane().getScene().getWindow();
+ 	        stage2.getIcons().add(new Image(this.getClass().getResource("images/icon.png").toString()));
  			alert.setTitle("Information");
  			alert.setHeaderText(null);
  			alert.setContentText("Ihr Spiel \"" + result.get() + "\" wurde erfolgreich gespeichert");
  			alert.showAndWait();
  		} else {
  			Alert alert = new Alert(AlertType.INFORMATION);
+ 			Stage stage3 = (Stage) alert.getDialogPane().getScene().getWindow();
+ 	        stage3.getIcons().add(new Image(this.getClass().getResource("images/icon.png").toString()));
  			alert.setTitle("Information");
  			alert.setHeaderText(null);
  			alert.setContentText("Spielstand wurde nicht gespeichert");
  			alert.showAndWait();
  			timer.resumeThread();
  		}
-
- 		/*String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
-		"Spiel speichern",
-        	JOptionPane.PLAIN_MESSAGE);
- 		if(filename != null && !filename.isEmpty())
- 		{
- 			sm.saveGame(timerLabel.getText(), filename);
- 			JOptionPane.showMessageDialog(null, "Ihr Spiel wurde erfolgreich gespeichert");
- 		}
- 		else
- 		{
- 			JOptionPane.showMessageDialog(null, "Spielstand wurde nicht gespeichert");
- 			timer.resumeThread();;
- 		}*/
  	}
 
  	@FXML
 	public void solveGame()
 	{
-		sm.solveGame();
+		service.solveGame();
 		showTempGameInGUI();
 	}
 
 	@FXML
 	public void undoGame()
 	{
-		sm.undoGame();
+		service.undoGame();
 		showTempGameInGUI();
 	}
 
 	@FXML
 	public void checkGame()
 	{
-		sm.checkGame();
+		service.checkGame();
 		showTruthInGUI();
 	}
 }

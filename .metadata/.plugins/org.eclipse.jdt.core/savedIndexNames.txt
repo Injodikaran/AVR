@@ -17,7 +17,6 @@ INDEX VERSION 1.129+M:\eigene_dateien\GitHub\Sudoku\.metadata\.plugins\org.eclip
 1500790659.index
 4184201189.index
 3417200662.index
-2734194202.index
 2855899100.index
 3961426447.index
 2809250744.index

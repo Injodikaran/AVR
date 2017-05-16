@@ -10,7 +10,7 @@ import java.util.Deque;
 
 import SudokuJSONObject.SudokuGame;
 
-public class SudokuService{
+public class SudokuModel{
 	private byte[][] tempsource=new byte[9][9];				//Sudoku in Ursprünglicher Form
 	public byte[][] tempgame=new byte[9][9];				//Aktueller Spielstand
 	private byte[][] tempsolution=new byte[9][9];			//Lösung
@@ -72,7 +72,7 @@ public class SudokuService{
 	 * @return
 	 * Spiel
 	 */
-	public void relodeGame(){
+	public void reloadGame(){
 		tempgame=new byte[9][9];
 		for (byte x=0;x<9;x++){
 			for(byte y=0;y<9;y++){
@@ -205,7 +205,7 @@ public class SudokuService{
 
 	/** Mache Änderung rückgängig
 	 */
-	public void undo(){
+	public void undoGame(){
 		if (undos.isEmpty()){
 			//do nothing
 		} else {

@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import java.util.TimerTask;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javax.swing.*;
@@ -14,7 +17,15 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Dialogs;
+import javafx.scene.control.Dialogs.DialogOptions;
+import javafx.scene.control.Dialogs.DialogResponse;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
@@ -26,6 +37,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -322,12 +334,39 @@ public class SudokuController extends Application{
 			timer.resetThread();
 		}
 	}
-
+	
+	
+	
 	@FXML
 	public void createNewGame() throws InterruptedException
 	{
 		timer.pauseThread();
-		Object[] op = {"Ja", "Nein"};
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Neues Spiel");
+		alert.setHeaderText("Wollen Sie ein neues Spiel starten?");
+		
+		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("images/icon.png").toString()));
+
+		ButtonType buttonTypeYes = new ButtonType("Ja");
+		ButtonType buttonTypeNo = new ButtonType("Nein");
+		ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+		alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo, buttonTypeCancel);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeYes){
+			this.resetEvent();
+			cleanSudokuField();
+			sm.createNewGame();
+			showTempGameInGUI();
+			disablePresetFields();
+		} else if (result.get() == buttonTypeNo) {
+			timer.resumeThread();
+		} else {
+			timer.resumeThread();
+		}
+		/*Object[] op = {"Ja", "Nein"};
 		int action = JOptionPane.showOptionDialog(null,"Wollen Sie ein neues Spiel starten?", "Neues Spiel", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, op, op[1]);
 		if(action == 0)
 		{
@@ -340,7 +379,7 @@ public class SudokuController extends Application{
 		else
 		{
 			timer.resumeThread();
-		}
+		}*/
 	}
 
 	@FXML
@@ -354,42 +393,66 @@ public class SudokuController extends Application{
 		this.resetEvent();
 	}
 
-	@FXML
-	public void loadGame()
-	{
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Open Sudoku Game");
-		fileChooser.setInitialDirectory(new File("./"));
-		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("txt Files", "*.txt"));
-		File file = fileChooser.showOpenDialog(primaryStage);
-		if(file != null)
-		{
-			String filename = file.getName();
-			sm.loadGame(filename);
-		}
-		this.resetEvent();
-	}
+ 	@FXML
+ 	public void loadGame()
+ 	{
+ 		FileChooser fileChooser = new FileChooser();
+ 		fileChooser.setTitle("Open Sudoku Game");
+ 		fileChooser.setInitialDirectory(new File("./"));
+ 		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("txt Files", "*.txt"));
+ 		File file = fileChooser.showOpenDialog(primaryStage);
+ 		if(file != null)
+ 		{
+ 			String filename = file.getName();
+ 			sm.loadGame(filename);
+ 		}
+ 		this.resetEvent();
+ 		cleanSudokuField();
+ 		showTempGameInGUI();
+		disablePresetFields();
+ 	}
 
-	@FXML
-	public void saveGame() throws InterruptedException
-	{
-		timer.pauseThread();
-		String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
-				"Spiel speichern",
-				JOptionPane.PLAIN_MESSAGE);
-		if(filename != null && !filename.isEmpty())
-		{
-			sm.saveGame(timerLabel.getText(), filename);
-			JOptionPane.showMessageDialog(null, "Ihr Spiel wurde erfolgreich gespeichert");
-		}
-		else
-		{
-			JOptionPane.showMessageDialog(null, "Spielstand wurde nicht gespeichert");
-			timer.resumeThread();;
-		}
-	}
+ 	@FXML
+ 	public void saveGame() throws InterruptedException
+ 	{
+ 		timer.pauseThread();
+ 		TextInputDialog dialog = new TextInputDialog();
+ 		dialog.setTitle("Spiel speichern");
+ 		dialog.setHeaderText("Unter welchen Namen wollen Sie das Spiel speichern?");
 
-	@FXML
+ 		Optional<String> result = dialog.showAndWait();
+ 		if (result.isPresent() && result.get()!=null && !result.get().isEmpty() && !result.get().startsWith(" ")){
+ 			sm.saveGame(timerLabel.getText(), result.get());
+ 			Alert alert = new Alert(AlertType.INFORMATION);
+ 			alert.setTitle("Information");
+ 			alert.setHeaderText(null);
+ 			alert.setContentText("Ihr Spiel \"" + result.get() + "\" wurde erfolgreich gespeichert");
+ 			alert.showAndWait();
+ 		} else {
+ 			Alert alert = new Alert(AlertType.INFORMATION);
+ 			alert.setTitle("Information");
+ 			alert.setHeaderText(null);
+ 			alert.setContentText("Spielstand wurde nicht gespeichert");
+ 			alert.showAndWait();
+ 			timer.resumeThread();
+ 		}
+
+ 		/*String filename = JOptionPane.showInputDialog(null,"Unter welchen Namen wollen Sie das Spiel speichern?",
+		"Spiel speichern",
+        	JOptionPane.PLAIN_MESSAGE);
+ 		if(filename != null && !filename.isEmpty())
+ 		{
+ 			sm.saveGame(timerLabel.getText(), filename);
+ 			JOptionPane.showMessageDialog(null, "Ihr Spiel wurde erfolgreich gespeichert");
+ 		}
+ 		else
+ 		{
+ 			JOptionPane.showMessageDialog(null, "Spielstand wurde nicht gespeichert");
+ 			timer.resumeThread();;
+ 		}*/
+ 	}
+
+ 	@FXML
 	public void solveGame()
 	{
 		sm.solveGame();

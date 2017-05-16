@@ -110,6 +110,10 @@ public class SudokuController extends Application{
 		}
 	}
 
+	public void hideWindows(){
+		datastore.getStage().close();
+	}
+
 	public void showNumbersChooser(MouseEvent mouse) throws IOException{
 		try {
 			datastore.setSelectedTextField((TextField) mouse.getSource());
@@ -334,9 +338,9 @@ public class SudokuController extends Application{
 			timer.resetThread();
 		}
 	}
-	
-	
-	
+
+
+
 	@FXML
 	public void createNewGame() throws InterruptedException
 	{
@@ -344,7 +348,7 @@ public class SudokuController extends Application{
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Neues Spiel");
 		alert.setHeaderText("Wollen Sie ein neues Spiel starten?");
-		
+
 		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(this.getClass().getResource("images/icon.png").toString()));
 
@@ -404,12 +408,13 @@ public class SudokuController extends Application{
  		if(file != null)
  		{
  			String filename = file.getName();
+ 	 		cleanSudokuField();
  			sm.loadGame(filename);
+ 	 		this.resetEvent();
+ 	 		showTempGameInGUI();
+ 			disablePresetFields();
  		}
- 		this.resetEvent();
- 		cleanSudokuField();
- 		showTempGameInGUI();
-		disablePresetFields();
+
  	}
 
  	@FXML

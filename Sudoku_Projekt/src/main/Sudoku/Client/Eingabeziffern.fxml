@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="numberSelectionBasicPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #81bdf4;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.SudokuController">
+<BorderPane fx:id="numberSelectionBasicPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseExited="#hideWindows" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #81bdf4;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.SudokuController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>

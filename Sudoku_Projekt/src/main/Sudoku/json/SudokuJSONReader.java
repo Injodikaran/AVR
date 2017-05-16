@@ -56,7 +56,7 @@ public class SudokuJSONReader {
 			}
 		}
 
-		JsonArray temnplateArrayY = jsonObject.getJsonArray("Sudoku");
+		JsonArray temnplateArrayY = jsonObject.getJsonArray("Template");
 		int[][] template = new int[9][9];
 		for(int y= 0; y<temnplateArrayY.size();y++)
 		{

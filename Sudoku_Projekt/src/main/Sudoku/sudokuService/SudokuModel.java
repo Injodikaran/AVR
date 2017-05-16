@@ -34,7 +34,7 @@ public class SudokuModel{
 	public void createNewGame(){
 		SudokuGame imp;
 		int[][] temp;
-		String fileName = "emp2.txt"; // Random Laden muss noch erzeugt werden
+		String fileName = "Sudoku"+((int)(Math.random()*10+1))+".txt"; // Random Laden muss noch erzeugt werden
 		try {
 			imp = SudokuJSONReader.read(fileName);
 			temp = imp.getTemplate();

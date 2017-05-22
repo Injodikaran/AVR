@@ -236,25 +236,37 @@ public class SudokuModel{
 			}
 	}*/
 
-		public byte[][] getTempGame(){
-			return tempgame;
-		}
+	/**
+	 * Holt das aktuelle Spiel
+	 */
+	public byte[][] getTempGame(){
+		return tempgame;
+	}
 
-		public boolean[][] getChangeable(){
-			return changeable;
-		}
+	/**
+	 * Holt die veränderbaren Felder
+	 */
+	public boolean[][] getChangeable(){
+		return changeable;
+	}
 
-		public boolean[][] getTruth(){
-			return truth;
-		}
+	/**
+	 * Holt richtig besetzten Felder
+	 */
+	public boolean[][] getTruth(){
+		return truth;
+	}
 
-		public byte[][] getSolution(){
-			return tempsolution;
-		}
+	/**
+	 * Holt das gelöste Spiel
+	 */
+	public byte[][] getSolution(){
+		return tempsolution;
+	}
 
-		public void resetstacks(){
-			//redos.clear();
-			undos.clear();
-		}
+	public void resetstacks(){
+		//redos.clear();
+		undos.clear();
+	}
 }
 

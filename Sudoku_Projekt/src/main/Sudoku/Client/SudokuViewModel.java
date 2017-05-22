@@ -38,6 +38,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -80,6 +81,8 @@ public class SudokuViewModel extends Application{
 	private Pane numberSelectionBasicPane;
 	@FXML
 	private Label timerLabel;
+	@FXML
+	private ToggleButton checkGame;
 
 	SudokuModel service;
 
@@ -108,6 +111,23 @@ public class SudokuViewModel extends Application{
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * Reagiert auf den Toggle Button "Check" und zeigt richtige und falsche Ziffern
+	 * welche bereits eingegeben wurden, wenn der Button gedrückt ist. Ist der Button nicht
+	 * gedrückt wird die Kontrollanzeige wieder rückgängig gemacht 
+	 */
+	@FXML
+	protected void handleCheckGameButtonAction(ActionEvent event){
+		if (checkGame.isSelected()) {
+			checkGame();
+			checkGame.setText("Uncheck");
+		} else {
+			uncheckGame();
+			checkGame.setText("Check");
 		}
 	}
 
@@ -174,7 +194,11 @@ public class SudokuViewModel extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	
+	/**
+	 * Reagiert auf eine Änderung im Sudoku Spielfeld 
+	 * und schreibt diese ins aktuelle Spiel im Sudoku Model
+	 */
 	@FXML
 	public void initialize() {
 		if(location.getPath().endsWith("SudokuView.fxml")){
@@ -220,7 +244,10 @@ public class SudokuViewModel extends Application{
 		x.setInterpolator(Interpolator.LINEAR);
 		x.play();
 	}
-
+	
+	/**
+	 * Zeigt das aktuelle Spiel im Sudoku Spielfeld
+	 */
 	@FXML
 	public void showTempGameInGUI(){
 
@@ -240,11 +267,17 @@ public class SudokuViewModel extends Application{
 			}
 		}
 	}
-
+	
+	/**
+	 * Holt das aktuelle Spiel aus dem Sudoku Model
+	 */
 	public byte[][] getTempGame(){
 		return service.getTempGame();
 	}
-
+	
+	/**
+	 * Sperrt die bereits ausgefüllten Felder beim Laden eines neuen Spiels
+	 */
 	@FXML
 	public void disablePresetFields(){
 
@@ -261,10 +294,19 @@ public class SudokuViewModel extends Application{
 		}
 	}
 
+	/**
+	 * Holt die veränderbaren Sudokufelder aus dem Sudoku Model
+	 */
 	public boolean[][] getChangeable(){
 		return service.getChangeable();
 	}
 
+	/**
+	 * Reinigt das Sudoku Spielfeld:
+	 * - Alle Felder wieder editierbar
+	 * - Alle Felder ohne Ziffern
+	 * - Alle Felder mit weissem Hintergrund
+	 */
 	@FXML
 	public void cleanSudokuField(){
 		for (int i = 0; i < 81; i++) {
@@ -274,6 +316,10 @@ public class SudokuViewModel extends Application{
 		}
 	}
 
+	/**
+	 * Zeigt die richtigen und falschen Ziffern mit grünem und rotem Hintergrund
+	 * im Sudoku Spielfeld an
+	 */
 	@FXML
 	public void showTruthInGUI(){
 
@@ -295,11 +341,26 @@ public class SudokuViewModel extends Application{
 			}
 		}
 	}
+	
+	/**
+	 * Macht die Anzeige, ob eine Ziffer richtig (grün) oder falsch (rot) ist, wieder rückgängig
+	 */
+	public void uncheckGame(){
+		for (int i = 0; i < 81; i++) {
+			textFieldList.get(i).setStyle("-fx-background-color: white;");
+		}
+	}
 
+	/**
+	 * Holt zu jeder Ziffer die Information, ob eine Zahl richtig oder falsch ist
+	 */
 	public boolean[][] getTruth(){
 		return service.getTruth();
 	}
 
+	/**
+	 * Zeigt die komplette Lösung im Spielfeld an
+	 */
 	@FXML
 	public void showSolutionInGUI(){
 
@@ -315,7 +376,10 @@ public class SudokuViewModel extends Application{
 			}
 		}
 	}
-
+	
+	/**
+	 * Holt die Lösung aus dem Sudoku Model
+	 */
 	public byte[][] getSolution(){
 		return service.getSolution();
 	}
@@ -343,7 +407,9 @@ public class SudokuViewModel extends Application{
 	}
 
 
-
+	/**
+	 * Startet ein neues Spiel
+	 */
 	@FXML
 	public void createNewGame() throws InterruptedException
 	{
@@ -375,6 +441,9 @@ public class SudokuViewModel extends Application{
 		}
 	}
 
+	/**
+	 * Setzt das aktuelle Spiel wieder auf den Ursprung zurück
+	 */
 	@FXML
 	public void restartGame()
 	{
@@ -386,6 +455,9 @@ public class SudokuViewModel extends Application{
 		this.resetEvent();
 	}
 
+	/**
+	 * Lädt ein abgespeichertes Spiel
+	 */
  	@FXML
  	public void loadGame()
  	{
@@ -404,7 +476,10 @@ public class SudokuViewModel extends Application{
  			disablePresetFields();
  		}
  	}
-
+ 	
+ 	/**
+	 * Speichert das aktuelle Spiel
+	 */
  	@FXML
  	public void saveGame() throws InterruptedException
  	{
@@ -437,6 +512,9 @@ public class SudokuViewModel extends Application{
  		}
  	}
 
+ 	/**
+	 * Ruft die solve Methode im Sudoku Model durch den Anzeigen Button auf
+	 */
  	@FXML
 	public void solveGame()
 	{
@@ -444,6 +522,9 @@ public class SudokuViewModel extends Application{
 		showTempGameInGUI();
 	}
 
+ 	/**
+	 * Macht die letzte Eingabe im Sudoku Spielfeld durch den Button Undo wieder rückgängig
+	 */
 	@FXML
 	public void undoGame()
 	{
@@ -451,6 +532,9 @@ public class SudokuViewModel extends Application{
 		showTempGameInGUI();
 	}
 
+	/**
+	 * Zeigt die richtigen und falschen Eingaben im Spielfeld durch den Button Check an
+	 */
 	@FXML
 	public void checkGame()
 	{

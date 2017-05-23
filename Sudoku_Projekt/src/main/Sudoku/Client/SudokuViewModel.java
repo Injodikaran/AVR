@@ -4,6 +4,7 @@ import java.awt.MouseInfo;
 import java.io.IOException;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -51,6 +52,7 @@ import sudokuService.SudokuModel;
 public class SudokuViewModel extends Application{
 	private Stage primaryStage;
 	SudokuTimerTask timer = new SudokuTimerTask(this);
+	CommandManager cm = new CommandManager();
 
 	private SingletonDataStore datastore = SingletonDataStore.getInstance();
 
@@ -116,6 +118,10 @@ public class SudokuViewModel extends Application{
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 	}
 
 	/**
@@ -217,7 +223,7 @@ public class SudokuViewModel extends Application{
 					@Override
 					public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 						if (newValue.matches("[1-9]")) {
-							textFieldList.get(j).setText(newValue);
+							cm.executeCommand(new FillField(textFieldList.get(j), newValue));
 							service.enterNumber(x, y, Integer.parseInt(newValue));
 							showTempGameInGUI();
 							System.out.println("SolvedWithCheck:" + solvedWithCheck);
@@ -443,6 +449,7 @@ public class SudokuViewModel extends Application{
 			service.createNewGame();
 			showTempGameInGUI();
 			disablePresetFields();
+			cm.deleteHistory();
 		} else if (result.get() == buttonTypeNo) {
 			timer.resumeThread();
 		} else {
@@ -540,8 +547,9 @@ public class SudokuViewModel extends Application{
 	@FXML
 	public void undoGame()
 	{
-		service.undoGame();
-		showTempGameInGUI();
+		cm.undo();
+		//service.undoGame();
+		//showTempGameInGUI();
 	}
 
 	/**

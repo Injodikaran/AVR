@@ -40,6 +40,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -86,6 +87,9 @@ public class SudokuViewModel extends Application{
 
 	SudokuModel service;
 
+	private boolean solvedWithCheck = false;
+	private int anzRichtige = 0;
+
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -112,13 +116,12 @@ public class SudokuViewModel extends Application{
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
+
 	/**
 	 * Reagiert auf den Toggle Button "Check" und zeigt richtige und falsche Ziffern
 	 * welche bereits eingegeben wurden, wenn der Button gedrückt ist. Ist der Button nicht
-	 * gedrückt wird die Kontrollanzeige wieder rückgängig gemacht 
+	 * gedrückt wird die Kontrollanzeige wieder rückgängig gemacht
 	 */
 	@FXML
 	protected void handleCheckGameButtonAction(ActionEvent event){
@@ -194,9 +197,9 @@ public class SudokuViewModel extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 	/**
-	 * Reagiert auf eine Änderung im Sudoku Spielfeld 
+	 * Reagiert auf eine Änderung im Sudoku Spielfeld
 	 * und schreibt diese ins aktuelle Spiel im Sudoku Model
 	 */
 	@FXML
@@ -208,13 +211,19 @@ public class SudokuViewModel extends Application{
 				final int x = j / 9;
 				final int y = j % 9;
 
+
 				textFieldList.get(j).textProperty().addListener(new ChangeListener<String>(){
+
 					@Override
 					public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 						if (newValue.matches("[1-9]")) {
 							textFieldList.get(j).setText(newValue);
 							service.enterNumber(x, y, Integer.parseInt(newValue));
 							showTempGameInGUI();
+							System.out.println("SolvedWithCheck:" + solvedWithCheck);
+							if (!solvedWithCheck){
+								checkUserGame();
+							}
 						}
 						else if (newValue.matches("")) {
 							service.enterNumber(x, y, 0);
@@ -232,7 +241,6 @@ public class SudokuViewModel extends Application{
 		{
 			fadeTransition(numberSelectionBasicPane);
 		}
-
 		service = new SudokuModel();
 	}
 
@@ -244,7 +252,7 @@ public class SudokuViewModel extends Application{
 		x.setInterpolator(Interpolator.LINEAR);
 		x.play();
 	}
-	
+
 	/**
 	 * Zeigt das aktuelle Spiel im Sudoku Spielfeld
 	 */
@@ -267,14 +275,14 @@ public class SudokuViewModel extends Application{
 			}
 		}
 	}
-	
+
 	/**
 	 * Holt das aktuelle Spiel aus dem Sudoku Model
 	 */
 	public byte[][] getTempGame(){
 		return service.getTempGame();
 	}
-	
+
 	/**
 	 * Sperrt die bereits ausgefüllten Felder beim Laden eines neuen Spiels
 	 */
@@ -282,14 +290,14 @@ public class SudokuViewModel extends Application{
 	public void disablePresetFields(){
 
 		boolean changeable[][] = this.getChangeable();
-		int nrTextFeld = 0;
-		boolean j = false;
+		int nrTextFeldDisable = 0;
+		boolean jDisable = false;
 
 		for (int i = 0; i < 9; i++) {
 			for (int k = 0; k < 9; k++){
-				j = changeable[i][k];
-				nrTextFeld = i * 9 + k;
-				textFieldList.get(nrTextFeld).setEditable(j);
+				jDisable = changeable[i][k];
+				nrTextFeldDisable = i * 9 + k;
+				textFieldList.get(nrTextFeldDisable).setEditable(jDisable);
 			}
 		}
 	}
@@ -324,24 +332,24 @@ public class SudokuViewModel extends Application{
 	public void showTruthInGUI(){
 
 		boolean truth[][] = this.getTruth();
-		int nrTextFeld = 0;
-		boolean j = false;
+		int nrTextFeldTruth = 0;
+		boolean jTruth = false;
 
 		for (int i = 0; i < 9; i++) {
 			for (int k = 0; k < 9; k++){
-				j = truth[i][k];
-				nrTextFeld = i * 9 + k;
-				if (j && textFieldList.get(nrTextFeld).getText().matches("[1-9]")){
-					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: #99ffcc;");	//grÃ¼n
-				} else if (!textFieldList.get(nrTextFeld).getText().matches("[1-9]")) {
-					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: white;");		//weiss
+				jTruth = truth[i][k];
+				nrTextFeldTruth = i * 9 + k;
+				if (jTruth && textFieldList.get(nrTextFeldTruth).getText().matches("[1-9]")){
+					textFieldList.get(nrTextFeldTruth).setStyle("-fx-background-color: #99ffcc;");	//grÃ¼n
+				} else if (!textFieldList.get(nrTextFeldTruth).getText().matches("[1-9]")) {
+					textFieldList.get(nrTextFeldTruth).setStyle("-fx-background-color: white;");		//weiss
 				} else {
-					textFieldList.get(nrTextFeld).setStyle("-fx-background-color: #ff6699;");	//rot
+					textFieldList.get(nrTextFeldTruth).setStyle("-fx-background-color: #ff6699;");	//rot
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Macht die Anzeige, ob eine Ziffer richtig (grün) oder falsch (rot) ist, wieder rückgängig
 	 */
@@ -365,18 +373,18 @@ public class SudokuViewModel extends Application{
 	public void showSolutionInGUI(){
 
 		byte solution[][] = this.getSolution();
-		int nrTextFeld = 0;
-		int j = 0;
+		int nrTextFeldSolution = 0;
+		int jSolution = 0;
 
 		for (int i = 0; i < 9; i++) {
 			for (int k = 0; k < 9; k++){
-				j = solution[i][k];
-				nrTextFeld = i * 9 + k;
-				textFieldList.get(nrTextFeld).setText("" + j);
+				jSolution = solution[i][k];
+				nrTextFeldSolution = i * 9 + k;
+				textFieldList.get(nrTextFeldSolution).setText("" + jSolution);
 			}
 		}
 	}
-	
+
 	/**
 	 * Holt die Lösung aus dem Sudoku Model
 	 */
@@ -413,6 +421,7 @@ public class SudokuViewModel extends Application{
 	@FXML
 	public void createNewGame() throws InterruptedException
 	{
+		solvedWithCheck = false;
 		timer.pauseThread();
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Neues Spiel");
@@ -447,6 +456,7 @@ public class SudokuViewModel extends Application{
 	@FXML
 	public void restartGame()
 	{
+		solvedWithCheck = false;
 		cleanSudokuField();
 		service.reloadGame();
 		showTempGameInGUI();
@@ -461,6 +471,7 @@ public class SudokuViewModel extends Application{
  	@FXML
  	public void loadGame()
  	{
+ 		solvedWithCheck = false;
  		FileChooser fileChooser = new FileChooser();
  		fileChooser.setTitle("Open Sudoku Game");
  		fileChooser.setInitialDirectory(new File("./"));
@@ -476,7 +487,7 @@ public class SudokuViewModel extends Application{
  			disablePresetFields();
  		}
  	}
- 	
+
  	/**
 	 * Speichert das aktuelle Spiel
 	 */
@@ -518,6 +529,7 @@ public class SudokuViewModel extends Application{
  	@FXML
 	public void solveGame()
 	{
+ 		solvedWithCheck = true;
 		service.solveGame();
 		showTempGameInGUI();
 	}
@@ -540,5 +552,42 @@ public class SudokuViewModel extends Application{
 	{
 		service.checkGame();
 		showTruthInGUI();
+	}
+
+	public void checkUserGame(){
+		Image image = new Image(getClass().getResource("images/icon.png").toExternalForm());
+		ImageView imageView = new ImageView(image);
+		imageView.setFitWidth(64);
+	    imageView.setFitHeight(64);
+
+		boolean truthUser[][] = this.getTruth();
+		boolean jUser = false;
+		anzRichtige = 0;
+
+
+		for (int i = 0; i < 9; i++) {
+			for (int k = 0; k < 9; k++){
+				jUser = truthUser[i][k];
+				if (jUser) {
+					anzRichtige += 1;
+				}
+			}
+		}
+
+		System.out.println("Anzahl Richtige: " + anzRichtige);
+
+		if (anzRichtige == 81){
+			System.out.println("Test ob checkUserGame funktioniert");
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+ 			Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+ 	        stage.getIcons().add(new Image(this.getClass().getResource("images/icon.png").toString()));
+ 			alert.setTitle("Herzlichen Glückwunsch!");
+ 			alert.setHeaderText(null);
+ 			alert.setGraphic(imageView);
+ 			alert.setContentText("Sie haben das Sudoku erfolgreich gemeistert!");
+ 			alert.showAndWait();
+
+		}
 	}
 }

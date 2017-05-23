@@ -120,7 +120,7 @@ public class SudokuModel{
 			for(byte b2=0;b2<9;b2++){
 				if (tempgame[b1][b2]>0 && tempgame[b1][b2]!=tempsolution[b1][b2]){
 					truth[b1][b2]=false;
-				}else{
+				}else if (tempgame[b1][b2]>0){
 					truth[b1][b2]=true;
 				}
 			}

@@ -7,6 +7,7 @@ import json.SudokuJSONReader;
 import json.SudokuJSONWriter;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.List;
 
 import SudokuJSONObject.SudokuGame;
 
@@ -34,7 +35,7 @@ public class SudokuModel{
 	public void createNewGame(){
 		SudokuGame imp;
 		int[][] temp;
-		String fileName = "emp2.txt"; // Random Laden muss noch erzeugt werden
+		String fileName = "Sudoku"+((int)(Math.random()*10+1))+".txt"; // Random Laden muss noch erzeugt werden
 		try {
 			imp = SudokuJSONReader.read(fileName);
 			temp = imp.getTemplate();
@@ -120,7 +121,7 @@ public class SudokuModel{
 			for(byte b2=0;b2<9;b2++){
 				if (tempgame[b1][b2]>0 && tempgame[b1][b2]!=tempsolution[b1][b2]){
 					truth[b1][b2]=false;
-				}else{
+				}else if (tempgame[b1][b2]>0){
 					truth[b1][b2]=true;
 				}
 			}
@@ -236,25 +237,37 @@ public class SudokuModel{
 			}
 	}*/
 
-		public byte[][] getTempGame(){
-			return tempgame;
-		}
+	/**
+	 * Holt das aktuelle Spiel
+	 */
+	public byte[][] getTempGame(){
+		return tempgame;
+	}
 
-		public boolean[][] getChangeable(){
-			return changeable;
-		}
+	/**
+	 * Holt die veränderbaren Felder
+	 */
+	public boolean[][] getChangeable(){
+		return changeable;
+	}
 
-		public boolean[][] getTruth(){
-			return truth;
-		}
+	/**
+	 * Holt richtig besetzten Felder
+	 */
+	public boolean[][] getTruth(){
+		return truth;
+	}
 
-		public byte[][] getSolution(){
-			return tempsolution;
-		}
+	/**
+	 * Holt das gelöste Spiel
+	 */
+	public byte[][] getSolution(){
+		return tempsolution;
+	}
 
-		public void resetstacks(){
-			//redos.clear();
-			undos.clear();
-		}
+	public void resetstacks(){
+		//redos.clear();
+		undos.clear();
+	}
 }
 

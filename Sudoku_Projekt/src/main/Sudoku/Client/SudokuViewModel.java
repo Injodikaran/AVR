@@ -4,6 +4,7 @@ import java.awt.MouseInfo;
 import java.io.IOException;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -50,6 +51,7 @@ import sudokuService.SudokuModel;
 public class SudokuViewModel extends Application{
 	private Stage primaryStage;
 	SudokuTimerTask timer = new SudokuTimerTask(this);
+	CommandManager cm = new CommandManager();
 
 	private SingletonDataStore datastore = SingletonDataStore.getInstance();
 
@@ -112,13 +114,13 @@ public class SudokuViewModel extends Application{
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	/**
 	 * Reagiert auf den Toggle Button "Check" und zeigt richtige und falsche Ziffern
 	 * welche bereits eingegeben wurden, wenn der Button gedrückt ist. Ist der Button nicht
-	 * gedrückt wird die Kontrollanzeige wieder rückgängig gemacht 
+	 * gedrückt wird die Kontrollanzeige wieder rückgängig gemacht
 	 */
 	@FXML
 	protected void handleCheckGameButtonAction(ActionEvent event){
@@ -194,9 +196,9 @@ public class SudokuViewModel extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 	/**
-	 * Reagiert auf eine Änderung im Sudoku Spielfeld 
+	 * Reagiert auf eine Änderung im Sudoku Spielfeld
 	 * und schreibt diese ins aktuelle Spiel im Sudoku Model
 	 */
 	@FXML
@@ -212,7 +214,7 @@ public class SudokuViewModel extends Application{
 					@Override
 					public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 						if (newValue.matches("[1-9]")) {
-							textFieldList.get(j).setText(newValue);
+							cm.executeCommand(new FillField(textFieldList.get(j), newValue));
 							service.enterNumber(x, y, Integer.parseInt(newValue));
 							showTempGameInGUI();
 						}
@@ -244,7 +246,7 @@ public class SudokuViewModel extends Application{
 		x.setInterpolator(Interpolator.LINEAR);
 		x.play();
 	}
-	
+
 	/**
 	 * Zeigt das aktuelle Spiel im Sudoku Spielfeld
 	 */
@@ -267,14 +269,14 @@ public class SudokuViewModel extends Application{
 			}
 		}
 	}
-	
+
 	/**
 	 * Holt das aktuelle Spiel aus dem Sudoku Model
 	 */
 	public byte[][] getTempGame(){
 		return service.getTempGame();
 	}
-	
+
 	/**
 	 * Sperrt die bereits ausgefüllten Felder beim Laden eines neuen Spiels
 	 */
@@ -341,7 +343,7 @@ public class SudokuViewModel extends Application{
 			}
 		}
 	}
-	
+
 	/**
 	 * Macht die Anzeige, ob eine Ziffer richtig (grün) oder falsch (rot) ist, wieder rückgängig
 	 */
@@ -376,7 +378,7 @@ public class SudokuViewModel extends Application{
 			}
 		}
 	}
-	
+
 	/**
 	 * Holt die Lösung aus dem Sudoku Model
 	 */
@@ -434,6 +436,7 @@ public class SudokuViewModel extends Application{
 			service.createNewGame();
 			showTempGameInGUI();
 			disablePresetFields();
+			cm.deleteHistory();
 		} else if (result.get() == buttonTypeNo) {
 			timer.resumeThread();
 		} else {
@@ -476,7 +479,7 @@ public class SudokuViewModel extends Application{
  			disablePresetFields();
  		}
  	}
- 	
+
  	/**
 	 * Speichert das aktuelle Spiel
 	 */
@@ -528,8 +531,9 @@ public class SudokuViewModel extends Application{
 	@FXML
 	public void undoGame()
 	{
-		service.undoGame();
-		showTempGameInGUI();
+		cm.undo();
+		//service.undoGame();
+		//showTempGameInGUI();
 	}
 
 	/**

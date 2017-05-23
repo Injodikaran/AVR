@@ -20,14 +20,14 @@ public class SudokuTimerTask extends Thread {
 	private String[] split;
 	private String min, sec;
 	private final StringProperty timer;
-	
+
 	// Konstruktor
     public SudokuTimerTask(SudokuViewModel controller)
     {
     	this.timer = new SimpleStringProperty();
     	ui = controller;
     }
-    
+
     public String getFirstName() {
         return timer.get();
     }
@@ -82,6 +82,6 @@ public class SudokuTimerTask extends Thread {
         		 ui.setTime(String.format("%s:%s", min,sec));
              }
          });
-	System.out.println(String.format("%s:%s", min,sec));
+	//System.out.println(String.format("%s:%s", min,sec));
     }
 }

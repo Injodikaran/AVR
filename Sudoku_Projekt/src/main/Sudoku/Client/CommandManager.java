@@ -10,15 +10,19 @@ public class CommandManager {
 	private List<FillField> history = new ArrayList<>();
 
 	public void executeCommand(FillField newFill){
-		history.add(newFill);
 		newFill.execute();
+		history.add(newFill);
+		System.out.println("Size" + history.size());
+
 
 	}
 
 	public void undo(){
 		if(history.size() > 0){
-			FillField undoFill = history.remove(history.size() - 1);
-			undoFill.execute();
+			FillField undoFill = history.get(history.size()-1);
+			undoFill.undo();
+			System.out.println("Size" + history.size());
+			history.remove(history.size()-1);
 		}
 
 	}

@@ -7,10 +7,11 @@ import json.SudokuJSONReader;
 import json.SudokuJSONWriter;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.List;
 
 import SudokuJSONObject.SudokuGame;
 
-public class SudokuService{
+public class SudokuModel{
 	private byte[][] tempsource=new byte[9][9];				//Sudoku in Ursprünglicher Form
 	public byte[][] tempgame=new byte[9][9];				//Aktueller Spielstand
 	private byte[][] tempsolution=new byte[9][9];			//Lösung
@@ -34,7 +35,7 @@ public class SudokuService{
 	public void createNewGame(){
 		SudokuGame imp;
 		int[][] temp;
-		String fileName = "emp2.txt"; // Random Laden muss noch erzeugt werden
+		String fileName = "Sudoku"+((int)(Math.random()*10+1))+".txt"; // Random Laden muss noch erzeugt werden
 		try {
 			imp = SudokuJSONReader.read(fileName);
 			temp = imp.getTemplate();
@@ -72,7 +73,7 @@ public class SudokuService{
 	 * @return
 	 * Spiel
 	 */
-	public void relodeGame(){
+	public void reloadGame(){
 		tempgame=new byte[9][9];
 		for (byte x=0;x<9;x++){
 			for(byte y=0;y<9;y++){
@@ -120,7 +121,7 @@ public class SudokuService{
 			for(byte b2=0;b2<9;b2++){
 				if (tempgame[b1][b2]>0 && tempgame[b1][b2]!=tempsolution[b1][b2]){
 					truth[b1][b2]=false;
-				}else{
+				}else if (tempgame[b1][b2]>0){
 					truth[b1][b2]=true;
 				}
 			}
@@ -205,7 +206,7 @@ public class SudokuService{
 
 	/** Mache Änderung rückgängig
 	 */
-	public void undo(){
+	public void undoGame(){
 		if (undos.isEmpty()){
 			//do nothing
 		} else {
@@ -236,25 +237,37 @@ public class SudokuService{
 			}
 	}*/
 
-		public byte[][] getTempGame(){
-			return tempgame;
-		}
+	/**
+	 * Holt das aktuelle Spiel
+	 */
+	public byte[][] getTempGame(){
+		return tempgame;
+	}
 
-		public boolean[][] getChangeable(){
-			return changeable;
-		}
+	/**
+	 * Holt die veränderbaren Felder
+	 */
+	public boolean[][] getChangeable(){
+		return changeable;
+	}
 
-		public boolean[][] getTruth(){
-			return truth;
-		}
+	/**
+	 * Holt richtig besetzten Felder
+	 */
+	public boolean[][] getTruth(){
+		return truth;
+	}
 
-		public byte[][] getSolution(){
-			return tempsolution;
-		}
+	/**
+	 * Holt das gelöste Spiel
+	 */
+	public byte[][] getSolution(){
+		return tempsolution;
+	}
 
-		public void resetstacks(){
-			//redos.clear();
-			undos.clear();
-		}
+	public void resetstacks(){
+		//redos.clear();
+		undos.clear();
+	}
 }
 

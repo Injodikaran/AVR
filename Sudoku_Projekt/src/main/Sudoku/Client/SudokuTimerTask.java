@@ -15,19 +15,19 @@ public class SudokuTimerTask extends Thread {
 
 	private volatile boolean running = true;
 	private long time = 0;
-    private SudokuController ui;
+    private SudokuViewModel ui;
 	private SimpleDateFormat sdf = new SimpleDateFormat("mm:ss:S");
 	private String[] split;
 	private String min, sec;
 	private final StringProperty timer;
-	
+
 	// Konstruktor
-    public SudokuTimerTask(SudokuController controller)
+    public SudokuTimerTask(SudokuViewModel controller)
     {
     	this.timer = new SimpleStringProperty();
     	ui = controller;
     }
-    
+
     public String getFirstName() {
         return timer.get();
     }
@@ -82,6 +82,6 @@ public class SudokuTimerTask extends Thread {
         		 ui.setTime(String.format("%s:%s", min,sec));
              }
          });
-	System.out.println(String.format("%s:%s", min,sec));
+	//System.out.println(String.format("%s:%s", min,sec));
     }
 }

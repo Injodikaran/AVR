@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import java.util.ArrayList?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.SudokuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.SudokuViewModel">
 	<center>
 		<GridPane gridLinesVisible="true" style="-fx-border-style: solid" BorderPane.alignment="CENTER">
 			<columnConstraints>
@@ -788,11 +789,11 @@
 						<Insets bottom="10.0" />
 					</VBox.margin>
 				</Button>
-				<Button fx:id="checkGame" graphicTextGap="10.0" mnemonicParsing="false" onAction="#checkGame" prefHeight="50.0" prefWidth="150.0" text="Check" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS">
-					<VBox.margin>
-						<Insets bottom="80.0" />
-					</VBox.margin>
-				</Button>
+            <ToggleButton fx:id="checkGame" mnemonicParsing="false" onAction="#handleCheckGameButtonAction" prefHeight="50.0" prefWidth="150.0" text="Check">
+               <VBox.margin>
+                  <Insets bottom="80.0" />
+               </VBox.margin>
+            </ToggleButton>
 				<Label fx:id="timerLabel" contentDisplay="CENTER" prefHeight="36.0" prefWidth="97.0" text="00:00">
 					<font>
 						<Font size="25.0" />

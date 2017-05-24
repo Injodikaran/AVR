@@ -118,10 +118,7 @@ public class SudokuViewModel extends Application{
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 	}
 
 	/**
@@ -228,7 +225,12 @@ public class SudokuViewModel extends Application{
 							showTempGameInGUI();
 							System.out.println("SolvedWithCheck:" + solvedWithCheck);
 							if (!solvedWithCheck){
-								checkUserGame();
+								try {
+									checkUserGame();
+								} catch(Exception e) {
+									e.printStackTrace();
+								}
+								
 							}
 						}
 						else if (newValue.matches("")) {
@@ -534,11 +536,27 @@ public class SudokuViewModel extends Application{
 	 * Ruft die solve Methode im Sudoku Model durch den Anzeigen Button auf
 	 */
  	@FXML
-	public void solveGame()
+	public void solveGame() throws InterruptedException
 	{
  		solvedWithCheck = true;
 		service.solveGame();
 		showTempGameInGUI();
+		
+		timer.pauseThread();
+		
+		Image imageSolve = new Image(getClass().getResource("images/Sad-96.png").toExternalForm());
+		ImageView imageViewSolve = new ImageView(imageSolve);
+		imageViewSolve.setFitWidth(64);
+	    imageViewSolve.setFitHeight(64);
+	    
+		Alert alert = new Alert(AlertType.INFORMATION);
+		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("images/icon.png").toString()));
+		alert.setTitle("Schade!");
+		alert.setHeaderText(null);
+		alert.setGraphic(imageViewSolve);
+		alert.setContentText("Sie haben sich die Lösung anzeigen lassen!");
+		alert.showAndWait();
 	}
 
  	/**
@@ -562,17 +580,21 @@ public class SudokuViewModel extends Application{
 		showTruthInGUI();
 	}
 
-	public void checkUserGame(){
+	/**
+	 * Kontrolliert das Sudoku Spielfeld, ob der User die Lösung bereits erreicht hat
+	 */
+	public void checkUserGame() throws InterruptedException{
 		Image image = new Image(getClass().getResource("images/icon.png").toExternalForm());
 		ImageView imageView = new ImageView(image);
 		imageView.setFitWidth(64);
 	    imageView.setFitHeight(64);
+	    
+	    service.checkGame();
 
 		boolean truthUser[][] = this.getTruth();
 		boolean jUser = false;
 		anzRichtige = 0;
-
-
+		
 		for (int i = 0; i < 9; i++) {
 			for (int k = 0; k < 9; k++){
 				jUser = truthUser[i][k];
@@ -582,18 +604,15 @@ public class SudokuViewModel extends Application{
 			}
 		}
 
-		System.out.println("Anzahl Richtige: " + anzRichtige);
-
 		if (anzRichtige == 81){
-			System.out.println("Test ob checkUserGame funktioniert");
-
+			timer.pauseThread();
 			Alert alert = new Alert(AlertType.INFORMATION);
  			Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
  	        stage.getIcons().add(new Image(this.getClass().getResource("images/icon.png").toString()));
  			alert.setTitle("Herzlichen Glückwunsch!");
  			alert.setHeaderText(null);
  			alert.setGraphic(imageView);
- 			alert.setContentText("Sie haben das Sudoku erfolgreich gemeistert!");
+ 			alert.setContentText("Sie haben das Sudoku erfolgreich in " + timerLabel.getText() + " gemeistert!");
  			alert.showAndWait();
 
 		}

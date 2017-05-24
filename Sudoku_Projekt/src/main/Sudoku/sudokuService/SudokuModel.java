@@ -141,7 +141,6 @@ public class SudokuModel{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//speicher code (lege tempgame und tempsource ab)
 	}
 
 

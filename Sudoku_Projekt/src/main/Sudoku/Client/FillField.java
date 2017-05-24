@@ -6,23 +6,17 @@ public class FillField{
 	private TextField selectedField;
 	private String newValue, oldValue;
 
-	public FillField(TextField selectedField, String newValue){
+	public FillField(TextField selectedField, String newValue, String oldValue){
 		this.selectedField = selectedField;
 		this.newValue = newValue;
+		this.oldValue = oldValue;
 	}
 
 	public void execute() {
-		System.out.println("Wert: " + newValue);
-		oldValue = selectedField.getText();
 		selectedField.setText(newValue);
 	}
 
 	public void undo() {
-		System.out.println("Wert: " + newValue);
 		selectedField.setText(oldValue);
-		}
-
-	public TextField getSelectedField(){
-		return selectedField;
 	}
 }

@@ -223,7 +223,7 @@ public class SudokuViewModel extends Application{
 					@Override
 					public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 						if (newValue.matches("[1-9]")) {
-							cm.executeCommand(new FillField(textFieldList.get(j), newValue));
+							cm.executeCommand(new FillField(textFieldList.get(j), newValue, oldValue));
 							service.enterNumber(x, y, Integer.parseInt(newValue));
 							showTempGameInGUI();
 							System.out.println("SolvedWithCheck:" + solvedWithCheck);
@@ -547,7 +547,7 @@ public class SudokuViewModel extends Application{
 	@FXML
 	public void undoGame()
 	{
-		cm.undo();
+		cm.undoCommand();
 		//service.undoGame();
 		//showTempGameInGUI();
 	}

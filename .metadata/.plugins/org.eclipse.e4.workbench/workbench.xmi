@@ -274,7 +274,7 @@
                 <children xsi:type="advanced:Placeholder" xmi:id="_hXoklDoYEeeCrsrsK7TDEg" elementId="org.eclipse.egit.ui.RepositoriesView" toBeRendered="false" ref="_hXpL0ToYEeeCrsrsK7TDEg"/>
               </children>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_hXoklToYEeeCrsrsK7TDEg" containerData="7500" selectedElement="_hXokljoYEeeCrsrsK7TDEg">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_hXoklToYEeeCrsrsK7TDEg" containerData="7500" selectedElement="_hXoknToYEeeCrsrsK7TDEg">
               <children xsi:type="basic:PartSashContainer" xmi:id="_hXokljoYEeeCrsrsK7TDEg" containerData="7500" selectedElement="_hXoklzoYEeeCrsrsK7TDEg" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_hXoklzoYEeeCrsrsK7TDEg" elementId="org.eclipse.ui.editorss" containerData="7500" ref="_hXol2ToYEeeCrsrsK7TDEg"/>
                 <children xsi:type="basic:PartStack" xmi:id="_hXokmDoYEeeCrsrsK7TDEg" elementId="right" containerData="2500" selectedElement="_hXokmToYEeeCrsrsK7TDEg">
@@ -331,29 +331,29 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_hXol2ToYEeeCrsrsK7TDEg" elementId="org.eclipse.ui.editorss" selectedElement="_hXol2joYEeeCrsrsK7TDEg">
-      <children xsi:type="basic:PartStack" xmi:id="_hXol2joYEeeCrsrsK7TDEg" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_NKfXUD-DEee4ork2fSWHFw">
+      <children xsi:type="basic:PartStack" xmi:id="_hXol2joYEeeCrsrsK7TDEg" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_PAIDQD-DEee4ork2fSWHFw">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_MezWAD-DEee4ork2fSWHFw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="FillField.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FillField.java&quot; partName=&quot;FillField.java&quot; title=&quot;FillField.java&quot; tooltip=&quot;Sudoku_Projekt/src/main/Sudoku/Client/FillField.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Sudoku_Projekt/src/main/Sudoku/Client/FillField.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;594&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FillField.java&quot; partName=&quot;FillField.java&quot; title=&quot;FillField.java&quot; tooltip=&quot;Sudoku_Projekt/src/main/Sudoku/Client/FillField.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Sudoku_Projekt/src/main/Sudoku/Client/FillField.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;465&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_NKfXUD-DEee4ork2fSWHFw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="CommandManager.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;CommandManager.java&quot; partName=&quot;CommandManager.java&quot; title=&quot;CommandManager.java&quot; tooltip=&quot;Sudoku_Projekt/src/main/Sudoku/Client/CommandManager.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Sudoku_Projekt/src/main/Sudoku/Client/CommandManager.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;584&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;CommandManager.java&quot; partName=&quot;CommandManager.java&quot; title=&quot;CommandManager.java&quot; tooltip=&quot;Sudoku_Projekt/src/main/Sudoku/Client/CommandManager.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Sudoku_Projekt/src/main/Sudoku/Client/CommandManager.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;689&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_PAIDQD-DEee4ork2fSWHFw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="SudokuViewModel.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;SudokuViewModel.java&quot; partName=&quot;SudokuViewModel.java&quot; title=&quot;SudokuViewModel.java&quot; tooltip=&quot;Sudoku_Projekt/src/main/Sudoku/Client/SudokuViewModel.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Sudoku_Projekt/src/main/Sudoku/Client/SudokuViewModel.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;6149&quot; selectionTopPixel=&quot;2250&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
           <tags>active</tags>
           <tags>activeOnClose</tags>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_PAIDQD-DEee4ork2fSWHFw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="SudokuViewModel.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;SudokuViewModel.java&quot; partName=&quot;SudokuViewModel.java&quot; title=&quot;SudokuViewModel.java&quot; tooltip=&quot;Sudoku_Projekt/src/main/Sudoku/Client/SudokuViewModel.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Sudoku_Projekt/src/main/Sudoku/Client/SudokuViewModel.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;6785&quot; selectionTopPixel=&quot;2250&quot;/>&#xD;&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
-          <tags>removeOnHide</tags>
         </children>
       </children>
     </sharedElements>
@@ -784,7 +784,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hXpL1joYEeeCrsrsK7TDEg" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_D-YNED-DEee4ork2fSWHFw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_hXqbtDoYEeeCrsrsK7TDEg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_V6LL0D-lEeePIqP6l9GU-A" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_hXqbtDoYEeeCrsrsK7TDEg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hXpL4zoYEeeCrsrsK7TDEg" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -820,7 +820,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hXpMKjoYEeeCrsrsK7TDEg" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_D-aCQD-DEee4ork2fSWHFw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_hXqbVjoYEeeCrsrsK7TDEg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_V6MZ8z-lEeePIqP6l9GU-A" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_hXqbVjoYEeeCrsrsK7TDEg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hXpMNDoYEeeCrsrsK7TDEg" elementId="org.eclipse.fx.ide.fxml.editors.FXMLEditor" visible="false">
         <tags>Draggable</tags>

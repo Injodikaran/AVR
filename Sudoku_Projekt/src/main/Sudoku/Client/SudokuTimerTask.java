@@ -20,14 +20,13 @@ public class SudokuTimerTask extends Thread {
 	private String[] split;
 	private String min, sec;
 	private final StringProperty timer;
-	
-	// Konstruktor
+
     public SudokuTimerTask(SudokuViewModel controller)
     {
     	this.timer = new SimpleStringProperty();
     	ui = controller;
     }
-    
+
     public String getFirstName() {
         return timer.get();
     }
@@ -51,28 +50,33 @@ public class SudokuTimerTask extends Thread {
 		}
 	}
 
-	// Timer pausieren
-    public void pauseThread() throws InterruptedException
-    {
+	/**
+	 * Timer pausieren
+	 */
+    public void pauseThread() throws InterruptedException {
         running = false;
     }
 
-    // Timer reaktivieren
-    public void resumeThread()
-    {
+    /**
+	 * Timer reaktivieren
+	 */
+    public void resumeThread() {
         running = true;
     }
-    // Timer Reseten
-    public void resetThread()
-    {
+
+    /**
+	 * Timer zurücksetzen
+	 */
+    public void resetThread() {
         time = 0;
         min = "00";
         sec = "00";
     }
 
-    // Anzeige Zeit
-    public void getTime()
-    {
+    /**
+	 * Zeit anzeigen
+	 */
+    public void getTime() {
     	split = sdf.format(new Date(time)).split(":");
     	min = split[0];
     	sec = split[1];
@@ -82,6 +86,5 @@ public class SudokuTimerTask extends Thread {
         		 ui.setTime(String.format("%s:%s", min,sec));
              }
          });
-	System.out.println(String.format("%s:%s", min,sec));
     }
 }

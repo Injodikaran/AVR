@@ -2,7 +2,6 @@ package Client;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.scene.control.TextField;
 
 public class CommandManager {
@@ -10,17 +9,15 @@ public class CommandManager {
 	private List<FillField> history = new ArrayList<>();
 
 	public void executeCommand(FillField newFill){
-		history.add(newFill);
 		newFill.execute();
-
+		history.add(newFill);
 	}
 
-	public void undo(){
+	public void undoCommand(){
 		if(history.size() > 0){
-			FillField undoFill = history.remove(history.size() - 1);
-			undoFill.execute();
+			history.get(history.size()-1).undo();
+			history.remove(history.size()-1);
 		}
-
 	}
 
 	public void deleteHistory(){

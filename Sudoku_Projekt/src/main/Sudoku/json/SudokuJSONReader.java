@@ -17,8 +17,6 @@ import SudokuJSONObject.SudokuGame;
 
 public class SudokuJSONReader {
 
-	//public static final String JSON_FILE="emp2.txt";
-
 	public static void main(String[] args) throws IOException{
 		read("emp2.txt");
 	}
@@ -72,9 +70,6 @@ public class SudokuJSONReader {
 		game.setTemplate(template);
 		game.setTime(time.getString());
 
-		game.print();
 		return game;
-
 	}
-
 }

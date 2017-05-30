@@ -7,7 +7,6 @@ import json.SudokuJSONReader;
 import json.SudokuJSONWriter;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.List;
 
 import SudokuJSONObject.SudokuGame;
 
@@ -22,10 +21,6 @@ public class SudokuModel{
 	private Solver sudokusolver=new Solver();				//SolverKlasse
 	private doFile u;
 
-
-	//public Service(){}
-	//Timer?
-
 	/** Neues Spiel
 	 * Öffnet aus der Sudokuquelle ein neues Spiel
 	 *
@@ -35,7 +30,7 @@ public class SudokuModel{
 	public void createNewGame(){
 		SudokuGame imp;
 		int[][] temp;
-		String fileName = "Sudoku"+((int)(Math.random()*10+1))+".txt"; // Random Laden muss noch erzeugt werden
+		String fileName = "Sudoku"+((int)(Math.random()*10+1))+".txt";
 		try {
 			imp = SudokuJSONReader.read(fileName);
 			temp = imp.getTemplate();
@@ -63,7 +58,6 @@ public class SudokuModel{
 			redos.clear();
 			undos.clear();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -95,7 +89,6 @@ public class SudokuModel{
 		undos.clear();
 	}
 
-
 	/** Anzeigen
 	 * zeigt die Lösung an
 	 * @return
@@ -110,7 +103,6 @@ public class SudokuModel{
 		}
 	}
 
-
 	/** Check
 	 * vergleicht aktuelles Sudoku mit der Lösung
 	 * @return
@@ -121,13 +113,12 @@ public class SudokuModel{
 			for(byte b2=0;b2<9;b2++){
 				if (tempgame[b1][b2]>0 && tempgame[b1][b2]!=tempsolution[b1][b2]){
 					truth[b1][b2]=false;
-				}else{
+				}else if (tempgame[b1][b2]>0){
 					truth[b1][b2]=true;
 				}
 			}
 		}
 	}
-
 
 	/** Spiel Speichern
 	 * legt das Spiel ab
@@ -138,12 +129,9 @@ public class SudokuModel{
 		try {
 			SudokuJSONWriter.write(tempsource, tempgame, time, fileName);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//speicher code (lege tempgame und tempsource ab)
 	}
-
 
 	/** Spiel Laden
 	 * ladet ein altes Spiel anhand Filenamen
@@ -180,12 +168,9 @@ public class SudokuModel{
 			undos.clear();
 			return imp.getTime();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
-
-
 	}
 
 	/** Ändere Number
@@ -198,10 +183,8 @@ public class SudokuModel{
 		u.y=(byte) y;
 		u.number=(byte) number;
 		undos.push(u);
-		//redos.clear();
 		tempgame[x][y] = (byte) number;
 		truth[x][y] = true;
-
 	}
 
 	/** Mache Änderung rückgängig
@@ -214,28 +197,9 @@ public class SudokuModel{
 			byte x=u.x;
 			byte y=u.y;
 			byte n=u.number;
-			//redos.add((byte) x);
-			//redos.add((byte) y);
-			//redos.add(tempgame[x][y]);
 			tempgame[x][y] = n;
 		}
 	}
-
-		/** Mache Änderung wieder
-		 */
-		/*public void redo(){
-			if (redos.isEmpty()){
-				//do nothing
-			} else {
-				byte number = redos.pop();
-				byte y = redos.pop();
-				byte x = redos.pop();
-				undos.add((byte) x);
-				undos.add((byte) y);
-				undos.add(tempgame[x][y]);
-				tempgame[x][y] = number;
-			}
-	}*/
 
 	/**
 	 * Holt das aktuelle Spiel
@@ -265,8 +229,10 @@ public class SudokuModel{
 		return tempsolution;
 	}
 
+	/**
+	 * Setzt Stack zurück
+	 */
 	public void resetstacks(){
-		//redos.clear();
 		undos.clear();
 	}
 }

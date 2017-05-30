@@ -780,16 +780,25 @@
                </VBox.margin>
             </Button>
 				<Button fx:id="solveGame" graphicTextGap="10.0" mnemonicParsing="false" onAction="#solveGame" prefHeight="50.0" prefWidth="150.0" text="Anzeigen" textAlignment="RIGHT">
+					<tooltip>
+						<Tooltip text="Lösung anzeigen lassen..." />
+					</tooltip>
 					<VBox.margin>
 						<Insets bottom="10.0" />
 					</VBox.margin>
 				</Button>
 				<Button fx:id="undoGame" graphicTextGap="10.0" mnemonicParsing="false" onAction="#undoGame" prefHeight="50.0" prefWidth="150.0" text="Rückgängig" textAlignment="RIGHT">
+					<tooltip>
+						<Tooltip text="Macht die letzte Eingabe rückgängig..." />
+					</tooltip>
 					<VBox.margin>
 						<Insets bottom="10.0" />
 					</VBox.margin>
 				</Button>
             <ToggleButton fx:id="checkGame" mnemonicParsing="false" onAction="#handleCheckGameButtonAction" prefHeight="50.0" prefWidth="150.0" text="Check">
+               <tooltip>
+					<Tooltip text="Zeigt richtig und falsch getätigte Eingaben an..." />
+				</tooltip>
                <VBox.margin>
                   <Insets bottom="80.0" />
                </VBox.margin>
